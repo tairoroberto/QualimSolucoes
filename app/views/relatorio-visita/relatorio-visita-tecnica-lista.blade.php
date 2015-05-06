@@ -112,7 +112,9 @@
                           </div>
                           <div class="modal-footer" style="text-align: center">
                               <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('imprimir');">Imprimir</button>
-                              <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('editar');">Editar</button>
+                              @if(Auth::user()->check())
+                                  <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('editar');">Editar</button>
+                              @endif
                               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                           </div>
                       </div><!-- /.modal-content -->

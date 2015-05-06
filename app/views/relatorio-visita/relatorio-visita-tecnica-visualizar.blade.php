@@ -88,7 +88,7 @@ table {
 
                     
                     <div class="col-md-10 titulo" align="center">
-                      <h5><b>RELATÓRIO DE VISITA TÉCNICA<b></h5>
+                      <h5><b>RELATÓRIO DE VISITA TÉCNICA</b></h5>
                     </div>
 
                     <div class="col-md-2" align="right">
@@ -167,7 +167,7 @@ table {
                          {{--Nome--}}</b></h5>
                       </div>
                        <div class="col-md-6 titulo" align="center">
-                         <h5><b>{{--Assinatura--}}<b></h5>
+                         <h5><b>{{--Assinatura--}}</b></h5>
                       </div>
 
 
@@ -178,8 +178,10 @@ table {
 
                          <div align="right">
                             @if ($nutricionista->signature != "")
-                              <img src="packages/assets/img/signatures/{{$nutricionista->signature}}"
-                               width="270" height="80">
+                                 @if(File::exists("packages/assets/img/signatures/".$nutricionista->signature))
+                                     <img src="packages/assets/img/signatures/{{$nutricionista->signature}}"
+                                          width="270" height="80">
+                                 @endif
                             @endif
                          </div>   
                       
