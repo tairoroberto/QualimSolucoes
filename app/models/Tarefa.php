@@ -13,6 +13,6 @@ class Tarefa extends Eloquent {
 
 
 public function historico(){
-		return $this->hasMany('Tarefa_historico');
+		return $this->hasMany('TarefaHistorico');
 	}
 }

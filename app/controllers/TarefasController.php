@@ -269,13 +269,13 @@ class TarefasController extends BaseController {
 	 * @return Response
 	 */
 	public function delete($id){
-		$tarefa = Tarefa::findOrFail($id);
-		$tarefa->delete();
+		$tarefa = Tarefa::find($id);
 
-		$historicoTarefa = Tarefa_historicofindOrFail('tarefa_id','=',$id);;
-		$historicoTarefa->tarefa()->associate($etapaTarefa);
+		$historicoTarefa = TarefaHistorico::where('tarefa_id','=',$tarefa->id)->get()->first();
+		$historicoTarefa->tarefa()->associate($tarefa);
 		$historicoTarefa->historico = "Tarefa cadastrada";
 		$historicoTarefa->save();
+        $tarefa->delete();
 		return Redirect::route('visualizar-tarefas');
 	}
 

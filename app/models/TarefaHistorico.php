@@ -1,6 +1,6 @@
 <?php
 
-class Tarefa_historico extends Eloquent {
+class TarefaHistorico extends Eloquent {
 
     use SoftDeletingTrait;
 

@@ -32,10 +32,9 @@
             <a href="#" class="dropdown-toggle" id="my-task-list" data-placement="bottom"  data-content='' data-toggle="dropdown" data-original-title="Notificações">
               <div class="user-details"> 
 
-              <?php $tarefaNova = DB::table('tarefas')
-                                    ->where("date_start","=",date('d/m/Y'))
-                                    ->where("nutricionista_id","=",Auth::user()->get()->id)
-                                    ->count();?>
+              <?php $tarefaNova = Tarefa::where("date_start","=",date('d/m/Y'))
+                                        ->where("nutricionista_id","=",Auth::user()->get()->id)
+                                        ->count();?>
 
                 <div class="username">
                     <?php $name = explode(" ", Auth::user()->get()->name);  ?>
@@ -48,23 +47,21 @@
             </a>  
             <div id="notification-list" style="display:none">
               <div style="width:300px">
-               <?php 
+               <?php
 
-                    $tarefaAtrasada = DB::table('tarefas')
-                                    ->where("date_finish","<",date('d/m/Y'))
-                                    ->where("nutricionista_id","=",Auth::user()->get()->id)
-                                    ->count();
+                  $tarefaAtrasada = Tarefa::where("date_finish","<",date('d/m/Y'))
+                                          ->where("nutricionista_id","=",Auth::user()->get()->id)
+                                          ->count();
 
-                    $tarefasAndatmento = DB::table('tarefas')
-                                           ->where("date_finish",">=",date('d/m/Y'))
-                                           ->where("SituacaoEtapaTarefa","!=","Finalizado")
-                                           ->where("nutricionista_id","=",Auth::user()->get()->id)
-                                           ->count(); ?>
+                                      $tarefasAndatmento = Tarefa::where("date_finish",">=",date('d/m/Y'))
+                                          ->where("SituacaoEtapaTarefa","!=","Finalizado")
+                                          ->where("nutricionista_id","=",Auth::user()->get()->id)
+                                          ->count(); ?>
 
 
                  <div class="notification-messages sucess">
                      <div class="description">
-                        {{$tarefaNova}} tarefas Nova(s)
+                         <a href="{{action('TarefasController@show')}}"> {{$tarefaNova}} tarefas Nova(s)</a>
                       </div> 
                    <div class="clearfix"></div>                  
                 </div> 
@@ -72,7 +69,7 @@
 
                  <div class="notification-messages info">
                   <div class="description">
-                        {{$tarefasAndatmento}} tarefas com o prazo para acabar
+                      <a href="{{action('TarefasController@show')}}"> {{$tarefasAndatmento}} tarefas com o prazo para acabar </a>
                       </div> 
                    <div class="clearfix"></div>                  
                 </div> 

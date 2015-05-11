@@ -118,7 +118,7 @@ function tarefaConcederPrazo(id){
           {{--Se houver tarefas cadastrada mostra o nome do ususario logado--}}
           @if (count($tarefas) > 0)
             {{--Dono da tarefa--}}
-                <li style=" padding:15px;">{{Auth::user()->get()->name}}</li>
+                {{--<li style=" padding:15px;">{{Auth::user()->get()->name}}</li>--}}
           @endif
 
              
@@ -149,7 +149,15 @@ function tarefaConcederPrazo(id){
                               echo "fa fa-check";
                             } ?>">
                     </i>
-                  {{$tarefa->title}}
+
+
+                     <?php
+                     //Pega o nome do usuario da tarefa
+                     $user = Nutricionista::find($tarefa->nutricionista_id);
+                     $firstName = explode(' ', $user->name) ?>
+
+                     {{--Printa o nome do usuario responsavél pela arefa--}}
+                        {{$firstName[0]." - ". $tarefa->title}}
                   </a>
               </li>
               <?php $cont++;0 ?>
@@ -261,7 +269,11 @@ function tarefaConcederPrazo(id){
                             ($tarefa2->SituacaoEtapaTarefa != 'Finalizar')) {
                             $porcetagem = 100;
                           }else{
-                            $porcetagem = $dias * 100 / $duracao;
+                            if($duracao != 0){
+                                $porcetagem = $dias * 100 / $duracao;
+                            }else{
+                                $porcetagem = $dias * 100;
+                            }
                           }
                           
                           ?>
@@ -303,7 +315,7 @@ function tarefaConcederPrazo(id){
            </div> 
            {{--Begin histórico--}} 
              <h4>Hisorico</h4>
-             <?php $historicos = Tarefa_historico::where('tarefa_id','=',$tarefa2->id)->get(); ?>
+             <?php $historicos = TarefaHistorico::where('tarefa_id','=',$tarefa2->id)->get(); ?>
               @foreach ($historicos as $historico)
 
                
