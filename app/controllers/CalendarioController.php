@@ -9,7 +9,7 @@ class CalendarioController extends BaseController {
 	 */
 	public function index()
 	{
-		if (Auth::user()->get()->type == "Administrador") {
+		if (Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora") {
 			return View::make("calendario.calendario-admin");
 		}
         return View::make("calendario.calendario");
@@ -64,7 +64,7 @@ class CalendarioController extends BaseController {
 	 */
 	public function mostrar($id){
 		$array = array();
-		if (Auth::user()->get()->type == "Administrador") {
+		if (Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora") {
 			$result = Calendario::all();			
 			foreach ($result as $evento) {				
 				$nutricionista = Nutricionista::find($evento->nutricionista_id);
@@ -91,7 +91,7 @@ class CalendarioController extends BaseController {
 	 */
 	public function mostrarCronogramaLista(){
 		/** if the user is admin go to cronogram list */
-		if (Auth::user()->get()->type == "Administrador") {
+		if (Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora") {
 			$nutricionistas = Nutricionista::all();
 			return View::make('calendario.cronograma-lista',compact("nutricionistas"));
 

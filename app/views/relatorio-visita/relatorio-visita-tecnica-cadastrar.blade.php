@@ -6,7 +6,7 @@
        $(document).ready(function () {
 
            $('#data').datepicker({
-               format: "yyyy/mm/dd"
+               format: "dd/mm/yyyy"
            });
 
            /*$('.textarea').htmlarea(); //*/
@@ -39,7 +39,7 @@
            $("#horaInicio").mask("99:99");
            $("#horaFim").mask("99:99");
            $("#totalHoras").mask("99:99");
-           $("#data").mask("9999/99/99");
+           $("#data").mask("99/99/9999");
        });
 
        //seleciona um cliente ao mudar o select
@@ -221,7 +221,7 @@ function somaHora(horaInicio, horaSomada) {
                     </div>
 
                     <div class="col-md-3">
-                      <h5>{{--<b>Data: </b>--}}<input type="text" id="data" name="data" value="{{date("Y/m/d")}}"></h5>
+                      <h5>{{--<b>Data: </b>--}}<input type="text" id="data" name="data" value="{{date("d/m/Y")}}"></h5>
                     </div>
 
                     <div class="col-md-2">

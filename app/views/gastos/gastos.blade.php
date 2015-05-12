@@ -43,6 +43,8 @@
        $('#hora-entrada').val(start);
        $('#hora-saida').val(end);
 
+       $("#labelModal").html("Insira os dados da despesa para cadastro!");
+
        $('#myModal').modal('show');
        $("#situacao").val(situation);
 
@@ -76,6 +78,8 @@
        $('#gasto_id').val(gasto_id);
        $('#nutricionista_id').val(nutricionista_id);
 
+       $("#labelModal").html("Insira os dados da despesa para edição!");
+
        $('#myModal').modal('show');
 
        $("#situacao").val(situation);
@@ -85,15 +89,35 @@
 
     function salvarDespesa() {
         if($("#situacao").val() == ""){
-            formGastos.action = "{{action('GastosController@store')}}";
-            formGastos.submit();
+
+            if(calculaData() != 0){
+                formGastos.action = "{{action('GastosController@store')}}";
+                formGastos.submit();
+            }else{
+                erro("O horário de entrada não pode ser menor que o de saída!");
+                return;
+            }
+
         }else{
-            formGastos.action = "{{action('GastosController@edit')}}";
-            formGastos.submit();
+
+            if(calculaData() != 0){
+                formGastos.action = "{{action('GastosController@edit')}}";
+                formGastos.submit();
+            }else{
+                erro("O horário de entrada não pode ser menor que o de saída!");
+                return;
+            }
         }
       return;
     }
 
+
+
+   function erro(msg){
+       $("#divErro").css("display","block");
+       $("#msgErro").html(msg);
+       return;
+   }
 
 
 
@@ -120,6 +144,79 @@
        $("#date").mask("99-99-9999");
    });
 
+
+   function calculaData() {
+       horaInicial = $("#hora-entrada").val();
+       horaFinal = $("#hora-saida").val();
+
+       // Tratamento se a hora inicial é menor que a final
+       if( ! isHoraInicialMenorHoraFinal(horaInicial, horaFinal) ){
+           // aux = horaFinal;
+           //horaFinal = horaInicial;
+           // horaInicial = aux;
+           // alert("hora de término deve ser maior que hora de inicio");
+
+           //$("#horaFim").focus();
+           return 0;
+       }
+
+       hIni = horaInicial.split(':');
+       hFim = horaFinal.split(':');
+
+       horasTotal = parseInt(hFim[0], 10) - parseInt(hIni[0], 10);
+       minutosTotal = parseInt(hFim[1], 10) - parseInt(hIni[1], 10);
+
+       if(minutosTotal < 0){
+           minutosTotal += 60;
+           horasTotal -= 1;
+       }
+
+       horaFinal = horasTotal + ":" + minutosTotal;
+
+       return 1;
+   }
+
+   /**
+    * Verifica se a hora inicial é menor que a final.
+    */
+   function isHoraInicialMenorHoraFinal(horaInicial, horaFinal){
+       horaIni = horaInicial.split(':');
+       horaFim = horaFinal.split(':');
+
+       // Verifica as horas. Se forem diferentes, é só ver se a inicial
+       // é menor que a final.
+       hIni = parseInt(horaIni[0], 10);
+       hFim = parseInt(horaFim[0], 10);
+       if(hIni != hFim)
+           return hIni < hFim;
+
+       // Se as horas são iguais, verifica os minutos então.
+       mIni = parseInt(horaIni[1], 10);
+       mFim = parseInt(horaFim[1], 10);
+       if(mIni != mFim)
+           return mIni < mFim;
+   }
+
+   /**
+    * Soma duas horas.
+    * Exemplo:  12:35 + 07:20 = 19:55.
+    */
+   function somaHora(horaInicio, horaSomada) {
+
+       horaIni = horaInicio.split(':');
+       horaSom = horaSomada.split(':');
+
+       horasTotal = parseInt(horaIni[0], 10) + parseInt(horaSom[0], 10);
+       minutosTotal = parseInt(horaIni[1], 10) + parseInt(horaSom[1], 10);
+
+       if(minutosTotal >= 60){
+           minutosTotal -= 60;
+           horasTotal += 1;
+       }
+
+       horaFinal = horasTotal + ":" + minutosTotal;
+       return horaFinal;
+   }
 
   </script>
 
@@ -218,8 +315,32 @@
                                     <td class="v-align-middle">{{$calendario->title}}</td>
                                     <td class="v-align-middle">{{$calendario->description}}</td>
                                     <td class="v-align-middle">{{$calendario->location}}</td>
-                                    <td class="v-align-middle">{{$dataInicio[2]."/".$dataInicio[1]."/".$dataInicio[0]." ". $horaIncio}}</td>
-                                    <td class="v-align-middle">{{$dataFim[2]."/".$dataFim[1]."/".$dataFim[0]." ". $horaFim}}</td>
+
+                                    {{--Verifica se o gasto já foi cadastrado
+                                     se não foi mostra a data do calendario
+                                     se foi cadastrado mostra a data do cadastro--}}
+                                    @if($calendario->situation == "")
+                                        <td class="v-align-middle">{{$dataInicio[2]."/".$dataInicio[1]."/".$dataInicio[0]." ". $horaIncio}}</td>
+                                    @else
+                                        {{--Mostra a data do cadastro do gasto--}}
+                                        <?php $data1 = explode(" ", $gasto->date) ?>
+                                        <?php $data2 = explode("-", $data1[0]) ?>
+                                        <td class="v-align-middle">{{$data2[2]."/".$data2[1]."/".$data2[0]." ".$gasto->entry_time}}</td>
+                                    @endif
+
+                                    {{--Verifica se o gasto já foi cadastrado
+                                     se não foi mostra a data do calendario
+                                     se foi cadastrado mostra a data do cadastro--}}
+                                    @if($calendario->situation == "")
+                                        <td class="v-align-middle">{{$dataFim[2]."/".$dataFim[1]."/".$dataFim[0]." ". $horaFim}}</td>
+                                    @else
+                                        {{--Mostra a data do cadastro do gasto--}}
+                                        <?php $data3 = explode(" ", $gasto->date) ?>
+                                        <?php $data4 = explode("-", $data3[0]) ?>
+                                        <td class="v-align-middle">{{$data4[2]."/".$data4[1]."/".$data4[0]." ".$gasto->departure_time}}</td>
+                                    @endif
+
+
                                     <td class="v-align-middle">{{$calendario->situation}}</td>
                                </tr>
                         
@@ -237,8 +358,13 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Insira os dados da despesa</h4>
+                    <h4 class="modal-title"><label class="alert" id="labelModal">Insira os dados da despesa</label></h4>
                     </div>
+
+                    <div class="alert" style="display: none;" id="divErro">
+                        <span class="label label-danger" id="msgErro"></span>
+                    </div>
+
                     <div class="modal-body" align="center">
                     {{--Start modal body--}}
                        <div class="row column-seperation">
@@ -247,18 +373,16 @@
                          <div class="row form-row">
 
 
-                          <div class="col-md-5">
-                              <input name="cliente-local" id="cliente-local" type="text"  class="form-control" placeholder="Cliente/Local" value="{{Input::old('cliente-local')}}">
-                          </div>
+                         <div id="datetimepicker1" class="col-md-3 input-append date ">
+                             <input data-format="dd-MM-yyyy" type='text' id="date" name="date" class="form-control" placeholder="Data da visita"/>
+                                <span class="add-on">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                         </div>
 
-                          <div class="col-md-3">
-                              <div id="datetimepicker1" class="input-append date">
-                                  <input data-format="dd-MM-yyyy" type='text' id="date" name="date" class="form-control" placeholder="Data da visita"/>
-                                        <span class="add-on">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                              </div>
-                          </div>
+                         <div class="col-md-5">
+                             <input name="cliente-local" id="cliente-local" type="text"  class="form-control" placeholder="Cliente/Local" value="{{Input::old('cliente-local')}}">
+                         </div>
 
                           <div class="col-md-2">
                             <input name="hora-entrada" id="hora-entrada" type="text"  class="form-control" placeholder="Hora de entrada" value="{{Input::old('hora-entrada')}}">
@@ -302,7 +426,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                       <input type="hidden" id="situacao">
-                      <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="salvarDespesa();">Salva despesa</button>
+                      <button type="button" id="btnBuscarDados" class="btn btn-primary" onclick="salvarDespesa();">Salva despesa</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

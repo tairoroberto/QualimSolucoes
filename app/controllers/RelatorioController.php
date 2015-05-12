@@ -65,7 +65,10 @@ class RelatorioController extends BaseController {
                 $relatorio_visita = new RelatorioVisita;
                 $relatorio_visita->nutricionista_id = Input::get("selectNutricionista");
                 $relatorio_visita->cliente_id = Input::get("cliente_id");
-                $relatorio_visita->data = Input::get("data")." 00:00:00";
+
+                $data = explode("/", Input::get("data"));
+                $relatorio_visita->data = $data[2]."-".$data[1]."-".$data[0]." 00:00:00";
+
                 $relatorio_visita->hora_inicio = Input::get("horaInicio");
                 $relatorio_visita->hora_fim = Input::get("horaFim");
                 $relatorio_visita->hora_total = Input::get("totalHoras");
@@ -98,7 +101,6 @@ class RelatorioController extends BaseController {
 
             }catch (Exception $e){
                 return Redirect::route('relatorio')
-                    ->withInput()
                     ->withErrors(['Não foi possível salvar o relatório!']);
             }
 		}		
@@ -149,7 +151,10 @@ class RelatorioController extends BaseController {
                 $relatorio_visita = RelatorioVisita::find(Input::get("relatorio_id"));
                 $relatorio_visita->nutricionista_id = Input::get("selectNutricionista");
                 $relatorio_visita->cliente_id = Input::get("cliente_id");
-                $relatorio_visita->data = Input::get("data")." 00:00:00";
+
+                $data = explode("/", Input::get("data"));
+                $relatorio_visita->data = $data[2]."-".$data[1]."-".$data[0]." 00:00:00";
+
                 $relatorio_visita->hora_inicio = Input::get("horaInicio");
                 $relatorio_visita->hora_fim = Input::get("horaFim");
                 $relatorio_visita->hora_total = Input::get("totalHoras");

@@ -221,7 +221,10 @@ function somaHora(horaInicio, horaSomada) {
                     </div>
 
                     <div class="col-md-3">
-                      <h5>{{--<b>Data: </b>--}}<input type="text" id="data" name="data" value="{{$relatorio->data}}"></h5>
+                        <?php $dataFull = explode(" ", $relatorio->data) ?>
+                        <?php $data = explode("-", $dataFull[0]) ?>
+
+                      <h5>{{--<b>Data: </b>--}}<input type="text" id="data" name="data" value="{{$data[2]."/".$data[1]."/".$data[0]}}"></h5>
                     </div>
 
                     <div class="col-md-2">

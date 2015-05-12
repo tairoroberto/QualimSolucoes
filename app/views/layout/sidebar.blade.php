@@ -286,7 +286,7 @@
              <li > 
                 <a href="{{action('CalendarioController@create')}}"> Cadastrar Cronograma</a> 
              </li>  
-             @if (Auth::user()->get()->type == "Administrador")     
+             @if (Auth::user()->get()->type == "Administrador" || (Auth::user()->get()->type == "Supervisora"))
                   <li > 
                     <a href="{{action('CalendarioController@mostrarCronogramaLista')}}"> Visualizar Cronograma</a> 
                  </li> 

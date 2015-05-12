@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48e28be2-64a6-4e71-b0f8-e8cec3fa7aaf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/GastosController.php" afterPath="$PROJECT_DIR$/app/controllers/GastosController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/CalendarioController.php" afterPath="$PROJECT_DIR$/app/controllers/CalendarioController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Gasto.php" afterPath="$PROJECT_DIR$/app/models/Gasto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/RelatorioController.php" afterPath="$PROJECT_DIR$/app/controllers/RelatorioController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" afterPath="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" afterPath="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" afterPath="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layout/layout.blade.php" afterPath="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php" afterPath="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-editar.blade.php" afterPath="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-editar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" afterPath="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Nutricionista-laravel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,23 +37,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="gastos.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos.blade.php">
+      <file leaf-file-name="relatorio-visita-tecnica-cadastrar.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-125.31035" vertical-offset="326" max-vertical-offset="6880">
-              <caret line="198" column="129" selection-start-line="198" selection-start-column="129" selection-end-line="198" selection-end-column="129" />
-              <folding>
-                <marker date="1431451099539" expanded="true" signature="3129:3151" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="33.793102" vertical-offset="1140" max-vertical-offset="7240">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GastosController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
+      <file leaf-file-name="RelatorioController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/RelatorioController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57921636" vertical-offset="2580" max-vertical-offset="3960">
-              <caret line="146" column="12" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.8606272" vertical-offset="1546" max-vertical-offset="4340">
+              <caret line="102" column="51" selection-start-line="102" selection-start-column="51" selection-end-line="102" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="relatorio-visita-tecnica-editar.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-editar.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.37931" vertical-offset="4226" max-vertical-offset="7500">
+              <caret line="222" column="42" selection-start-line="222" selection-start-column="42" selection-end-line="222" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -61,7 +78,6 @@
         <option value="$PROJECT_DIR$/app/models/Cliente.php" />
         <option value="$PROJECT_DIR$/app/models/EtapaTarefa.php" />
         <option value="$PROJECT_DIR$/app/models/EmailCliente.php" />
-        <option value="$PROJECT_DIR$/app/models/Gasto.php" />
         <option value="$PROJECT_DIR$/app/models/Link.php" />
         <option value="$PROJECT_DIR$/app/models/Tarefa_historico.php" />
         <option value="$PROJECT_DIR$/app/views/nutricionista/nutricionista-lista.blade.php" />
@@ -82,12 +98,7 @@
         <option value="$PROJECT_DIR$/app/views/emails/relatorio-email-nutricionista.blade.php" />
         <option value="$PROJECT_DIR$/app/views/emails/relatorio-email-cliente-contact.blade.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_10_13_192015_create_gastos.php" />
-        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="$PROJECT_DIR$/app/controllers/RelatorioController.php" />
-        <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-editar.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php" />
         <option value="$PROJECT_DIR$/app/config/database.example.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/config/app.php" />
@@ -100,15 +111,21 @@
         <option value="$PROJECT_DIR$/app/models/Tarefa.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-visualizar.blade.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-finalizadas.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_10_15_010425_create_eventos.php" />
         <option value="$PROJECT_DIR$/app/models/Calendario.php" />
-        <option value="$PROJECT_DIR$/app/controllers/CalendarioController.php" />
         <option value="$PROJECT_DIR$/app/views/calendario/calendario.blade.php" />
         <option value="$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/GastosController.php" />
+        <option value="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" />
+        <option value="$PROJECT_DIR$/app/models/Gasto.php" />
+        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/CalendarioController.php" />
+        <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-editar.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/RelatorioController.php" />
       </list>
     </option>
   </component>
@@ -197,6 +214,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nutricionista-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="relatorio-visita" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nutricionista-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -418,13 +479,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Responsive-WYSIWYG/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27874565" vertical-offset="120" max-vertical-offset="840">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Responsive-WYSIWYG/editor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.354838" vertical-offset="30188" max-vertical-offset="31660">
@@ -516,13 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-lista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5278746" vertical-offset="877" max-vertical-offset="1480">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_10_13_192015_create_gastos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8177172" vertical-offset="0" max-vertical-offset="980">
@@ -544,38 +591,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4982579" vertical-offset="2820" max-vertical-offset="3680">
-          <caret line="98" column="43" selection-start-line="98" selection-start-column="43" selection-end-line="98" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34843206" vertical-offset="1620" max-vertical-offset="3500">
-          <caret line="91" column="43" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/RelatorioVisita.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4770017" vertical-offset="0" max-vertical-offset="587">
           <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-editar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4773519" vertical-offset="5986" max-vertical-offset="7440">
-          <caret line="313" column="32" selection-start-line="313" selection-start-column="32" selection-end-line="316" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/RelatorioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.17421603" vertical-offset="3180" max-vertical-offset="4240">
-          <caret line="154" column="73" selection-start-line="154" selection-start-column="73" selection-end-line="154" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -605,13 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.78571427" vertical-offset="1309" max-vertical-offset="4960">
           <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31881532" vertical-offset="5957" max-vertical-offset="7240">
-          <caret line="307" column="31" selection-start-line="307" selection-start-column="31" selection-end-line="310" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -707,22 +719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5923345" vertical-offset="360" max-vertical-offset="7240">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6968641" vertical-offset="1960" max-vertical-offset="10380">
-          <caret line="118" column="44" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-visualizar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5714286" vertical-offset="3388" max-vertical-offset="9260">
@@ -747,24 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.06968641" vertical-offset="3620" max-vertical-offset="7600">
-          <caret line="179" column="175" selection-start-line="179" selection-start-column="175" selection-end-line="179" selection-end-column="175" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/CalendarioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7073171" vertical-offset="0" max-vertical-offset="3700">
-          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Calendario.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44293016" vertical-offset="0" max-vertical-offset="587">
@@ -773,28 +751,120 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.06968641" vertical-offset="3620" max-vertical-offset="7600">
+          <caret line="179" column="175" selection-start-line="179" selection-start-column="175" selection-end-line="179" selection-end-column="175" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6010453" vertical-offset="4295" max-vertical-offset="7600">
-          <caret line="232" column="12" selection-start-line="232" selection-start-column="12" selection-end-line="232" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.25261325" vertical-offset="3275" max-vertical-offset="7600">
+          <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Gasto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57921636" vertical-offset="0" max-vertical-offset="600">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-lista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.010452962" vertical-offset="6" max-vertical-offset="1480">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3379791" vertical-offset="3066" max-vertical-offset="3640">
+          <caret line="163" column="21" selection-start-line="163" selection-start-column="21" selection-end-line="163" selection-end-column="21" />
+          <folding>
+            <element signature="e#4080#4097#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5574913" vertical-offset="2820" max-vertical-offset="3480">
+          <caret line="157" column="20" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
+          <folding>
+            <element signature="e#3704#3721#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5226481" vertical-offset="5460" max-vertical-offset="7240">
+          <caret line="288" column="110" selection-start-line="288" selection-start-column="110" selection-end-line="288" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.98807496" vertical-offset="2340" max-vertical-offset="3960">
+          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/CalendarioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41811848" vertical-offset="1620" max-vertical-offset="3700">
+          <caret line="93" column="102" selection-start-line="93" selection-start-column="102" selection-end-line="93" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3118467" vertical-offset="6941" max-vertical-offset="10380">
+          <caret line="356" column="64" selection-start-line="356" selection-start-column="64" selection-end-line="356" selection-end-column="111" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-125.31035" vertical-offset="326" max-vertical-offset="6880">
-          <caret line="198" column="129" selection-start-line="198" selection-start-column="129" selection-end-line="198" selection-end-column="129" />
+        <state vertical-scroll-proportion="0.49303135" vertical-offset="5417" max-vertical-offset="9360">
+          <caret line="285" column="23" selection-start-line="285" selection-start-column="23" selection-end-line="290" selection-end-column="68" />
           <folding>
-            <marker date="1431451099539" expanded="true" signature="3129:3151" placeholder="..." />
+            <marker date="1431468404553" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
+    <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-editar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57921636" vertical-offset="2580" max-vertical-offset="3960">
-          <caret line="146" column="12" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="12" />
+        <state vertical-scroll-proportion="-7.37931" vertical-offset="4226" max-vertical-offset="7500">
+          <caret line="222" column="42" selection-start-line="222" selection-start-column="42" selection-end-line="222" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="33.793102" vertical-offset="1140" max-vertical-offset="7240">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/RelatorioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8606272" vertical-offset="1546" max-vertical-offset="4340">
+          <caret line="102" column="51" selection-start-line="102" selection-start-column="51" selection-end-line="102" selection-end-column="51" />
           <folding />
         </state>
       </provider>

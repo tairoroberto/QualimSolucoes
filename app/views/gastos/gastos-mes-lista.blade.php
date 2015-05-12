@@ -150,7 +150,7 @@
                 </div>
               </div>
 
-            @if (Auth::user()->get()->type == "Administrador")
+
               <div class="span12">
                 <div class="grid simple">              
                   <div class="grid-body" align="center">
@@ -161,9 +161,7 @@
                   <b>Total de gastos extras:</b> {{number_format($gastoExtra, 2, ',', '.')}}
                   </div>
                 </div>
-              </div> 
-            @endif
-
+              </div>
 
 
 

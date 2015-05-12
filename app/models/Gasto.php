@@ -15,7 +15,7 @@ class Gasto extends Eloquent {
 		'hora-entrada'      		=>    'required',
 		'hora-saida'    			=>    'required',
 		'vale-refeicao'     		=>    'min:3',
-		'observacaoValeTransporte'	=>	  'required|min:3',
+		'observacaoValeTransporte'	=>	  'min:3',
 		'vale-transporte'  			=>    'min:3',
 		'observacaoGastoExtra'		=>    'min:3',
 		'gasto-extra'    			=>    'min:3'
