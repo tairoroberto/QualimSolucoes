@@ -35,8 +35,16 @@ class CalendarioController extends BaseController {
 		$calendario->title = Input::get("title");
 		$calendario->description = Input::get("description");
 		$calendario->location = Input::get("location");
-		$calendario->start = Input::get("start");
-		$calendario->end = Input::get("end");
+        $startFull = explode(' ', Input::get("start"));
+        $endFull = explode(' ', Input::get("end"));
+
+        /*Tira o primeiro paramentro para pegar a data como formato yyyy-mm-dd */
+        $start = explode('-',$startFull[0]);
+        $end = explode('-',$endFull[0]);
+
+		$calendario->start = $start[2]."-".$start[1]."-".$start[0]." ".$startFull[1];
+		$calendario->end = $end[2]."-".$end[1]."-".$end[0]." ".$endFull[1];;
+
 		$calendario->nutricionista_id = Auth::user()->get()->id;
 		$calendario->situation = "";
 		$calendario->save();

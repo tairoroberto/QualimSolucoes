@@ -33,6 +33,7 @@
               <div class="user-details"> 
 
               <?php $tarefaNova = Tarefa::where("date_start","=",date('d/m/Y'))
+                                        ->where("SituacaoEtapaTarefa","!=","Finalizado")
                                         ->where("nutricionista_id","=",Auth::user()->get()->id)
                                         ->count();?>
 
@@ -50,6 +51,7 @@
                <?php
 
                   $tarefaAtrasada = Tarefa::where("date_finish","<",date('d/m/Y'))
+                                          ->where("SituacaoEtapaTarefa","!=","Finalizado")
                                           ->where("nutricionista_id","=",Auth::user()->get()->id)
                                           ->count();
 

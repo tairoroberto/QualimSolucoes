@@ -69,9 +69,11 @@
                 timeFormat: {   '': 'H(:mm)',   agenda: 'H:mm{ - H:mm}' },
 
                 events: "{{action('CalendarioController@mostrar',Auth::user()->get()->id)}}",
+                /*eventColor:"#ff0000",*/
 
                 // Convert the allDay from string to boolean
                 eventRender: function(event, element, view) {
+
                     if (event.allDay === 'true') {
                         event.allDay = true;
                     } else {
@@ -83,10 +85,9 @@
                 select: function(start, end, allDay) {
 
 
-
-                    $("#start").val($.fullCalendar.formatDate(start, "yyyy-MM-dd HH:mm:ss"));
-                    $("#end").val($.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm:ss"));
-                    stringDate = $.fullCalendar.formatDate(start, "yyyy-MM-dd HH:mm:ss");
+                    $("#start").val($.fullCalendar.formatDate(start, "dd-MM-yyyy HH:mm:ss"));
+                    $("#end").val($.fullCalendar.formatDate(end, "dd-MM-yyyy HH:mm:ss"));
+                    stringDate = $.fullCalendar.formatDate(start, "dd-MM-yyyy HH:mm:ss");
                     $('#myModal').modal('show');
 
 
@@ -94,8 +95,8 @@
 
                 editable: true,
                 eventDrop: function(event, delta) {
-                    var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
-                    var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+                    var start = $.fullCalendar.formatDate(event.start, "dd-MM-yyyy HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "dd-MM-yyyy HH:mm:ss");
                     $.ajax({
                         url: "{{action('CalendarioController@atualizar')}}",
                         data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&nutricionista_id='+idusuario+'&id='+ event.id,
@@ -106,8 +107,8 @@
                     });
                 },
                 eventResize: function(event) {
-                    var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
-                    var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+                    var start = $.fullCalendar.formatDate(event.start, "dd-MM-yyyy HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "dd-MM-yyyy HH:mm:ss");
                     $.ajax({
                         url: "{{action('CalendarioController@atualizar')}}",
                         data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&nutricionista_id='+idusuario+'&id='+ event.id,
@@ -151,23 +152,23 @@
 
 
             //verifica se a data é igual a do calendario sem o horario e se a data esta nula
-            if(description == ""){
-                erro("Preencha o campo Descrição!");
-                $('#description').focus();
-                return;
-
-            }else if(location == ""){
+            if(location == ""){
                 erro("Preencha o campo Local/Cliente!");
                 $('#location').focus();
                 return;
 
-            }else if(start == stringDate || start == ""){
-                erro("Preencha o horário de entrada!");
+            }else if(description == ""){
+                erro("Preencha o campo Descrição!");
+                $('#description').focus();
+                return;
+
+                }else if(start == stringDate || start == "" || start.length < 19 ){
+                erro("Preencha o horário de entrada completamente!");
                 $('#start').focus();
                 return;
 
-            }else if(end == stringDate || end == ""){
-                erro("Preencha o horário de saída!");
+            }else if(end == stringDate || end == "" || end.length < 19){
+                erro("Preencha o horário de saída completamente!");
                 $('#end').focus();
                 return;
             }
@@ -197,6 +198,15 @@
 
             //esconde o modal
             $("#myModal").modal("hide");
+
+            $('#description').val("");
+            $('#location').val("");
+            $('#start').val("");
+            $('#end').val("");
+
+            formCalendario.action = "{{action('CalendarioController@create')}}";
+            formCalendario.method = "GET";
+            formCalendario.submit();
         }
 
         function erro(msg){
@@ -219,8 +229,8 @@
                 language: 'pt-BR'
             });
 
-            $("#start").mask("9999-99-99 99:99:00");
-            $("#end").mask("9999-99-99 99:99:00");
+            $("#start").mask("99-99-9999 99:99:00");
+            $("#end").mask("99-99-9999 99:99:00");
         });
     </script>
 
@@ -270,18 +280,22 @@
             </div>
             <div class="content">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <label for="title" class="col-sm-2">Título</label>
-                        <input type="text" name="title" id="title" class="form-control" value="" title="Título" required="required" >
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <label for="title" class="col-sm-2">Descrição</label>
-                        <input type="text" name="description" id="description" class="form-control" value="" title="Descrição" required="required" >
-                    </div>
+
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                         <label for="location" class="col-sm-2">Local/Cliente</label>
                         <input type="text" name="location" id="location" class="form-control" value="" title="Local/Cliente" required="required" >
                     </div>
+
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <label for="title" class="col-sm-2">Título</label>
+                        <input type="text" name="title" id="title" class="form-control" value="" title="Título" required="required" >
+                    </div>
+
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <label for="title" class="col-sm-2">Descrição</label>
+                        <input type="text" name="description" id="description" class="form-control" value="" title="Descrição" required="required" >
+                    </div>
+
 
                     <br><br><br><br><br>
 
@@ -289,7 +303,7 @@
                         <div class="form-group">
                             <label for="datetimepicker1"> Hora de entrada</label>
                             <div id="datetimepicker1" class="input-append date">
-                                <input data-format="yyyy-MM-dd hh:mm:ss" type='text' id="start" name="start" class="form-control" placeholder="Hora de entrada"/>
+                                <input data-format="dd-MM-yyyy hh:mm:ss" type='text' id="start" name="start" class="form-control" placeholder="Hora de entrada"/>
                                         <span class="add-on">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -301,7 +315,7 @@
                         <div class="form-group">
                             <label for="datetimepicker2"> Hora de saída</label>
                             <div id="datetimepicker2" class="input-append date">
-                                <input data-format="yyyy-MM-dd hh:mm:ss" type='text' id="end" name="end" class="form-control" placeholder="Hora de saída"/>
+                                <input data-format="dd-MM-yyyy hh:mm:ss" type='text' id="end" name="end" class="form-control" placeholder="Hora de saída"/>
                                         <span class="add-on">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
