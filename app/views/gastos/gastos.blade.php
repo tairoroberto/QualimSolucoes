@@ -18,7 +18,7 @@
     $('input[type=file]').bootstrapFileInput();
    });
 
-   function chamaModal(calendario_id,location,start,end,situation){
+   function chamaModal(calendario_id,location,date,start,end,situation){
 
        $('#vale-refeicao').val("");
        $('#observacaoValeTransporte').val("");
@@ -31,7 +31,15 @@
 
        $('#calendario_id').val(calendario_id);
        $('#cliente-local').val(location);
-       $('#date').val(start);
+
+       var dataFull = [];
+       var data = [];
+
+       dataFull = date.split(" ");
+       data = dataFull[0].split("-");
+
+       $('#date').val(data[2]+"-"+data[1]+"-"+data[0]);
+
        $('#hora-entrada').val(start);
        $('#hora-saida').val(end);
 
@@ -48,7 +56,15 @@
 
 
        $('#cliente-local').val(client_locale);
-       $('#date').val(date);
+
+       var dataFull = [];
+       var data = [];
+
+       dataFull = date.split(" ");
+       data = dataFull[0].split("-");
+
+       $('#date').val(data[2]+"-"+data[1]+"-"+data[0]);
+
        $('#hora-entrada').val(entry_time);
        $('#hora-saida').val(departure_time);
        $('#vale-refeicao').val(meal_voucher);
@@ -100,6 +116,8 @@
        $('#datetimepicker1').datetimepicker({
            language: 'pt-BR'
        });
+
+       $("#date").mask("99-99-9999");
    });
 
 
@@ -178,7 +196,7 @@
                                 <tr >
                                    <td
                                       <?php if ($calendario->situation == ""){ ?>
-                                      onclick="chamaModal('{{$calendario->id}}','{{$calendario->location}}','{{$horaStart[1]}}','{{$horaEnd[1]}}','{{$calendario->situation}}');"
+                                      onclick="chamaModal('{{$calendario->id}}','{{$calendario->location}}','{{$calendario->start}}','{{$horaStart[1]}}','{{$horaEnd[1]}}','{{$calendario->situation}}');"
                                       <?php }else{?>
 
                                             <?php $gasto = Gasto::where("calendario_id", "=", $calendario->id)->get()->first();?>
@@ -235,7 +253,7 @@
 
                           <div class="col-md-3">
                               <div id="datetimepicker1" class="input-append date">
-                                  <input data-format="yyyy-MM-dd hh:mm:ss" type='text' id="date" name="date" class="form-control" placeholder="Hora de entrada"/>
+                                  <input data-format="dd-MM-yyyy" type='text' id="date" name="date" class="form-control" placeholder="Data da visita"/>
                                         <span class="add-on">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>

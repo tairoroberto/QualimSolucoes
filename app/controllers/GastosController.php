@@ -58,7 +58,10 @@ class GastosController extends BaseController {
 
 			$gasto = new Gasto;
 			$gasto->client_locale = Input::get("cliente-local");
-            $gasto->date = $calendario->start;
+
+            $date = explode("-",Input::get("date"));
+
+            $gasto->date = $date[2]."-".$date[1]."-".$date[0]." ".Input::get("hora-entrada");
 			$gasto->entry_time = Input::get("hora-entrada");
 			$gasto->departure_time = Input::get("hora-saida");
 			$gasto->meal_voucher = Input::get("vale-refeicao");
@@ -137,7 +140,11 @@ class GastosController extends BaseController {
 
             $gasto = Gasto::find(Input::get("gasto_id"));
             $gasto->client_locale = Input::get("cliente-local");
-            $gasto->date = Input::get("date");
+
+            $date = explode("-",Input::get("date"));
+
+            $gasto->date = $date[2]."-".$date[1]."-".$date[0]." ".Input::get("hora-entrada");
+
             $gasto->entry_time = Input::get("hora-entrada");
             $gasto->departure_time = Input::get("hora-saida");
             $gasto->meal_voucher = Input::get("vale-refeicao");
