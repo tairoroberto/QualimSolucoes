@@ -144,6 +144,7 @@
             var title = $('#title').val();
             var description = $('#description').val();
             var location = $('#location').val();
+            var color = $('#color').val();
 
             //pega o valor da data selecionada no calendario
             var start = $('#start').val();
@@ -176,7 +177,7 @@
             if (description && location) {
                 $.ajax({
                     url: "{{action('CalendarioController@store')}}",
-                    data: 'title='+ title+'&start='+ start +'&end='+ end +'&nutricionista_id='+ idusuario+'&description='+ description+'&location='+ location ,
+                    data: 'title='+ title+'&start='+ start +'&end='+ end +'&nutricionista_id='+ idusuario+'&description='+ description+'&location='+ location +'&color='+ color,
                     type: "POST",
                     success: function(json) {
                         //Mensagem de alerta quendo evento for adicionado alert('Evento adicionado com sucesso');
@@ -328,6 +329,7 @@
             </div>
             <br><br><br><br><br><br><br><br><br>
             <div class="modal-footer">
+                <input type="color" name="color" id="color" style="float: left" title="Cor do evento" value="#3A87AD">
                 <button type="button" id="btnSalvar" class="btn btn-primary"  onclick="salvaCalendario();">Salvar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
             </div>

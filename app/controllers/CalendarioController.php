@@ -47,6 +47,7 @@ class CalendarioController extends BaseController {
 
 		$calendario->nutricionista_id = Auth::user()->get()->id;
 		$calendario->situation = "";
+        $calendario->color = Input::get("color");
 		$calendario->save();
 		return;
 	}

@@ -22,6 +22,7 @@ class CreateEventos extends Migration {
 			$table->integer('nutricionista_id');			
 			$table->boolean('allDay');	
 			$table->string('situation');
+            $table->string('color');
 			$table->timestamps();
             $table->softDeletes();
 		});
