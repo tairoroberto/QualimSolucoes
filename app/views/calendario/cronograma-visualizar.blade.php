@@ -47,11 +47,10 @@
                   <table class="table table-hover table-condensed" id="example">
                     <thead>
                       <tr>
-                        <th style="width:1%"></th>
-                        <th style="width:20%">Consultora</th>
+                        <th style="width:25%">Consultora</th>
                         <th style="width:20%">Título</th>
-                        <th style="width:20%">Descricão</th>
-                        <th style="width:20%">Local</th>
+                        <th style="width:21%">Descricão</th>
+                        <th style="width:21%">Local</th>
                         <th style="width:15%">Início</th>
                         <th style="width:15%">Término</th>
                         
@@ -71,11 +70,6 @@
                           <?php $dataFim = explode("-", $dataFim[0]) ?>
 
                                 <tr >
-                                   <td >
-                                      <a href="#">
-                                        <i class="fa fa-paste"></i>                                      
-                                      </a>  
-                                    </td>
                                     <td class="v-align-middle">{{$nutricionista->name}}</td>
                                     <td class="v-align-middle">{{$cronograma->title}}</td>
                                     <td class="v-align-middle">{{$cronograma->description}}</td>

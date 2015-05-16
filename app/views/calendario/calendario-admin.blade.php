@@ -69,9 +69,11 @@
                 timeFormat: {   '': 'H(:mm)',   agenda: 'H:mm{ - H:mm}' },
 
                 events: "{{action('CalendarioController@mostrar',Auth::user()->get()->id)}}",
+                /*eventColor:"#ff0000",*/
 
                 // Convert the allDay from string to boolean
                 eventRender: function(event, element, view) {
+
                     if (event.allDay === 'true') {
                         event.allDay = true;
                     } else {
@@ -81,7 +83,6 @@
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
-
 
 
                     $("#start").val($.fullCalendar.formatDate(start, "dd-MM-yyyy HH:mm:ss"));
@@ -150,6 +151,9 @@
             var start = $('#start').val();
             var end = $('#end').val();
 
+            horaInicial = start.split(" ");
+            horaFinal = end.split(" ");
+
 
             //verifica se a data é igual a do calendario sem o horario e se a data esta nula
             if(location == ""){
@@ -162,7 +166,7 @@
                 $('#description').focus();
                 return;
 
-            }else if(start == stringDate || start == "" || start.length < 19){
+            }else if(start == stringDate || start == "" || start.length < 19 ){
                 erro("Preencha o horário de entrada completamente!");
                 $('#start').focus();
                 return;
@@ -170,6 +174,10 @@
             }else if(end == stringDate || end == "" || end.length < 19){
                 erro("Preencha o horário de saída completamente!");
                 $('#end').focus();
+                return;
+
+            }else if( calculaData(horaInicial[1],horaFinal[1]) == 0){
+                erro("Hora de saída não pode ser menor que hora de entrada!");
                 return;
             }
 
@@ -207,7 +215,6 @@
             formCalendario.action = "{{action('CalendarioController@create')}}";
             formCalendario.method = "GET";
             formCalendario.submit();
-
         }
 
         function erro(msg){
@@ -233,6 +240,79 @@
             $("#start").mask("99-99-9999 99:99:00");
             $("#end").mask("99-99-9999 99:99:00");
         });
+
+
+        function calculaData(horaInicial, horaFinal) {
+
+            // Tratamento se a hora inicial é menor que a final
+            if( ! isHoraInicialMenorHoraFinal(horaInicial, horaFinal) ){
+                // aux = horaFinal;
+                //horaFinal = horaInicial;
+                // horaInicial = aux;
+                // alert("hora de término deve ser maior que hora de inicio");
+
+                //$("#horaFim").focus();
+                return 0;
+            }
+
+            hIni = horaInicial.split(':');
+            hFim = horaFinal.split(':');
+
+            horasTotal = parseInt(hFim[0], 10) - parseInt(hIni[0], 10);
+            minutosTotal = parseInt(hFim[1], 10) - parseInt(hIni[1], 10);
+
+            if(minutosTotal < 0){
+                minutosTotal += 60;
+                horasTotal -= 1;
+            }
+
+            horaFinal = horasTotal + ":" + minutosTotal;
+
+            return 1;
+        }
+
+        /**
+         * Verifica se a hora inicial é menor que a final.
+         */
+        function isHoraInicialMenorHoraFinal(horaInicial, horaFinal){
+            horaIni = horaInicial.split(':');
+            horaFim = horaFinal.split(':');
+
+            // Verifica as horas. Se forem diferentes, é só ver se a inicial
+            // é menor que a final.
+            hIni = parseInt(horaIni[0], 10);
+            hFim = parseInt(horaFim[0], 10);
+            if(hIni != hFim)
+                return hIni < hFim;
+
+            // Se as horas são iguais, verifica os minutos então.
+            mIni = parseInt(horaIni[1], 10);
+            mFim = parseInt(horaFim[1], 10);
+            if(mIni != mFim)
+                return mIni < mFim;
+        }
+
+        /**
+         * Soma duas horas.
+         * Exemplo:  12:35 + 07:20 = 19:55.
+         */
+        function somaHora(horaInicio, horaSomada) {
+
+            horaIni = horaInicio.split(':');
+            horaSom = horaSomada.split(':');
+
+            horasTotal = parseInt(horaIni[0], 10) + parseInt(horaSom[0], 10);
+            minutosTotal = parseInt(horaIni[1], 10) + parseInt(horaSom[1], 10);
+
+            if(minutosTotal >= 60){
+                minutosTotal -= 60;
+                horasTotal += 1;
+            }
+
+            horaFinal = horasTotal + ":" + minutosTotal;
+            return horaFinal;
+        }
+
     </script>
 
 </head>
