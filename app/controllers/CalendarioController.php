@@ -153,15 +153,6 @@ class CalendarioController extends BaseController {
 	 */
 	public function atualizar(){
 
-		/*$calendario = Calendario::find(Input::get("id"));
-		$calendario->title = Input::get("title");
-		$calendario->description = Input::get("description");
-		$calendario->location = Input::get("location");
-		$calendario->start = Input::get("start");
-		$calendario->end = Input::get("end");
-		$calendario->save();
-		return;*/
-
         $calendario = Calendario::find(Input::get("id"));;
         $calendario->title = Input::get("title");
         $calendario->description = Input::get("description");
@@ -174,7 +165,7 @@ class CalendarioController extends BaseController {
         $end = explode('-',$endFull[0]);
 
         $calendario->start = $start[2]."-".$start[1]."-".$start[0]." ".$startFull[1];
-        $calendario->end = $end[2]."-".$end[1]."-".$end[0]." ".$endFull[1];;
+        $calendario->end = $end[2]."-".$end[1]."-".$end[0]." ".$endFull[1];
 
         $calendario->situation = "";
         $calendario->color = Input::get("color");
@@ -182,10 +173,32 @@ class CalendarioController extends BaseController {
         return;
 	}
 
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return Response
+     */
+    public function atualizarDrop(){
+
+        $calendario = Calendario::find(Input::get("id"));
+        $startFull = explode(' ', Input::get("start"));
+        $endFull = explode(' ', Input::get("end"));
+
+        /*Tira o primeiro paramentro para pegar a data como formato yyyy-mm-dd */
+        $start = explode('-',$startFull[0]);
+        $end = explode('-',$endFull[0]);
+
+        $calendario->start = $start[2]."-".$start[1]."-".$start[0]." ".$startFull[1];
+        $calendario->end = $end[2]."-".$end[1]."-".$end[0]." ".$endFull[1];
+
+        $calendario->save();
+        return;
+    }
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete(){

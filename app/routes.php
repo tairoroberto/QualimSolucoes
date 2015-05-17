@@ -38,7 +38,7 @@ Route::group(array('before'=>'auth'), function(){
 
 //create the views
 Route::get("/index", array(
-	'as' 	=> "index", 
+	'as' 	=> "index",
 	"uses" 	=> "HomeController@index"
 ));
 
@@ -174,10 +174,11 @@ Route::post("/deletar-links", "LinksController@delete");
 Route::get("/visualizar-eventos/{id}", "CalendarioController@mostrar");
 Route::post("/adicionar-eventos", "CalendarioController@store");
 Route::post("/atualizar-eventos", "CalendarioController@atualizar");
+Route::post("/atualizar-eventos-drop", "CalendarioController@atualizarDrop");
 Route::post("/deletar-eventos", "CalendarioController@delete");
 Route::post("/cronograma-detalhe","CalendarioController@cronogramaDetalhe");
 
-//Route for store tasks 
+//Route for store tasks
 Route::post("/cadastra-tarefas", "TarefasController@store");
 Route::get("/editar-tarefas?{id}", "TarefasController@editar");
 Route::post("/editar-tarefas", "TarefasController@atualizar");
@@ -187,9 +188,9 @@ Route::post("/negar-prazo-tarefas", "TarefasController@negarPrazo");
 Route::post("/conceder-prazo-tarefas", "TarefasController@concederPrazo");
 Route::get("/deletar-tarefas/{id}", "TarefasController@delete");
 
-Route::post("/cadastrar-gastos", "GastosController@store"); 
-Route::post("/visualizar-gastos-mes", "GastosController@mostrar"); 
-Route::post("/visualizar-gastos-mes-busca", "GastosController@mostrarBusca"); 
+Route::post("/cadastrar-gastos", "GastosController@store");
+Route::post("/visualizar-gastos-mes", "GastosController@mostrar");
+Route::post("/visualizar-gastos-mes-busca", "GastosController@mostrarBusca");
 Route::post("/cadastrar-gastos", "GastosController@store");
 Route::post("/editar-gastos", "GastosController@edit");
 
@@ -197,7 +198,7 @@ Route::post("/editar-gastos", "GastosController@edit");
 Route::post("/cadastrar-relatorio", "RelatorioController@storeVisitaTecnica");
 Route::post("/editar-relatorio", "RelatorioController@edit");
 Route::post("/atualizar-relatorio", "RelatorioController@update");
-Route::post("/relatorio-imprimir", "RelatorioController@imprimir"); 
+Route::post("/relatorio-imprimir", "RelatorioController@imprimir");
 
 //start test
 Route::get("teste",function(){

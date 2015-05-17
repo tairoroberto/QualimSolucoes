@@ -95,43 +95,123 @@
 
                 editable: true,
                 eventDrop: function(event, delta) {
-                    var start = $.fullCalendar.formatDate(event.start, "dd-MM-yyyy HH:mm:ss");
-                    var end = $.fullCalendar.formatDate(event.end, "dd-MM-yyyy HH:mm:ss");
-                    $.ajax({
-                        url: "{{action('CalendarioController@atualizar')}}",
-                        data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&nutricionista_id='+idusuario+'&id='+ event.id,
-                        type: "POST",
-                        success: function(json) {
-                            alert("Atualizado com sucesso");
+
+                    //se evento não pertencer ao usuario logado não permite a edição
+                    if(event.nutricionista_id == "<?php echo Auth::user()->get()->id;?>"){
+
+                        if(event.situation == ""){
+                            var start = $.fullCalendar.formatDate(event.start, "dd-MM-yyyy HH:mm:ss");
+                            var end = $.fullCalendar.formatDate(event.end, "dd-MM-yyyy HH:mm:ss");
+                            $.ajax({
+                                url: "{{action('CalendarioController@atualizarDrop')}}",
+                                data: 'start='+ start +'&end='+ end +'&id=' + event.id,
+                                type: "POST",
+                                success: function() {
+                                    alert("Atualizado com sucesso");
+                                }
+                            });
+
+                        }else{
+                            alert("A despesa deste evento já foi cadastrada, você não pode edita-lo");
+                            formCalendario.action = "{{action('CalendarioController@create')}}";
+                            formCalendario.method = "GET";
+                            formCalendario.submit();
                         }
-                    });
+
+                    }else{
+                        alert("Você não pode alterar este evento, ele pertence a outro usuário!");
+                        formCalendario.action = "{{action('CalendarioController@create')}}";
+                        formCalendario.method = "GET";
+                        formCalendario.submit();
+                    }
                 },
                 eventResize: function(event) {
-                    var start = $.fullCalendar.formatDate(event.start, "dd-MM-yyyy HH:mm:ss");
-                    var end = $.fullCalendar.formatDate(event.end, "dd-MM-yyyy HH:mm:ss");
-                    $.ajax({
-                        url: "{{action('CalendarioController@atualizar')}}",
-                        data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&nutricionista_id='+idusuario+'&id='+ event.id,
-                        type: "POST",
-                        success: function(json) {
-                            alert("Atualizado com sucesso");
-                        }
-                    });
 
+                    /*var start = $.fullCalendar.formatDate(event.start, "dd-MM-yyyy HH:mm:ss");
+                     var end = $.fullCalendar.formatDate(event.end, "dd-MM-yyyy HH:mm:ss");
+                     $.ajax({
+                     url: "{{action('CalendarioController@atualizar')}}",
+                     data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&nutricionista_id='+idusuario+'&id='+ event.id,
+                     type: "POST",
+                     success: function(json) {
+                     alert("Atualizado com sucesso");
+                     }
+                     });
+                     */
                 },
 
                 eventClick: function(event) {
-                    var decision = confirm("Deseja excluir este evento?");
-                    if (decision) {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{action('CalendarioController@delete')}}",
+                    var tipoUsuario = "<?php echo Auth::user()->get()->type;?>";
+                    var titulo = event.title.split("-");
 
-                            data: "id=" + event.id
-                        });
-                        $('#calendar').fullCalendar('removeEvents', event.id);
+                    //Pega o usuario que est'cadastrado no evento
+                    //e compara com o que está logado
+                    //se for igual permite a edição
 
-                    } else {
+
+                    if(event.nutricionista_id == "<?php echo Auth::user()->get()->id;?>"){
+
+                        if(event.situation == ""){
+                            if(tipoUsuario == "Administrador" || tipoUsuario == "Supervisora"){
+                                $('#title').val(titulo[1]);
+                                $('#description').val(titulo[2]);
+                                $('#location').val(titulo[3]);
+
+                            }else{
+                                $('#title').val(titulo[0]);
+                                $('#description').val(titulo[1]);
+                                $('#location').val(titulo[2]);
+                            }
+
+                            $('#start').val($.fullCalendar.formatDate(event.start, "dd-MM-yyyy HH:mm:ss"));
+                            $('#end').val($.fullCalendar.formatDate(event.end, "dd-MM-yyyy HH:mm:ss"));
+
+                            $('#btnEditar').css("display","block");
+                            $('#btnDeletar').css("display","block");
+
+
+                            $('#myModal').modal('show');
+
+
+                            $('#btnEditar').click(function(){
+                                //linpa dormulario
+                                atualizaCalendario(event.id);
+                            });
+
+                            $('#btnFechar').click(function(){
+                                //linpa dormulario
+                                limparForm();
+                            });
+
+                            $('#btnClose').click(function(){
+                                //linpa dormulario
+                                limparForm();
+                            });
+
+
+                            $('#btnDeletar').click(function(){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{action('CalendarioController@delete')}}",
+                                    data: "id=" + event.id
+                                });
+                                $('#calendar').fullCalendar('removeEvents', event.id);
+
+                                //linpa dormulario
+                                limparForm();
+
+                                formCalendario.action = "{{action('CalendarioController@create')}}";
+                                formCalendario.method = "GET";
+                                formCalendario.submit();
+                            });
+                        }else{
+                            alert("A despesa deste evento já foi cadastrada, você não pode edita-lo");
+                            return;
+                        }
+
+                    }else{
+                        alert("Você não pode alterar este evento, ele pertence a outro usuário!");
+                        return;
                     }
                 }
 
@@ -140,8 +220,10 @@
         });
 
 
+
+
         function salvaCalendario(){
-            var idusuario = "{{Auth::user()->get()->id}}";
+            var idusuario = '{{Auth::user()->get()->id}}';
             var title = $('#title').val();
             var description = $('#description').val();
             var location = $('#location').val();
@@ -179,48 +261,137 @@
             }else if( calculaData(horaInicial[1],horaFinal[1]) == 0){
                 erro("Hora de saída não pode ser menor que hora de entrada!");
                 return;
-            }
+            }else{
 
+                //Verifica para onde mandar o formulario, para edicao ou cadastro
+                if (description && location) {
+                    $.ajax({
+                        url: '{{action('CalendarioController@store')}}',
+                        data: 'title='+ title+'&start='+ start +'&end='+ end +'&nutricionista_id='+ idusuario+'&description='+ description+'&location='+ location +'&color='+ color,
+                        type: "POST",
+                        success: function(json) {
+                            //Mensagem de alerta quendo evento for adicionado alert('Evento adicionado com sucesso');
+                        }
+                    });
 
-            if (description && location) {
-                $.ajax({
-                    url: "{{action('CalendarioController@store')}}",
-                    data: 'title='+ title+'&start='+ start +'&end='+ end +'&nutricionista_id='+ idusuario+'&description='+ description+'&location='+ location +'&color='+ color,
-                    type: "POST",
-                    success: function(json) {
-                        //Mensagem de alerta quendo evento for adicionado alert('Evento adicionado com sucesso');
-                    }
-                });
+                    //renderiza o calendario depois de ter salva a data
+                    $('#calendar').fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: false
+                        },
+                        true // make the event "stick"
+                    );
+                }
 
-                //renderiza o calendario depois de ter salva a data
-                $('#calendar').fullCalendar('renderEvent',
-                    {
-                        title: title,
-                        start: start,
-                        end: end,
-                        allDay: false
-                    },
-                    true // make the event "stick"
-                );
             }
 
             //esconde o modal
             $("#myModal").modal("hide");
-
-            $('#description').val("");
-            $('#location').val("");
-            $('#start').val("");
-            $('#end').val("");
 
             formCalendario.action = "{{action('CalendarioController@create')}}";
             formCalendario.method = "GET";
             formCalendario.submit();
         }
 
+
+
+        /**********************************************************/
+        /*              atualiza o caledario                     */
+        /********************************************************/
+
+        function atualizaCalendario(id){
+            var title = $('#title').val();
+            var description = $('#description').val();
+            var location = $('#location').val();
+            var color = $('#color').val();
+
+            //pega o valor da data selecionada no calendario
+            var start = $('#start').val();
+            var end = $('#end').val();
+
+            horaInicial = start.split(" ");
+            horaFinal = end.split(" ");
+
+
+            //verifica se a data é igual a do calendario sem o horario e se a data esta nula
+            if(location == ""){
+                erro("Preencha o campo Local/Cliente!");
+                $('#location').focus();
+                return;
+
+            }else if(description == ""){
+                erro("Preencha o campo Descrição!");
+                $('#description').focus();
+                return;
+
+            }else if(start == stringDate || start == "" || start.length < 19 ){
+                erro("Preencha o horário de entrada completamente!");
+                $('#start').focus();
+                return;
+
+            }else if(end == stringDate || end == "" || end.length < 19){
+                erro("Preencha o horário de saída completamente!");
+                $('#end').focus();
+                return;
+
+            }else if( calculaData(horaInicial[1],horaFinal[1]) == 0){
+                erro("Hora de saída não pode ser menor que hora de entrada!");
+                return;
+
+            }else{
+
+                //Verifica para onde mandar o formulario, para edicao ou cadastro
+                if (description && location) {
+                    $.ajax({
+                        url: "{{action('CalendarioController@atualizar')}}",
+                        data: 'title='+ title+'&start='+ start +'&end='+ end +'&description='+ description+'&location='+ location +'&color='+ color +'&id='+ id,
+                        type: "POST",
+                        success: function(json) {
+                            //Mensagem de alerta quendo evento for adicionado alert('Evento adicionado com sucesso');
+                        }
+                    });
+
+                    //renderiza o calendario depois de ter salva a data
+                    $('#calendar').fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: false
+                        },
+                        true // make the event "stick"
+                    );
+                }
+            }
+
+
+            //esconde o modal
+            $("#myModal").modal("hide");
+
+            formCalendario.action = "{{action('CalendarioController@create')}}";
+            formCalendario.method = "GET";
+            formCalendario.submit();
+        }
+
+
+
+
+
         function erro(msg){
             $("#divErro").css("display","block");
             $("#msgErro").html(msg);
             return;
+        }
+
+        function limparForm(){
+            $('#location').val("");
+            $('#title').val("");
+            $('#description').val("");
+            $('#start').val("");
+            $('#end').val("");
         }
 
     </script>
@@ -353,7 +524,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Preencha os campos para cadastrar novo evento</h4>
             </div>
             <div class="alert" style="display: none;" id="divErro">
@@ -410,8 +581,11 @@
             <br><br><br><br><br><br><br><br><br>
             <div class="modal-footer">
                 <input type="color" name="color" id="color" style="float: left" title="Cor do evento" value="#3A87AD">
-                <button type="button" id="btnSalvar" class="btn btn-primary"  onclick="salvaCalendario();">Salvar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                <button type="button" id="btnFechar" class="btn " style="float: right"  data-dismiss="modal">Fechar</button>
+                <button type="button" id="btnSalvar" style="float: right"  class="btn btn-primary"  onclick="salvaCalendario();">Salvar</button>
+                <button type="button" id="btnDeletar" style="display: none;float: right" class="btn btn-danger" >Deletar</button>
+                <button type="button" id="btnEditar" style="display: none;float: right" class="btn btn-primary" >Editar</button>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
