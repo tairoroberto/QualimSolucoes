@@ -215,8 +215,7 @@ function validaTarefa(){
                         <div class="pull-right">
                            <button class="btn btn-primary btn-cons" type="button"
                                     onclick="validaTarefa();verificaTarefa();document.formTarefas.submit();">Salvar </button>
-                          
-                          <button class="btn btn-danger btn-cons" type="reset">Cancelar</button>
+
                         </div>
                       </div>
                     </form>

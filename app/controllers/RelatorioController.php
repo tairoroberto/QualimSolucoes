@@ -61,7 +61,7 @@ class RelatorioController extends BaseController {
 		$validation = Validator::make($input, RelatorioVisita::$rules);
 
 		if ($validation->passes()){
-			try{
+
                 $relatorio_visita = new RelatorioVisita;
                 $relatorio_visita->nutricionista_id = Input::get("selectNutricionista");
                 $relatorio_visita->cliente_id = Input::get("cliente_id");
@@ -78,31 +78,35 @@ class RelatorioController extends BaseController {
                 $nutricionista = Nutricionista::find(Input::get("selectNutricionista"));
                 $cliente = Cliente::find(Input::get("cliente_id"));
 
-                /*send email to nutricionist and client*/
-                Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
-                {
-                    $message->to($nutricionista->email, $nutricionista->name)->subject('Relatório Qualim Soluções');
-                });
+                try{
+                    /*send email to nutricionist and client*/
+                    Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
+                    {
+                        $message->to($nutricionista->email, $nutricionista->name)->subject('Relatório Qualim Soluções');
+                    });
 
-                /*send email to  client contact*/
-                Mail::send('emails.relatorio-email-cliente-contact', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
-                {
-                    $message->to($cliente->email_contact, $cliente->contact)->subject('Relatório Qualim Soluções');
-                });
+                    /*send email to  client contact*/
+                    Mail::send('emails.relatorio-email-cliente-contact', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
+                    {
+                        $message->to($cliente->email_contact, $cliente->contact)->subject('Relatório Qualim Soluções');
+                    });
 
-                /*send email to  client*/
-                Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
-                {
-                    $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
-                });
+                    /*send email to  client*/
+                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
+                    {
+                        $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
+                    });
+
+                }catch (Exception $e){
+                    return Redirect::route('relatorio-lista')
+                        ->withInput()
+                        ->withErrors(['Reatorio salvo, mas e-mail não foi enviado ao cliente!']);
+                }
+
 
                 return Redirect::route('relatorio')
                                ->withErrors(['Relatório salvo com sucesso!']);
 
-            }catch (Exception $e){
-                return Redirect::route('relatorio')
-                    ->withErrors(['Não foi possível salvar o relatório!']);
-            }
 		}		
 		return Redirect::route('relatorio')
 						->withInput()
@@ -118,9 +122,23 @@ class RelatorioController extends BaseController {
 	public function imprimir(){
 		
 		$relatorio_visita = RelatorioVisita::find(Input::get("relatorio_id"));
-		return View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita"));
+		return View::make("relatorio-visita.relatorio-visita-tecnica-imprimir",compact("relatorio_visita"));
 		//return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
 	}
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @return Response
+     */
+    public function visulaizar(){
+
+        $relatorio_visita = RelatorioVisita::find(Input::get("relatorio_id"));
+        return View::make("relatorio-visita.relatorio-visita-tecnica-vizulizar",compact("relatorio_visita"));
+        //return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
+    }
+
 
 
 	/**
@@ -147,7 +165,7 @@ class RelatorioController extends BaseController {
         $validation = Validator::make($input, RelatorioVisita::$rules);
 
         if ($validation->passes()){
-            try{
+
                 $relatorio_visita = RelatorioVisita::find(Input::get("relatorio_id"));
                 $relatorio_visita->nutricionista_id = Input::get("selectNutricionista");
                 $relatorio_visita->cliente_id = Input::get("cliente_id");
@@ -164,32 +182,34 @@ class RelatorioController extends BaseController {
                 $nutricionista = Nutricionista::find(Input::get("selectNutricionista"));
                 $cliente = Cliente::find(Input::get("cliente_id"));
 
-                /*send email to nutricionist and client*/
-                Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
-                {
-                    $message->to($nutricionista->email, $nutricionista->name)->subject('Relatório Qualim Soluções');
-                });
+                try{
+                    /*send email to nutricionist and client*/
+                    Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
+                    {
+                        $message->to($nutricionista->email, $nutricionista->name)->subject('Relatório Qualim Soluções');
+                    });
 
-                /*send email to  client contact*/
-                Mail::send('emails.relatorio-email-cliente-contact', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
-                {
-                    $message->to($cliente->email_contact, $cliente->contact)->subject('Relatório Qualim Soluções');
-                });
+                    /*send email to  client contact*/
+                    Mail::send('emails.relatorio-email-cliente-contact', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
+                    {
+                        $message->to($cliente->email_contact, $cliente->contact)->subject('Relatório Qualim Soluções');
+                    });
 
-                /*send email to  client*/
-                Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
-                {
-                    $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
-                });
+                    /*send email to  client*/
+                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
+                    {
+                        $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
+                    });
+                }catch (Exception $e){
+                    return Redirect::route('relatorio-lista')
+                        ->withInput()
+                        ->withErrors(['Reatorio salvo, mas e-mail não foi enviado ao cliente!']);
+                }
+
 
                 return Redirect::route('relatorio-lista')
                     ->withErrors(['Relatório editado com sucesso!']);
 
-            }catch (Exception $e){
-                return Redirect::route('relatorio-lista')
-                    ->withInput()
-                    ->withErrors(['Não foi possível salvar o relatório!']);
-            }
         }
         return Redirect::route('relatorio-lista')
             ->withInput()

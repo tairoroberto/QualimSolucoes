@@ -59,8 +59,8 @@ class TarefasController extends BaseController {
 			$etapaTarefa->save();
 
 
-			$historicoTarefa = new Tarefa_historico;
-			$historicoTarefa->tarefa()->associate($etapaTarefa);
+			$historicoTarefa = new TarefaHistorico;
+            $historicoTarefa->tarefa_id = $tarefa->id;
 			$historicoTarefa->historico = "Tarefa cadastrada";
 			$historicoTarefa->save();
 
@@ -90,8 +90,8 @@ class TarefasController extends BaseController {
 					$etapaTarefa->MotivoPrazoEtapaTarefa = "";
 					$etapaTarefa->save();
 
-					$historicoTarefa = new Tarefa_historico;
-					$historicoTarefa->tarefa()->associate($etapaTarefa);
+					$historicoTarefa = new TarefaHistorico;
+                    $historicoTarefa->tarefa_id = $tarefa->id;
 					$historicoTarefa->historico = "Tarefa cadastrada";
 					$historicoTarefa->save();
 			   			
@@ -114,7 +114,6 @@ class TarefasController extends BaseController {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
 	public function show()
@@ -128,7 +127,6 @@ class TarefasController extends BaseController {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
 	public function showFinish()
@@ -152,7 +150,6 @@ class TarefasController extends BaseController {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
 	public function atualizar()	{
@@ -166,8 +163,8 @@ class TarefasController extends BaseController {
 		$etapaTarefa->SituacaoEtapaTarefa = "";
 		$etapaTarefa->save();
 
-		$historicoTarefa = new Tarefa_historico;
-		$historicoTarefa->tarefa()->associate($etapaTarefa);
+		$historicoTarefa = new TarefaHistorico;
+        $historicoTarefa->tarefa_id = $tarefa->id;
 		$historicoTarefa->historico = "Tarefa atualizada";
 		$historicoTarefa->save();
 
@@ -185,8 +182,8 @@ class TarefasController extends BaseController {
 		$tarefa->SituacaoEtapaTarefa = "Finalizado";
 		$tarefa->save();
 
-		$historicoTarefa = new Tarefa_historico;
-		$historicoTarefa->tarefa()->associate($tarefa);
+		$historicoTarefa = new TarefaHistorico;
+        $historicoTarefa->tarefa_id = $tarefa->id;
 		$historicoTarefa->historico = "Tarefa Finalizada";
 		$historicoTarefa->save();
 
@@ -196,7 +193,6 @@ class TarefasController extends BaseController {
 		/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
 	public function solicitarPrazo(){
@@ -206,12 +202,22 @@ class TarefasController extends BaseController {
 		$tarefa->MotivoPrazoEtapaTarefa = Input::get("motivoPrazo");
 		$tarefa->save();
 
-		$historicoTarefa = new Tarefa_historico;
-		$historicoTarefa->tarefa()->associate($tarefa);
-		$historicoTarefa->historico = "Prazo Solicitado";
+		$historicoTarefa = new TarefaHistorico;
+		$historicoTarefa->tarefa_id = $tarefa->id;
+		$historicoTarefa->historico = "Prazo Solicitado: Motivo : ".Input::get("motivoPrazo");
 		$historicoTarefa->save();
 
-		return Redirect::route('visualizar-tarefas');
+        $alert = new Alerta;
+        $alert->nutricionista_id = $tarefa->nutricionista_id;
+        $alert->cliente_id = 0;
+        $alert->admin = 0;
+        $alert->msg = "consultora solicita prazo";
+        $alert->url = action("TarefasController@show");
+        $alert->situation = "";
+        $alert->save();
+
+
+        return Redirect::route('visualizar-tarefas');
 	}
 
 
@@ -219,7 +225,6 @@ class TarefasController extends BaseController {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
 	public function negarPrazo(){
@@ -228,10 +233,19 @@ class TarefasController extends BaseController {
 		$tarefa->SituacaoEtapaTarefa = "Prazo negado";
 		$tarefa->save();
 
-		$historicoTarefa = new Tarefa_historico;
-		$historicoTarefa->tarefa()->associate($tarefa);
+		$historicoTarefa = new TarefaHistorico;
+        $historicoTarefa->tarefa_id = $tarefa->id;
 		$historicoTarefa->historico = "Solicitação de prazo negada";
 		$historicoTarefa->save();
+
+        $alert = new Alerta;
+        $alert->nutricionista_id = $tarefa->nutricionista_id;
+        $alert->cliente_id = 0;
+        $alert->admin = Auth::user()->get()->id;
+        $alert->msg = "Prazo de tarefa foi negado";
+        $alert->url = action("TarefasController@show");
+        $alert->situation = "mostrar-para-usuario";
+        $alert->save();
 
 		return Redirect::route('visualizar-tarefas');
 	}
@@ -242,7 +256,6 @@ class TarefasController extends BaseController {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
 	public function concederPrazo(){
@@ -252,10 +265,19 @@ class TarefasController extends BaseController {
 		$tarefa->date_finish = Input::get("dataPrazo");
 		$tarefa->save();
 
-		$historicoTarefa = new Tarefa_historico;
-		$historicoTarefa->tarefa()->associate($tarefa);
+		$historicoTarefa = new TarefaHistorico;
+        $historicoTarefa->tarefa_id = $tarefa->id;
 		$historicoTarefa->historico = "Prazo concedido até : ".$tarefa->date_finish;
 		$historicoTarefa->save();
+
+        $alert = new Alerta;
+        $alert->nutricionista_id = $tarefa->nutricionista_id;
+        $alert->cliente_id = 0;
+        $alert->admin = 0;
+        $alert->msg = "Prazo de tarefa concedito";
+        $alert->url = action("TarefasController@show");
+        $alert->situation = "";
+        $alert->save();
 
 		return Redirect::route('visualizar-tarefas');
 	}
@@ -272,7 +294,7 @@ class TarefasController extends BaseController {
 		$tarefa = Tarefa::find($id);
 
 		$historicoTarefa = TarefaHistorico::where('tarefa_id','=',$tarefa->id)->get()->first();
-		$historicoTarefa->tarefa()->associate($tarefa);
+        $historicoTarefa->tarefa_id = $tarefa->id;
 		$historicoTarefa->historico = "Tarefa cadastrada";
 		$historicoTarefa->save();
         $tarefa->delete();

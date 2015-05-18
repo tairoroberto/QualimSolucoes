@@ -199,6 +199,9 @@ Route::post("/cadastrar-relatorio", "RelatorioController@storeVisitaTecnica");
 Route::post("/editar-relatorio", "RelatorioController@edit");
 Route::post("/atualizar-relatorio", "RelatorioController@update");
 Route::post("/relatorio-imprimir", "RelatorioController@imprimir");
+Route::post("/relatorio-visulaizar", "RelatorioController@visulaizar");
+
+Route::get("/alerta-deleta/{id}", "AlertaController@destroy");
 
 //start test
 Route::get("teste",function(){

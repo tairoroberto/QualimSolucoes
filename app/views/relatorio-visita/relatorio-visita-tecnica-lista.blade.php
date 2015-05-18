@@ -13,6 +13,10 @@
             if(action == "imprimir"){
                 formRelatorioLista.action = "{{action('RelatorioController@imprimir')}}";
                 formRelatorioLista.submit();
+
+            }else if(action == "visualizar"){
+                formRelatorioLista.action = "{{action('RelatorioController@visulaizar')}}";
+                formRelatorioLista.submit();
             }else{
                 formRelatorioLista.action = "{{action('RelatorioController@edit')}}";
                 formRelatorioLista.submit();
@@ -55,9 +59,9 @@
                         <th style="width:25%">Consultora</th>
                         <th style="width:30%">Cliente</th>
                         <th style="width:15%">Data</th>
-                        <th style="width:15%">Hora de início</th>
-                        <th style="width:15%">Hora de término</th>
-                        <th style="width:20%">Hora de duração</th>  
+                        <th style="width:15%">Início</th>
+                        <th style="width:15%">Término</th>
+                        <th style="width:20%">Duração</th>
                         
                       </tr>
 
@@ -112,6 +116,7 @@
                           </div>
                           <div class="modal-footer" style="text-align: center">
                               <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('imprimir');">Imprimir</button>
+                              <button type="button" id="btnVizualizar" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('visualizar');">Vizualizar</button>
                               @if(Auth::user()->check())
                                   <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('editar');">Editar</button>
                               @endif

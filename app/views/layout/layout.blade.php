@@ -97,15 +97,24 @@
             <a href="#" class="dropdown-toggle" id="my-task-list" data-placement="bottom"  data-content='' data-toggle="dropdown" data-original-title="Notificações">
               <div class="user-details"> 
 
-              <?php $tarefaNova = Tarefa::where("date_start","=",date('d/m/Y'))
+              <?php $countAlerta1;
+                    $tarefaNova = Tarefa::where("date_start","=",date('d/m/Y'))
                                         ->where("SituacaoEtapaTarefa","!=","Finalizado")
                                         ->where("nutricionista_id","=",Auth::user()->get()->id)
-                                        ->count();?>
+                                        ->count();
+                  if(Auth::user()->get()->type == "Administrador"){
+
+                      $countAlerta1 = Alerta::where("situation", "=", "")
+                                            ->where("situation", "!=", "mostrar-para-usuario")->count();
+                  }else{
+                      $countAlerta1 = Alerta::where("situation", "=", "")
+                                            ->where("situation", "=", "mostrar-para-usuario")->count();
+                  }?>
 
                 <div class="username">
                     <?php $name = explode(" ", Auth::user()->get()->name);  ?>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span class="badge badge-important">{{$tarefaNova}}</span> 
+                  <span class="badge badge-important">{{$tarefaNova+$countAlerta1}}</span>
                   {{$name[0]}} <span class="bold"></span>                  
                 </div>            
               </div> 
@@ -139,7 +148,83 @@
                       <a href="{{action('TarefasController@show')}}"> {{$tarefasAndatmento}} tarefas com o prazo para acabar</a>
                       </div> 
                    <div class="clearfix"></div>                  
-                </div> 
+                </div>
+
+                <?php
+                   $alertas;
+                   $countAlerta = 0;
+                   if(Auth::user()->get()->type == "Administrador"){
+
+                   $alertas = Alerta::where("situation", "=", "")
+                                    ->where("situation", "!=", "mostrar-para-usuario")->get();
+                   $countAlerta = Alerta::where("situation", "=", "")
+                                        ->where("situation", "!=", "mostrar-para-usuario")->count();
+
+                   foreach($alertas as $alerta){ ?>
+
+                   <?php $userAlert = Nutricionista::find($alerta->nutricionista_id)?>
+
+                   <div class="notification-messages info" >
+                       <div class="user-profile">
+                           @if(File::exists("packages/assets/img/profiles/".Auth::user()->get()->photo))
+                               <img src="packages/assets/img/profiles/{{$userAlert->photo}}"  alt="" data-src="packages/assets/img/profiles/{{$userAlert->photo}}" data-src-retina="packages/assets/img/profiles/{{$userAlert->photo}}" width="35" height="35" />
+                           @else
+                               <img src="packages/assets/img/profiles/cliente2.png"  alt="" data-src="packages/assets/img/profiles/cliente2.png" data-src-retina="packages/assets/img/profiles/cliente2.png" width="35" height="35" />
+                           @endif
+
+                       </div>
+                       <div class="message-wrapper" onclick="deletaAlerta('{{$alerta->id}}');">
+                           <a href="{{action('AlertaController@destroy', $alerta->id)}}">
+                               <div class="heading">
+                                       {{$alerta->msg}}
+                               </div>
+                               <div class="description">
+                                   {{$userAlert->name}}
+                               </div>
+                           </a>
+                       </div>
+                       <div class="clearfix"></div>
+                   </div>
+
+                   <?php
+                   }
+
+                   }else{
+                   $alertas = Alerta::where("nutricionista_id","=",Auth::user()->get()->id)
+                                    ->where("situation", "=", "mostrar-para-usuario")->get();
+
+                   foreach($alertas as $alerta){ ?>
+
+                   <?php $userAlert = Nutricionista::find($alerta->admin)?>
+
+                   <div class="notification-messages info" >
+                       <div class="user-profile">
+                           @if(File::exists("packages/assets/img/profiles/".Auth::user()->get()->photo))
+                               <img src="packages/assets/img/profiles/{{$userAlert->photo}}"  alt="" data-src="packages/assets/img/profiles/{{$userAlert->photo}}" data-src-retina="packages/assets/img/profiles/{{$userAlert->photo}}" width="35" height="35" />
+                           @else
+                               <img src="packages/assets/img/profiles/cliente2.png"  alt="" data-src="packages/assets/img/profiles/cliente2.png" data-src-retina="packages/assets/img/profiles/cliente2.png" width="35" height="35" />
+                           @endif
+
+                       </div>
+                           <div class="message-wrapper">
+                               <a href="{{action('AlertaController@destroy', $alerta->id)}}">
+                                   <div class="heading">
+                                       {{$alerta->msg}}
+                                   </div>
+                                   <div class="description">
+                                       {{$userAlert->name}}
+                                   </div>
+                               </a>
+                           </div>
+                       <div class="clearfix"></div>
+                   </div>
+
+                   <?php
+                   }
+                 }
+               ?>
+
+
 
 
                   <div class="notification-messages danger">
@@ -155,13 +240,10 @@
                       </div>
                     </div>
 
-
-
-
-                    <div class="clearfix"></div>
-                  </div>              
-                </div>        
+                <div class="clearfix"></div>
+              </div>
             </div>
+        </div>
 
 
             <div class="profile-pic">

@@ -15,7 +15,10 @@
 <link href="packages/assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
 <link href="packages/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="packages/assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
-<!-- END CORE CSS FRAMEWORK -->
+<link href="packages/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css" />
+<link href="packages/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="packages/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <!-- END CORE CSS FRAMEWORK -->
 
 
 <!-- BEGIN CSS TEMPLATE -->
@@ -63,10 +66,18 @@ function tarefaConcederPrazo(id){
 }
 
 
-  jQuery(function($){
-   $("#dataPrazo").mask("99/99/9999");
+jQuery(function($){
+    $("#dataPrazo").mask("99/99/9999");
+
+    $('#datetimepicker1').datetimepicker({
+        language: 'pt-BR'
+    });
+
 });
+
 </script>
+
+
 
 <!-- BEGIN BODY -->
 <body class="">
@@ -138,9 +149,9 @@ function tarefaConcederPrazo(id){
                   $seg = 86400;
 
              ?>  
-              <li class="<?php if($cont == 0){echo "active";} ?>" onclick="barra()";>
-                 <a href="#tabela{{$tarefa->id}}"> 
-                  <i class="<?php 
+              <li class="<?php if($cont == 0){echo "active";} ?>">
+                 <a href="#tabela{{$tarefa->id}}">
+                  <i class="<?php
                           if(($tarefa->SituacaoEtapaTarefa != "Finalizado") && (($diasCor/$seg) >= 0)){
                             echo "fa fa-clock-o";
                             } else if(($diasCor/$seg) < 0){
@@ -318,25 +329,30 @@ function tarefaConcederPrazo(id){
              <?php $historicos = TarefaHistorico::where('tarefa_id','=',$tarefa2->id)->get(); ?>
               @foreach ($historicos as $historico)
 
+                  <?php
+                    $dataFull = explode(" ",$historico->updated_at);
+                    $data = explode("-",$dataFull[0])
+                  ?>
+
                
                 @if ($historico->historico == "Solicitação de prazo negada")
                   <div class="well well-small danger">                  
-                     <span style="color: red;">{{ $historico->historico ." : ".$historico->created_at}}</span>                 
+                     <span style="color: red;">{{ $historico->historico ." : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}</span>
                   </div>
                                 
                 @elseif ($historico->historico == "Prazo concedido até : ".$tarefa2->date_finish)
                   <div class="well well-small danger">                  
-                     <span style="color: blue;">{{ $historico->historico }}</span>{{" : ".$historico->created_at}}             
+                     <span style="color: blue;">{{ $historico->historico }}</span>{{" : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}
                   </div>
 
-                 @elseif ($historico->historico == "Prazo Solicitado")
+                 @elseif (strstr($historico->historico,"Prazo Solicitado"))
                   <div class="well well-small danger">                  
-                     <span style="color: green;">{{ $historico->historico.": Motivo : ".$tarefa2->MotivoPrazoEtapaTarefa }}</span>{{" : ".$historico->created_at}}             
+                     <span style="color: green;">{{ $historico->historico}}</span>{{" : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}
                   </div>
 
                 @else
                    <div class="well well-small" >                  
-                        {{ $historico->historico ." : ".$historico->created_at}}                  
+                        {{ $historico->historico ." : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}
                    </div>
                 @endif
 
@@ -392,31 +408,31 @@ function tarefaConcederPrazo(id){
 
 
 
-                 <!-- Begin Modal -->
+        <!-- Begin Modal -->
+        {{Form::open(array('id' => 'formModalData','action' => 'TarefasController@concederPrazo'))}}
         <div class="modal fade" id="modalTarefaConceder" tabindex="-1" role="dialog" aria-labelledby="myModalDataLabel" aria-hidden="true">
-          {{Form::open(array('id' => 'formModalData','action' => 'TarefasController@concederPrazo'))}}
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
-                  <h4 class="modal-title" id="TarefaDataLabel">Informe a nova data de término</h4>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                        <h4 class="modal-title" id="TarefaDataLabel">Informe a nova data de término</h4>
                     </div>
 
                     <div class="modal-body" align="center">
-                          <label>Extender prazo até</label>
-                          <input type="text" name="dataPrazo" id="dataPrazo" placeholder="10/10/2015" style="text-align:center">
-                          <input type="hidden" name="tarefaPrazo_id" id="tarefaPrazo_id" >
-                                                    
+                        <label>Extender prazo até</label>
+                        <input type="text" name="dataPrazo" id="dataPrazo" placeholder="10/10/2015" style="text-align:center">
+                        <input type="hidden" name="tarefaPrazo_id" id="tarefaPrazo_id" >
+
                     </div>
 
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>                  
-                   <button type="submit" class="btn btn-primary">Enviar</button>                  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
                 </div>
-              </div>
             </div>
-            {{Form::close()}}
-          </div>
+        </div>
+        {{Form::close()}}
 
       <!-- End Modal -->
         {{Form::open(array('id' => 'formNegarPrazo','action' => 'TarefasController@negarPrazo'))}}
@@ -430,7 +446,7 @@ function tarefaConcederPrazo(id){
   <!-- BEGIN PAGE CONTAINER-->
   </div>
  </div>
-<!-- END CONTAINER --> 
+<!-- END CONTAINER -->
 
 <!-- END CONTAINER -->
 
@@ -439,7 +455,9 @@ function tarefaConcederPrazo(id){
 <script src="packages/assets/plugins/boostrapv3/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="packages/assets/plugins/breakpoints.js" type="text/javascript"></script>
 <script src="packages/assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-<script src="packages/assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
+<script src="packages/assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script>
+<script type="text/javascript" src="packages/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
 <!-- END CORE JS FRAMEWORK -->
 <!-- BEGIN PAGE LEVEL JS -->
 <script src="packages/assets/plugins/pace/pace.min.js" type="text/javascript"></script>

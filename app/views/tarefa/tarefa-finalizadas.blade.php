@@ -251,10 +251,49 @@
                     echo "<div aria-valuemin='0' aria-valuenow='".$porcetagem."' class='progress-bar animate-progress-bar'>TAREFA FINALIZADA </div>";
                   }
                 ?> 
-          {{--Fim barra de progresso--}}     
+          {{--Fim barra de progresso--}}
+
+             </div>
+                      {{--Begin histórico--}}
+                 <h4>Hisorico</h4>
+                 <?php $historicos = TarefaHistorico::where('tarefa_id','=',$tarefa2->id)->get(); ?>
+                 @foreach ($historicos as $historico)
+
+                     <?php
+                     $dataFull = explode(" ",$historico->updated_at);
+                     $data = explode("-",$dataFull[0])
+                     ?>
 
 
-           </div>  
+                     @if ($historico->historico == "Solicitação de prazo negada")
+                         <div class="well well-small danger">
+                             <span style="color: red;">{{ $historico->historico ." : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}</span>
+                         </div>
+
+                     @elseif ($historico->historico == "Prazo concedido até : ".$tarefa2->date_finish)
+                         <div class="well well-small danger">
+                             <span style="color: blue;">{{ $historico->historico }}</span>{{" : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}
+                         </div>
+
+                     @elseif (strstr($historico->historico,"Prazo Solicitado"))
+                         <div class="well well-small danger">
+                             <span style="color: green;">{{ $historico->historico}}</span>{{" : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}
+                         </div>
+
+                     @else
+                         <div class="well well-small" >
+                             {{ $historico->historico ." : ".$data[2]."/".$data[1]."/".$data[0]." ".$dataFull[1]}}
+                         </div>
+                     @endif
+
+
+
+                 @endforeach
+
+                 {{--End histórico--}}
+
+
+             </div>
           </div> 
          </div>   
         </div>
