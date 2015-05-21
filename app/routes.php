@@ -107,12 +107,27 @@ Route::get("/cadastra-tarefas", array(
 	'uses'	=>	'TarefasController@create'
 ));
 
+Route::get("/cadastra-tarefas-cliente", array(
+    'as'	=>	'cadastra-tarefas-cliente',
+    'uses'	=>	'TarefasController@createCliente'
+));
+
 Route::get("/visualizar-tarefas", array(
 	'as'	=>	'visualizar-tarefas',
 	'uses'	=>	'TarefasController@show'
 ));
 
-Route::get("/visualizar-tarefas-finalizadas", array(
+Route::get("/visualizar-tarefas-cliente", array(
+    'as'	=>	'visualizar-tarefas-cliente',
+    'uses'	=>	'TarefasController@showTarefasCliente'
+));
+
+Route::get("/visualizar-tarefas-admim-cliente", array(
+    'as'	=>	'visualizar-tarefas-admim-cliente',
+    'uses'	=>	'TarefasController@showTarefasAdminCliente'
+));
+
+    Route::get("/visualizar-tarefas-finalizadas", array(
 	'as'	=>	'visualizar-tarefas-finalizadas',
 	'uses'	=>	'TarefasController@showFinish'
 ));
@@ -180,6 +195,7 @@ Route::post("/cronograma-detalhe","CalendarioController@cronogramaDetalhe");
 
 //Route for store tasks
 Route::post("/cadastra-tarefas", "TarefasController@store");
+Route::post("/cadastra-tarefas-cliente", "TarefasController@storeCliente");
 Route::get("/editar-tarefas?{id}", "TarefasController@editar");
 Route::post("/editar-tarefas", "TarefasController@atualizar");
 Route::get("/finalizar-tarefas/{id}", "TarefasController@finalizar");

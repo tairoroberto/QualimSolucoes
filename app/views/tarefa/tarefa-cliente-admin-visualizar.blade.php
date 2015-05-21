@@ -99,22 +99,11 @@ jQuery(function($){
 
      ?>
 
-
-
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-            </ul>
-        </div>
-    @endif
-
-
     <div class="page-title">
-        <h3>Visualizar - <span class="semi-bold">Tarefas</span></h3>
+        <h3>Visualizar - <span class="semi-bold">Tarefas Cliente</span></h3>
     </div>
-
+             
+              
     <!-- START FORM -->          
      <div class="row">
        <div class="col-md-12">
@@ -122,27 +111,20 @@ jQuery(function($){
           <ul class="nav nav-tabs" id="tab-01">
 
 
-          {{--Se o usuario logado for o admin, então ele poderá ver todas as tarefas --}}
           {{-- Se não for o admin só verá as tarefas dele.--}}
 
-          @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
-            <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
-                                   ->where('cliente_id','=',0)
-                                   ->get();
-                  $cont=0; 
-              ?>
-          @else
-            <?php $tarefas = Tarefa::where('nutricionista_id','=',Auth::user()->get()->id)
-                                      ->where('SituacaoEtapaTarefa','!=','Finalizado')
-                                      ->where('cliente_id','=',0)
-                                      ->get();
-                  $cont=0; 
-              ?>
-          @endif
-          
-            
 
-          {{--Se houver tarefas cadastrada mostra o nome do ususario logado--}}
+          <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
+                                 ->where('cliente_id','!=',0)
+                                 ->where('nutricionista_id','=',Auth::user()->get()->id)
+                                 ->get();
+                $cont=0;
+          ?>
+
+
+
+
+              {{--Se houver tarefas cadastrada mostra o nome do ususario logado--}}
           @if (count($tarefas) > 0)
             {{--Dono da tarefa--}}
                 {{--<li style=" padding:15px;">{{Auth::user()->get()->name}}</li>--}}
@@ -179,12 +161,12 @@ jQuery(function($){
 
 
                      <?php
-                     //Pega o nome do usuario da tarefa
-                     $user = Nutricionista::find($tarefa->nutricionista_id);
-                     $firstName = explode(' ', $user->name) ?>
+                        //Pega o nome do usuario da tarefa
+                        $cliente = Cliente::find($tarefa->cliente_id);
+                     ?>
 
                      {{--Printa o nome do usuario responsavél pela arefa--}}
-                        {{$firstName[0]." - ". $tarefa->title}}
+                        {{$cliente->razaoSocial." - ". $tarefa->title}}
                   </a>
               </li>
               <?php $cont++;0 ?>
@@ -193,22 +175,15 @@ jQuery(function($){
          
           
           <div class="tab-content">
-          
-          {{--Se o usuario logado for o admin, então ele poderá ver todas as tarefas --}}
+
           {{-- Se não for o admin só verá as tarefas dele.--}}
-          
-          @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
-            <?php $tarefas2 = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
-                                      ->get();
-                  $cont2=0; 
-              ?>
-          @else
-            <?php $tarefas2 = Tarefa::where('nutricionista_id','=',Auth::user()->get()->id)
+
+            <?php $tarefas2 = Tarefa::where('cliente_id','!=',0)
                                       ->where('SituacaoEtapaTarefa','!=','Finalizado')
+                                      ->where('nutricionista_id','=',Auth::user()->get()->id)
                                       ->get();
                   $cont2=0; 
               ?>
-          @endif
 
             @foreach ($tarefas2 as $tarefa2)
 
@@ -229,37 +204,39 @@ jQuery(function($){
                               <a data-toggle="modal" data-target="#modalTarefaPedir">
                                 Solicitar prazo
                               </a>
-                            </li> 
+                            </li>
 
-                          
+                              @if(Auth::user()->check())
 
-                       <?php if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora")) {?>
+                                  <?php if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora")) {?>
 
-                            <li onclick="tarefaNegarPrazo({{$tarefa2->id}});">
-                              <a >
-                                Negar prazo
-                              </a>
-                            </li> 
+                                  <li onclick="tarefaNegarPrazo({{$tarefa2->id}});">
+                                      <a >
+                                          Negar prazo
+                                      </a>
+                                  </li>
 
-                            <li onclick="tarefaConcederPrazo({{$tarefa2->id}});">
-                              <a data-toggle="modal" data-target="#modalTarefaConceder">
-                                Condecer prazo
-                              </a>
-                            </li> 
+                                  <li onclick="tarefaConcederPrazo({{$tarefa2->id}});">
+                                      <a data-toggle="modal" data-target="#modalTarefaConceder">
+                                          Condecer prazo
+                                      </a>
+                                  </li>
 
-                              <li>
-                                <a href="{{action('TarefasController@editar',$tarefa2->id)}}">
-                                  Editar
-                                </a>
-                              </li>  
+                                  <li>
+                                      <a href="{{action('TarefasController@editar',$tarefa2->id)}}">
+                                          Editar
+                                      </a>
+                                  </li>
 
-                              <li>
-                                <a href="{{action('TarefasController@delete',$tarefa2->id)}}">
-                                  Deletar
-                                </a>
-                              </li>   
-                          <?php } ?>
-                                                     
+                                  <li>
+                                      <a href="{{action('TarefasController@delete',$tarefa2->id)}}">
+                                          Deletar
+                                      </a>
+                                  </li>
+                                  <?php } ?>
+
+                              @endif
+
                           </ul>
                       </div>
                   <!--FIM DA AÇÂO-->  
@@ -410,7 +387,8 @@ jQuery(function($){
                            <textarea rows="4" cols="50" name="motivoPrazo" placeholder="Informe o motivo..." style="width:100%">
                            </textarea>
                            <input type="hidden" name="tarefa_id" id="tarefa_id" >
-                           <input type="hidden" name="pagina_cliente" id="pagina_cliente" value="" >
+                          <input type="hidden" name="pagina_cliente" id="pagina_cliente" value="1" >
+
                       </div>                                 
                     </div>
 
@@ -438,7 +416,7 @@ jQuery(function($){
                     <div class="modal-body" align="center">
                         <label>Extender prazo até</label>
                         <input type="text" name="dataPrazo" id="dataPrazo" placeholder="10/10/2015" style="text-align:center">
-                        <input type="hidden" name="tarefaPrazo_id" id="tarefaPrazo_id" >
+
 
                     </div>
 
@@ -454,6 +432,7 @@ jQuery(function($){
       <!-- End Modal -->
         {{Form::open(array('id' => 'formNegarPrazo','action' => 'TarefasController@negarPrazo'))}}
           <input type="hidden" name="tarefaNegarPrazo_id" id="tarefaNegarPrazo_id" >
+          <input type="hidden" name="pagina_cliente" id="pagina_cliente" value="1">
         {{Form::close()}}
 
       <!--begin form-->

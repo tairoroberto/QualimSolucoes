@@ -77,7 +77,14 @@ function validaTarefa(){
                 <div class="col-md-24">
                   <div class="grid simple">
                     <div class="grid-body no-border">
-                   
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+                                </ul>
+                            </div>
+                        @endif
                      
                      <?php $data = date('d/m/Y');?>
                      <div class="row form-row" >

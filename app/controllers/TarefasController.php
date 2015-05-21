@@ -22,6 +22,16 @@ class TarefasController extends BaseController {
         return View::make("tarefa.tarefa-nova");
 	}
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function createCliente()
+    {
+        return View::make("tarefa.tarefa-nova-cliente");
+    }
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -48,15 +58,16 @@ class TarefasController extends BaseController {
 		if ($validation->passes())
 		{	
 			//store Etapa tarefa
-			$etapaTarefa = new Tarefa;
-			$etapaTarefa->nutricionista_id = Input::get("SelectResponsavel1");
-			$etapaTarefa->title = Input::get("TituloTarefa1");
-			$etapaTarefa->description = Input::get("Descricaotarefa1");
-			$etapaTarefa->date_start = Input::get("DataInicio");
-			$etapaTarefa->date_finish = Input::get("DataEntregaTarefa1");;
-			$etapaTarefa->SituacaoEtapaTarefa = "";
-			$etapaTarefa->MotivoPrazoEtapaTarefa = "";
-			$etapaTarefa->save();
+            $tarefa = new Tarefa;
+            $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
+            $tarefa->cliente_id = 0;
+            $tarefa->title = Input::get("TituloTarefa1");
+            $tarefa->description = Input::get("Descricaotarefa1");
+            $tarefa->date_start = Input::get("DataInicio");
+            $tarefa->date_finish = Input::get("DataEntregaTarefa1");;
+            $tarefa->SituacaoEtapaTarefa = "";
+            $tarefa->MotivoPrazoEtapaTarefa = "";
+            $tarefa->save();
 
 
 			$historicoTarefa = new TarefaHistorico;
@@ -72,7 +83,7 @@ class TarefasController extends BaseController {
 			$i = 0;
 	   		$j = 0;
 	   		$k = 0;
-	   		$l = 0; 
+	   		$l = 0;
 
 			if ($SelectUsuarioArray != "") {
 				while($i < count($SelectUsuarioArray) && $j < count($TituloArray) && 
@@ -80,15 +91,16 @@ class TarefasController extends BaseController {
 
    			
 					//store Etapa tarefa
-					$etapaTarefa = new Tarefa;
-					$etapaTarefa->nutricionista_id = $SelectUsuarioArray[$i];
-					$etapaTarefa->title = $TituloArray[$j];
-					$etapaTarefa->description = $DescricaoArray[$k];
-					$etapaTarefa->date_start = Input::get("DataInicio");
-					$etapaTarefa->date_finish = $DataEntregaArray[$l];
-					$etapaTarefa->SituacaoEtapaTarefa = "";
-					$etapaTarefa->MotivoPrazoEtapaTarefa = "";
-					$etapaTarefa->save();
+                    $tarefa = new Tarefa;
+                    $tarefa->nutricionista_id = $SelectUsuarioArray[$i];
+                    $tarefa->cliente_id = 0;
+                    $tarefa->title = $TituloArray[$j];
+                    $tarefa->description = $DescricaoArray[$k];
+                    $tarefa->date_start = Input::get("DataInicio");
+                    $tarefa->date_finish = $DataEntregaArray[$l];
+                    $tarefa->SituacaoEtapaTarefa = "";
+                    $tarefa->MotivoPrazoEtapaTarefa = "";
+                    $tarefa->save();
 
 					$historicoTarefa = new TarefaHistorico;
                     $historicoTarefa->tarefa_id = $tarefa->id;
@@ -98,11 +110,12 @@ class TarefasController extends BaseController {
 	   				$i++;
 	   				$j++;
 	   				$k++;
-	   				$l++; 			
+	   				$l++;
    				}
 			}
 									
-			return Redirect::route('cadastra-tarefas');
+			return Redirect::route('cadastra-tarefas')
+                            ->withErrors(['Cadastrado com sucesso...!']);
 
 		}
 
@@ -111,7 +124,93 @@ class TarefasController extends BaseController {
 						->withErrors($validation);
 	}
 
-	/**
+
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function storeCliente(){
+
+        $input = Input::all();
+        $validation = Validator::make($input, Tarefa::$rules);
+
+        if ($validation->passes())
+        {
+            //store Etapa tarefa
+            $tarefa = new Tarefa;
+            $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
+            $tarefa->cliente_id = Input::get("SelectCliente1");
+            $tarefa->title = Input::get("TituloTarefa1");
+            $tarefa->description = Input::get("Descricaotarefa1");
+            $tarefa->date_start = Input::get("DataInicio");
+            $tarefa->date_finish = Input::get("DataEntregaTarefa1");;
+            $tarefa->SituacaoEtapaTarefa = "";
+            $tarefa->MotivoPrazoEtapaTarefa = "";
+            $tarefa->save();
+
+
+            $historicoTarefa = new TarefaHistorico;
+            $historicoTarefa->tarefa_id = $tarefa->id;
+            $historicoTarefa->historico = "Tarefa cadastrada";
+            $historicoTarefa->save();
+
+
+            $SelectUsuarioArray = Input::get("SelectUsuarioArray");
+            $SelectClienteArray = Input::get("SelectClienteArray");
+            $TituloArray = Input::get("TituloArray");
+            $DescricaoArray = Input::get("DescricaoArray");
+            $DataEntregaArray = Input::get("DataEntregaArray");
+            $i = 0;
+            $j = 0;
+            $k = 0;
+            $l = 0;
+            $m = 0;
+
+            if ($SelectUsuarioArray != "") {
+                while($i < count($SelectUsuarioArray) && $j < count($TituloArray) &&
+                    $k < count($DescricaoArray) && $l < count($DataEntregaArray)){
+
+
+                    //store Etapa tarefa
+                    $tarefa = new Tarefa;
+                    $tarefa->nutricionista_id = $SelectUsuarioArray[$i];
+                    $tarefa->cliente_id = $SelectClienteArray[$j];
+                    $tarefa->title = $TituloArray[$k];
+                    $tarefa->description = $DescricaoArray[$l];
+                    $tarefa->date_start = Input::get("DataInicio");
+                    $tarefa->date_finish = $DataEntregaArray[$m];
+                    $tarefa->SituacaoEtapaTarefa = "";
+                    $tarefa->MotivoPrazoEtapaTarefa = "";
+                    $tarefa->save();
+
+                    $historicoTarefa = new TarefaHistorico;
+                    $historicoTarefa->tarefa_id = $tarefa->id;
+                    $historicoTarefa->historico = "Tarefa cadastrada";
+                    $historicoTarefa->save();
+
+                    $i++;
+                    $j++;
+                    $k++;
+                    $l++;
+                    $m++;
+                }
+            }
+
+            return Redirect::route('cadastra-tarefas')
+                ->withErrors(['Cadastrado com sucesso...!']);
+
+        }
+
+        return Redirect::route('cadastra-tarefas')
+            ->withInput()
+            ->withErrors($validation);
+    }
+
+
+    /**
 	 * Display the specified resource.
 	 *
 	 * @return Response
@@ -121,6 +220,28 @@ class TarefasController extends BaseController {
         //return View::make('tarefa.tarefa-visualizar');
         return View::make("tarefa.tarefa-visualizar");
 	}
+
+    /**
+     * Display the specified resource.
+     *
+     * @return Response
+     */
+    public function showTarefasCliente()
+    {
+        //return View::make('tarefa.tarefa-visualizar');
+        return View::make("tarefa.tarefa-cliente-visualizar");
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return Response
+     */
+    public function showTarefasAdminCliente()
+    {
+        //return View::make('tarefa.tarefa-visualizar');
+        return View::make("tarefa.tarefa-cliente-admin-visualizar");
+    }
 
 
 
@@ -154,14 +275,15 @@ class TarefasController extends BaseController {
 	 */
 	public function atualizar()	{
 		//store Etapa tarefa
-		$etapaTarefa = Tarefa::findOrFail(Input::get("tarefa_id"));
-		$etapaTarefa->nutricionista_id = Input::get("SelectResponsavel1");
-		$etapaTarefa->title = Input::get("TituloTarefa1");
-		$etapaTarefa->description = Input::get("Descricaotarefa1");
-		$etapaTarefa->date_start = Input::get("DataInicio");
-		$etapaTarefa->date_finish = Input::get("DataEntregaTarefa1");;
-		$etapaTarefa->SituacaoEtapaTarefa = "";
-		$etapaTarefa->save();
+        $tarefa = Tarefa::findOrFail(Input::get("tarefa_id"));
+        $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
+        $tarefa->cliente_id = 0;
+        $tarefa->title = Input::get("TituloTarefa1");
+        $tarefa->description = Input::get("Descricaotarefa1");
+        $tarefa->date_start = Input::get("DataInicio");
+        $tarefa->date_finish = Input::get("DataEntregaTarefa1");;
+        $tarefa->SituacaoEtapaTarefa = "";
+        $tarefa->save();
 
 		$historicoTarefa = new TarefaHistorico;
         $historicoTarefa->tarefa_id = $tarefa->id;
@@ -187,7 +309,8 @@ class TarefasController extends BaseController {
 		$historicoTarefa->historico = "Tarefa Finalizada";
 		$historicoTarefa->save();
 
-		return Redirect::route('visualizar-tarefas');
+		return Redirect::route('visualizar-tarefas-cliente')
+                    ->withErrors(['Tarefa finalizada com sucesso...!']);
 	}
 
 		/**
@@ -208,16 +331,32 @@ class TarefasController extends BaseController {
 		$historicoTarefa->save();
 
         $alert = new Alerta;
-        $alert->nutricionista_id = $tarefa->nutricionista_id;
-        $alert->cliente_id = 0;
-        $alert->admin = 0;
-        $alert->msg = "consultora solicita prazo";
-        $alert->url = action("TarefasController@show");
-        $alert->situation = "";
-        $alert->save();
+
+        if(Input::get("pagina_cliente") != ""){
+            $alert->nutricionista_id = 0;
+            $alert->cliente_id = Auth::cliente()->get()->id;
+            $alert->msg = "Cliente solicita prazo";
+
+            $alert->admin = 0;
+            $alert->url = action("TarefasController@showTarefasAdminCliente");
+            $alert->situation = "";
+            $alert->save();
 
 
-        return Redirect::route('visualizar-tarefas');
+            return Redirect::route('visualizar-tarefas-cliente');
+        }else{
+            $alert->nutricionista_id = $tarefa->nutricionista_id;
+            $alert->cliente_id = 0;
+            $alert->msg = "Consultora solicita prazo";
+
+            $alert->admin = 0;
+            $alert->url = action("TarefasController@show");
+            $alert->situation = "";
+            $alert->save();
+
+
+            return Redirect::route('visualizar-tarefas');
+        }
 	}
 
 
@@ -238,16 +377,35 @@ class TarefasController extends BaseController {
 		$historicoTarefa->historico = "Solicitação de prazo negada";
 		$historicoTarefa->save();
 
-        $alert = new Alerta;
-        $alert->nutricionista_id = $tarefa->nutricionista_id;
-        $alert->cliente_id = 0;
-        $alert->admin = Auth::user()->get()->id;
-        $alert->msg = "Prazo de tarefa foi negado";
-        $alert->url = action("TarefasController@show");
-        $alert->situation = "mostrar-para-usuario";
-        $alert->save();
 
-		return Redirect::route('visualizar-tarefas');
+        if(Input::get("pagina_cliente") != ""){
+            $alert = new Alerta;
+            $alert->nutricionista_id = 0;
+            $alert->cliente_id = $tarefa->cliente_id;
+            $alert->msg = "Prazo de tarefa foi negado";
+
+            $alert->admin = 0;
+            $alert->url = action("TarefasController@showTarefasCliente");
+            $alert->situation = "mostrar-para-usuario";
+            $alert->save();
+
+
+            return Redirect::route('visualizar-tarefas-admim-cliente');
+
+        }else{
+            $alert = new Alerta;
+            $alert->nutricionista_id = $tarefa->nutricionista_id;
+            $alert->cliente_id = 0;
+            $alert->admin = Auth::user()->get()->id;
+            $alert->msg = "Prazo de tarefa foi negado";
+            $alert->url = action("TarefasController@show");
+            $alert->situation = "mostrar-para-usuario";
+            $alert->save();
+
+
+            return Redirect::route('visualizar-tarefas');
+        }
+
 	}
 
 
@@ -297,7 +455,7 @@ class TarefasController extends BaseController {
         $historicoTarefa->tarefa_id = $tarefa->id;
 		$historicoTarefa->historico = "Tarefa cadastrada";
 		$historicoTarefa->save();
-        $tarefa->delete();
+        $tarefa->delete($id);
 		return Redirect::route('visualizar-tarefas');
 	}
 

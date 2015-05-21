@@ -157,20 +157,37 @@
 
                    $alertas = Alerta::where("situation", "=", "")
                                     ->where("situation", "!=", "mostrar-para-usuario")->get();
+
                    $countAlerta = Alerta::where("situation", "=", "")
                                         ->where("situation", "!=", "mostrar-para-usuario")->count();
 
                    foreach($alertas as $alerta){ ?>
 
-                   <?php $userAlert = Nutricionista::find($alerta->nutricionista_id)?>
+                   <?php
+                        if($alerta->nutricionista_id != 0){
+                            $userAlert = Nutricionista::find($alerta->nutricionista_id);
+                        }else{
+                            $userAlert = Cliente::find($alerta->cliente_id);
+                        }
+                   ?>
 
                    <div class="notification-messages info" >
                        <div class="user-profile">
-                           @if(File::exists("packages/assets/img/profiles/".Auth::user()->get()->photo))
-                               <img src="packages/assets/img/profiles/{{$userAlert->photo}}"  alt="" data-src="packages/assets/img/profiles/{{$userAlert->photo}}" data-src-retina="packages/assets/img/profiles/{{$userAlert->photo}}" width="35" height="35" />
+                           @if($alerta->nutricionista_id != 0)
+                               @if(File::exists("packages/assets/img/profiles/".$userAlert->photo))
+                                   <img src="packages/assets/img/profiles/{{$userAlert->photo}}"  alt="" data-src="packages/assets/img/profiles/{{$userAlert->photo}}" data-src-retina="packages/assets/img/profiles/{{$userAlert->photo}}" width="35" height="35" />
+                               @else
+                                   <img src="packages/assets/img/profiles/cliente2.png"  alt="" data-src="packages/assets/img/profiles/cliente2.png" data-src-retina="packages/assets/img/profiles/cliente2.png" width="35" height="35" />
+                               @endif
                            @else
-                               <img src="packages/assets/img/profiles/cliente2.png"  alt="" data-src="packages/assets/img/profiles/cliente2.png" data-src-retina="packages/assets/img/profiles/cliente2.png" width="35" height="35" />
+                               @if(File::exists("packages/assets/img/logo-clientes/".$userAlert->photo_logo))
+                                   <img src="packages/assets/img/logo-clientes/{{$userAlert->photo_logo}}"  alt="" data-src="packages/assets/img/profiles/{{$userAlert->photo_logo}}" data-src-retina="packages/assets/img/profiles/{{$userAlert->photo_logo}}" width="35" height="35" />
+                               @else
+                                   <img src="packages/assets/img/profiles/cliente2.png"  alt="" data-src="packages/assets/img/profiles/cliente2.png" data-src-retina="packages/assets/img/profiles/cliente2.png" width="35" height="35" />
+                               @endif
                            @endif
+
+
 
                        </div>
                        <div class="message-wrapper" onclick="deletaAlerta('{{$alerta->id}}');">
@@ -260,6 +277,25 @@
 
 
 
+          {{--Se perfil for do cliente faessa busca por tarefas--}}
+          @if (Auth::cliente()->check())
+              <?php
+
+              $tarefaAtrasada = Tarefa::where("date_finish","<",date('d/m/Y'))
+                  ->where("SituacaoEtapaTarefa","!=","Finalizado")
+                  ->where("cliente_id","=",Auth::cliente()->get()->id)
+                  ->count();
+
+              $tarefasAndatmento = Tarefa::where("date_finish",">=",date('d/m/Y'))
+                  ->where("SituacaoEtapaTarefa","!=","Finalizado")
+                  ->where("cliente_id","=",Auth::cliente()->get()->id)
+                  ->count();
+              ?>
+          @endif
+
+
+
+
      <ul class="nav quick-section ">
       <li class="quicklinks"> 
         <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">            
@@ -273,6 +309,9 @@
                     <li><a href="{{action('CalendarioController@create')}}">Meu calendario</a>
                     </li>
                     <li><a href="{{action('TarefasController@show')}}"> Tarefas em aberto<span class="badge badge-important animated bounceIn">{{$tarefasAndatmento}}</span></a>
+                    </li>
+                  @else
+                    <li><a href="{{action('TarefasController@showTarefasCliente')}}"> Tarefas em aberto<span class="badge badge-important animated bounceIn">{{$tarefasAndatmento}}</span></a>
                     </li>
                   @endif
 
@@ -415,20 +454,31 @@
               <span class="title">Tarefas</span> <span class="arrow "></span> </a>
                 <ul class="sub-menu">
                   @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))     
-                     <li > <a href="{{action('TarefasController@create')}}"> Cadastrar tarefa</a> </li> 
+                     <li > <a href="{{action('TarefasController@create')}}"> Cadastrar tarefa</a> </li>
+                     <li > <a href="{{action('TarefasController@createCliente')}}"> Cadastrar tarefa cliente</a> </li>
                    @endif 
                   <li > <a href="{{action('TarefasController@show')}}"> Visualizar tarefas</a> </li>  
-                  <li > <a href="{{action('TarefasController@showFinish')}}"> Tarefas Finalizadas</a> </li>  
+                  <li > <a href="{{action('TarefasController@showFinish')}}"> Tarefas Finalizadas</a> </li>
+                  <li > <a href="{{action('TarefasController@showTarefasAdminCliente')}}"> Visualizar tarefas de clientes</a> </li>
                 </ul>
               </li>
         @endif   
-    @endif   
-     
-    
+    @endif
+
+
+         @if (Auth::cliente()->check())
+             <li class=""> <a href="javascript:;"> <i class="fa fa-tasks"></i>
+                     <span class="title">Tarefas</span> <span class="arrow "></span> </a>
+                 <ul class="sub-menu">
+                     <li > <a href="{{action('TarefasController@showTarefasCliente')}}"> Visualizar tarefas</a> </li>
+                 </ul>
+             </li>
+         @endif
 
 
 
-    @if (Auth::user()->check())
+
+     @if (Auth::user()->check())
        @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Consultora") || (Auth::user()->get()->type == "Supervisora"))    
           <li class=""> <a href="javascript:;"> <i class="fa fa-calendar"></i>
           <span class="title">Cronograma </span> <span class="arrow "></span> </a>
@@ -472,8 +522,8 @@
           <span class="title">Relatórios </span> <span class="arrow "></span> </a>
             <ul class="sub-menu">
               <li > <a href="{{action('RelatorioController@index')}}">Visualizar visitas Técnicas</a></li>
-              <!-- <li > <a href="{{action('RelatorioController@create')}}">Visualizar Auditorias</a> </li>
-              <li > <a href="{{action('RelatorioController@create')}}">Visualizar Check List</a> </li>    --> 
+              <li > <a href="{{action('RelatorioController@index')}}">Visualizar Auditorias</a> </li>
+              <li > <a href="{{action('RelatorioController@index')}}">Visualizar Check List</a> </li>
             </ul>
           </li>
         @endif   

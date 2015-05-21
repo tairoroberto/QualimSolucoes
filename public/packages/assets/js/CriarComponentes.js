@@ -253,7 +253,55 @@
 }
 
 
-/*********************************************************************************************/
+
+
+    /************************************************************   *********************************/
+    /*                      Cria campos para os TAREFAS                                            */
+    /*                                                                                            */
+    /*********************************************************************************************/
+    function criarCampoTarefaCliente(){
+
+        var objPai = document.getElementById("DivTarefasOrigem");
+        //Criando o elemento DIV;
+        var objFilho = document.createElement("DivTarefasDestino");
+        //Definindo atributos ao objFilho:
+        objFilho.setAttribute("id","Tarefas"+qdivCamposTarefas);
+
+        //Inserindo o elemento no pai:
+        objPai.appendChild(objFilho);
+        //Escrevendo algo no filho recŽm-criado:
+        document.getElementById("Tarefas"+qdivCamposTarefas).innerHTML =
+            "<div class='row form-row'>"
+            +"<div class='col-md-12'>"
+            +"<h4>Tarefa "+qdivCamposTarefas+" </h4>"
+            +"</div>"
+            +" </div>"
+            +"<div class='row form-row' >"
+            +"<div class='col-md-2'>"
+            +"<select name = 'SelectUsuarioArray[]' id='SelectUsuarioArray[]' style='width:100%'>"
+            +"<option value='Responsável'>Responsável</option>"
+            +"</select>"
+            +"</div> "
+            +"<div class='col-md-2'>"
+            +"<select name = 'SelectClienteArray[]' id='SelectClienteArray[]' style='width:100%'>"
+            +"<option value='Cliente'>Cliente</option>"
+            +"</select>"
+            +"</div> "
+            +"<div class='col-md-2'>"
+            +"<input name='TituloArray[]' id='TituloArray[]' type='text'  class='form-control' placeholder='Titulo '>"
+            +"</div>"
+            +"<div class='col-md-4'>"
+            +"<input name='DescricaoArray[]' id='DescricaoArray[]' type='text'  class='form-control' placeholder='Descrição '>"
+            +"</div>"
+            +"<div class='col-md-2'>"
+            +"<input name='DataEntregaArray[]' id='DataEntregaArray[]' type='text'  class='form-control date' placeholder='Data entrega '>"
+            +"</div'"
+            +"</div>";
+        qdivCamposTarefas++;
+
+    }
+
+    /*********************************************************************************************/
 /*                   Cria campos para os Hisórico Incorporação                               */
 /*                                                                                           */
 /*********************************************************************************************/

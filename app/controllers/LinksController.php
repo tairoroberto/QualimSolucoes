@@ -37,7 +37,8 @@ class LinksController extends BaseController {
 			$link->url = Input::get("Url");
 			$link->save();
 
-			return Redirect::route('cadastra-links');
+			return Redirect::route('cadastra-links')
+                        ->withErrors(['Cadastrado com sucesso...!']);
 		}
 
 		return Redirect::route('cadastra-links')
@@ -86,7 +87,8 @@ class LinksController extends BaseController {
 			$link->url = Input::get("Url");
 			$link->save();
 
-			return Redirect::route('cadastra-links');
+			return Redirect::route('cadastra-links')
+                        ->withErrors(['Atualizado com sucesso...!']);
 		}
 
 		return Redirect::route('cadastra-links')
