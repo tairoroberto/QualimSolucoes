@@ -16,6 +16,7 @@ class CreateTarefas extends Migration {
 			$table->increments('id');
 			$table->integer('nutricionista_id');
             $table->integer('cliente_id');
+            $table->string('to');
 			$table->string('title');
 			$table->string('description');
 			$table->string('date_start');

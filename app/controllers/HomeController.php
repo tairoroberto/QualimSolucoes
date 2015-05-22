@@ -12,8 +12,14 @@ class HomeController extends BaseController {
 		return View::make("index");
 	}
 
+    //Master page
+    public function equipe(){
+        return View::make("equipe");
+    }
 
-	//make logout of system
+
+
+    //make logout of system
 	public function makeLogout(){
 		Auth::user()->logout();
 		Auth::cliente()->logout();

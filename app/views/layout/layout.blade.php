@@ -527,7 +527,18 @@
             </ul>
           </li>
         @endif   
-    @endif 
+    @endif
+
+
+
+     @if (Auth::cliente()->check())
+         <li class=""> <a href="javascript:;"> <i class="fa fa-user"></i>
+                 <span class="title">Equipe técnica</span> <span class="arrow "></span> </a>
+             <ul class="sub-menu">
+                 <li > <a href="{{action('HomeController@equipe')}}"> Visualizar equipe</a> </li>
+             </ul>
+         </li>
+     @endif
 
 
 

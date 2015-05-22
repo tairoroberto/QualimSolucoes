@@ -215,7 +215,7 @@ class NutricionistasController extends BaseController {
 
 		return Redirect::route('editar-usuario',compact('nutricionista'))
 						->withInput()
-						->withErrors($validation);	
+						->withErrors($validation);
 	}
 
 

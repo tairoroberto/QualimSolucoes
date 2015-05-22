@@ -61,6 +61,7 @@ class TarefasController extends BaseController {
             $tarefa = new Tarefa;
             $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
             $tarefa->cliente_id = 0;
+            $tarefa->to = 'nutricionista';
             $tarefa->title = Input::get("TituloTarefa1");
             $tarefa->description = Input::get("Descricaotarefa1");
             $tarefa->date_start = Input::get("DataInicio");
@@ -94,6 +95,7 @@ class TarefasController extends BaseController {
                     $tarefa = new Tarefa;
                     $tarefa->nutricionista_id = $SelectUsuarioArray[$i];
                     $tarefa->cliente_id = 0;
+                    $tarefa->to = 'nutricionista';
                     $tarefa->title = $TituloArray[$j];
                     $tarefa->description = $DescricaoArray[$k];
                     $tarefa->date_start = Input::get("DataInicio");
@@ -143,6 +145,7 @@ class TarefasController extends BaseController {
             $tarefa = new Tarefa;
             $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
             $tarefa->cliente_id = Input::get("SelectCliente1");
+            $tarefa->to = 'cliente';
             $tarefa->title = Input::get("TituloTarefa1");
             $tarefa->description = Input::get("Descricaotarefa1");
             $tarefa->date_start = Input::get("DataInicio");
@@ -178,6 +181,7 @@ class TarefasController extends BaseController {
                     $tarefa = new Tarefa;
                     $tarefa->nutricionista_id = $SelectUsuarioArray[$i];
                     $tarefa->cliente_id = $SelectClienteArray[$j];
+                    $tarefa->to = 'cliente';
                     $tarefa->title = $TituloArray[$k];
                     $tarefa->description = $DescricaoArray[$l];
                     $tarefa->date_start = Input::get("DataInicio");
@@ -309,8 +313,14 @@ class TarefasController extends BaseController {
 		$historicoTarefa->historico = "Tarefa Finalizada";
 		$historicoTarefa->save();
 
-		return Redirect::route('visualizar-tarefas-cliente')
-                    ->withErrors(['Tarefa finalizada com sucesso...!']);
+        if($tarefa->to == "cliente"){
+            return Redirect::route('visualizar-tarefas-cliente')
+                ->withErrors(['Tarefa finalizada com sucesso...!']);
+        }
+
+        return Redirect::route('visualizar-tarefas')
+            ->withErrors(['Tarefa finalizada com sucesso...!']);
+
 	}
 
 		/**

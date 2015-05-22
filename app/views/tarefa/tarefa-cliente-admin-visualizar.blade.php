@@ -116,6 +116,7 @@ jQuery(function($){
 
           <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                                  ->where('cliente_id','!=',0)
+                                 ->where('to','=','cliente')
                                  ->where('nutricionista_id','=',Auth::user()->get()->id)
                                  ->get();
                 $cont=0;
@@ -180,6 +181,7 @@ jQuery(function($){
 
             <?php $tarefas2 = Tarefa::where('cliente_id','!=',0)
                                       ->where('SituacaoEtapaTarefa','!=','Finalizado')
+                  ->where('to','=','cliente')
                                       ->where('nutricionista_id','=',Auth::user()->get()->id)
                                       ->get();
                   $cont2=0; 

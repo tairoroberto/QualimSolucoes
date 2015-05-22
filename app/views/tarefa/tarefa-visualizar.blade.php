@@ -128,12 +128,14 @@ jQuery(function($){
           @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
             <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                                    ->where('cliente_id','=',0)
+                                   ->where('to','=','nutricionista')
                                    ->get();
                   $cont=0; 
               ?>
           @else
             <?php $tarefas = Tarefa::where('nutricionista_id','=',Auth::user()->get()->id)
                                       ->where('SituacaoEtapaTarefa','!=','Finalizado')
+                                      ->where('to','=','nutricionista')
                                       ->where('cliente_id','=',0)
                                       ->get();
                   $cont=0; 
@@ -199,12 +201,16 @@ jQuery(function($){
           
           @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
             <?php $tarefas2 = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
-                                      ->get();
+                                    ->where('cliente_id','=',0)
+                                    ->where('to','=','nutricionista')
+                                    ->get();
                   $cont2=0; 
               ?>
           @else
             <?php $tarefas2 = Tarefa::where('nutricionista_id','=',Auth::user()->get()->id)
                                       ->where('SituacaoEtapaTarefa','!=','Finalizado')
+                                      ->where('to','=','nutricionista')
+                                      ->where('cliente_id','=',0)
                                       ->get();
                   $cont2=0; 
               ?>

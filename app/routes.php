@@ -42,6 +42,13 @@ Route::get("/index", array(
 	"uses" 	=> "HomeController@index"
 ));
 
+//create the views
+Route::get("/equipe", array(
+    'as' 	=> "equipe",
+    "uses" 	=> "HomeController@equipe"
+));
+
+
 Route::get("/cadastra-usuario",array(
 	'as'  	=> 'cadastra-usuario',
 	'uses'	=> 'NutricionistasController@create'
