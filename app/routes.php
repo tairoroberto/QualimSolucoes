@@ -223,6 +223,7 @@ Route::post("/editar-relatorio", "RelatorioController@edit");
 Route::post("/atualizar-relatorio", "RelatorioController@update");
 Route::post("/relatorio-imprimir", "RelatorioController@imprimir");
 Route::post("/relatorio-visulaizar", "RelatorioController@visulaizar");
+Route::post("/deletar-foto-relatorio","RelatorioController@deletarFotoRelatorio");
 
 Route::get("/alerta-deleta/{id}", "AlertaController@destroy");
 

@@ -78,6 +78,25 @@ class RelatorioController extends BaseController {
                 $nutricionista = Nutricionista::find(Input::get("selectNutricionista"));
                 $cliente = Cliente::find(Input::get("cliente_id"));
 
+
+                /**
+                 *verifica se AS FOTOS foram submetidos
+                 */
+                $fotos = Input::file("FotosArray");
+                if (isset($fotos)) {
+                    foreach ($fotos as $foto) {
+                        //change the name of photo for save in database
+                            $photo_name = md5(uniqid(time())) . "." . $foto->guessExtension();
+
+                            //move photo
+                            $foto->move('packages/assets/img/relatorios',$photo_name);
+                            $fotoRelatorio = new FotosRelatorio;
+                            $fotoRelatorio->foto = $photo_name;
+                            $fotoRelatorio->relatorio_id = $relatorio_visita->id;
+                            $fotoRelatorio->save();
+                    }
+                }
+
                 try{
                     /*send email to nutricionist and client*/
                     Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
@@ -154,6 +173,7 @@ class RelatorioController extends BaseController {
         return View::make('relatorio-visita.relatorio-visita-tecnica-editar',compact("relatorio", "nutricionista","cliente"));
 	}
 
+
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -182,6 +202,24 @@ class RelatorioController extends BaseController {
                 $nutricionista = Nutricionista::find(Input::get("selectNutricionista"));
                 $cliente = Cliente::find(Input::get("cliente_id"));
 
+                /**
+                 *verifica se AS FOTOS foram submetidos
+                 */
+                $fotos = Input::file("FotosArray");
+                if (isset($fotos)) {
+                    foreach ($fotos as $foto) {
+                        //change the name of photo for save in database
+                        $photo_name = md5(uniqid(time())) . "." . $foto->guessExtension();
+
+                        //move photo
+                        $foto->move('packages/assets/img/relatorios',$photo_name);
+                        $fotoRelatorio = new FotosRelatorio;
+                        $fotoRelatorio->foto = $photo_name;
+                        $fotoRelatorio->relatorio_id = $relatorio_visita->id;
+                        $fotoRelatorio->save();
+                    }
+                }
+
                 try{
                     /*send email to nutricionist and client*/
                     Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
@@ -200,6 +238,7 @@ class RelatorioController extends BaseController {
                     {
                         $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
                     });
+
                 }catch (Exception $e){
                     return Redirect::route('relatorio-lista')
                         ->withInput()
@@ -226,6 +265,31 @@ class RelatorioController extends BaseController {
 	{
 		//
 	}
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return Response
+     */
+    public function deletarFotoRelatorio()
+    {
+        $fotoRelatorio = FotosRelatorio::find(Input::get("foto_id"));
+        if(File::exists("packages/assets/img/relatorios/".$fotoRelatorio->foto)){
+            File::delete("packages/assets/img/relatorios/".$fotoRelatorio->foto);
+
+            if($fotoRelatorio->delete()){
+                return Redirect::route('relatorio-lista')
+                               ->withInput()
+                               ->withErrors(['Foto de relatório deletada com sucesso!']);
+            }
+        }
+
+
+        return Redirect::route('relatorio-lista')
+                       ->withInput()
+                       ->withErrors(['Foto de relatório não foi deletada!']);
+
+    }
 
 
 }

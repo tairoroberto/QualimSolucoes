@@ -38,8 +38,7 @@
        jQuery(function(){
            $("#horaInicio").mask("99:99");
            $("#horaFim").mask("99:99");
-           $("#totalHoras").mask("99:99");
-           $("#data").mask("9999/99/99");
+           $("#data").mask("99/99/9999");
        });
 
        //seleciona um cliente ao mudar o select
@@ -99,11 +98,25 @@
         minutosTotal += 60;
         horasTotal -= 1;
     }
-     
-    horaFinal = horasTotal + ":" + minutosTotal;
-    $("#totalHoras").val(horaFinal);
 
-     return 1;
+     if(parseInt(hIni[0], 10) < 24 && parseInt(hFim[0], 10) < 24 &&
+         parseInt(hIni[1], 10) < 60 && parseInt(hFim[1], 10) < 60 ){
+         horaFinal = horasTotal + ":" + minutosTotal;
+         $("#totalHoras").val(horaFinal);
+
+         return 1;
+     }
+
+     $( "#dialogHoraInvalida" ).dialog({
+         modal: true,
+         buttons: {
+             Ok: function() {
+                 $( this ).dialog( "close" );
+             }
+         }
+     });
+     //$("#horaFim").focus();
+     return 0;
 }
 
 /**
@@ -148,6 +161,38 @@ function somaHora(horaInicio, horaSomada) {
     return horaFinal;
 }
 
+
+       function deletarFoto(id){
+           formRelatorio.action = "{{action('RelatorioController@deletarFotoRelatorio')}}";
+           $("#foto_id").val(id);
+           formRelatorio.submit();
+       }
+
+       var qdivCamposFotos = 0;
+       function criarCampoFotos(){
+           /*********************************************************************************************/
+           /*      						 Cria campos para o Histórico					             */
+           /*                                                                                           */
+           /*********************************************************************************************/
+
+
+           var objPai = document.getElementById("DivFotoOrigem");
+           //Criando o elemento DIV;
+           var objFilho = document.createElement("DivFotoDestino");
+           //Definindo atributos ao objFilho:
+           objFilho.setAttribute("id","Foto"+qdivCamposFotos);
+
+           //Inserindo o elemento no pai:
+           objPai.appendChild(objFilho);
+           //Escrevendo algo no filho recem-criado:
+           document.getElementById("Foto"+qdivCamposFotos).innerHTML =
+
+               "<div class='col-md-12'>"
+               +"<input name='FotosArray[]' id='FotosArray["+qdivCamposFotos+"]' type='file' accept='image/*'  title='Foto "+qdivCamposFotos+"'  class='filestyle btn btn-primary btn-cons'>"
+               +"</div>"
+           qdivCamposFotos++;
+
+       }
 </script>
 
 
@@ -211,17 +256,25 @@ function somaHora(horaInicio, horaSomada) {
                       <h4>
                        <select id="selectCliente" name="selectCliente" required="required" class="form-control" onchange="selecionaCliente();">
                               <option value="{{$cliente->id.','.$cliente->razaoSocial;}}">{{$cliente->razaoSocial}}</option>
-                            <?php $clientes = Cliente::all(); ?>
-                               @foreach ($clientes as $clie)
-                                 <option value="{{$clie->id.','.$clie->razaoSocial;}}">
-                                 {{$clie->razaoSocial}}</option>
-                               @endforeach                              
+                           <?php $clientes = Cliente::all(); ?>
+                           @foreach ($clientes as $cli)
+
+                               <?php $usersIds = Nutricionista::whereIn("id",explode(',',$cli->nutricionista_id))->get(); ?>
+                               @foreach($usersIds as $userId)
+                                   @if($userId->id == Auth::user()->get()->id)
+                                       <option value="{{$cli->id.','.$cli->razaoSocial;}}">
+                                           {{$cli->razaoSocial}}
+                                       </option>
+                                   @endif
+                               @endforeach
+
+                           @endforeach
                        </select>                       
                        </h4>
                     </div>
 
                     <div class="col-md-3">
-                        <?php $dataFull = explode(" ", $relatorio->data) ?>
+                        <?php $dataFull = explode(' ', $relatorio->data) ?>
                         <?php $data = explode("-", $dataFull[0]) ?>
 
                       <h5>{{--<b>Data: </b>--}}<input type="text" id="data" name="data" value="{{$data[2]."/".$data[1]."/".$data[0]}}"></h5>
@@ -270,7 +323,6 @@ function somaHora(horaInicio, horaSomada) {
               </div>
               {{--End cabeçalho relatório--}}
 
-              {{--Relatorio de visita técinica--}}
 
               <div class="grid simple" >              
                  <div class="grid-body">
@@ -278,12 +330,35 @@ function somaHora(horaInicio, horaSomada) {
                     <div class="col-md-12" align="center">
                        <textarea class="textarea" style="width: 100%; height: 400px" name="textEditor" id="textEditor"  rows="6" class="col-lg-12">{{$relatorio->relatorio}}</textarea>
                        <textarea class="textarea" name="relVisitaTecnica" id="relVisitaTecnica" hidden="">{{$relatorio->relatorio}}</textarea>
+
+                        <?php $fotosRelatorio = FotosRelatorio::where("relatorio_id", "=",$relatorio->id)->get();?>
+                        <br>
+
+                        @foreach($fotosRelatorio as $foto)
+                            <div>
+                                <div style="text-align: left">
+                                        <button type="button" class="btn btn-primary" onclick="deletarFoto('{{$foto->id}}')">Deletar</button>
+                                </div>
+                                <img src="packages/assets/img/relatorios/{{$foto->foto}}" width="100%" height="400px">
+                                <br><br>
+                            </div>
+                        @endforeach
+                    </div>
                     </div>
                     </div>
                  </div>
               </div>
 
-              {{--Rodapé relatório--}}
+       {{--Relatorio de visita técinica--}}
+       <div class="btn-group">
+           <button type="button" class="btn btn-default" onclick="criarCampoFotos();">Adicionar fotos</button><br><br><br>
+       </div>
+       {{-- Div para criação de campos de e-mails--}}
+       <div class="row form-row" id="DivFotoOrigem"></div>
+       <div class="row form-row" id="DivFotoDestino"></div>
+
+
+       {{--Rodapé relatório--}}
               <div class="grid simple">              
                  <div class="grid-body">
                    <div class="row">
@@ -345,9 +420,15 @@ function somaHora(horaInicio, horaSomada) {
            <p>Preencha todo o relatório!"</p>
        </div>
 
+       {{--Diaolog--}}
+       <div id="dialogHoraInvalida" title="Preencher" style="display: none">
+           <p>Hora não é válida!"</p>
+       </div>
+
 
        {{--fild to senho id to insert in data base--}}
        <input type="hidden" name="relatorio_id" id="relatorio_id" value="{{$relatorio->id}}">
+       <input type="hidden" name="foto_id" id="foto_id">
 
 
 

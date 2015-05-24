@@ -55,7 +55,7 @@
                   <table class="table table-hover table-condensed" id="example">
                     <thead>
                       <tr>
-                        <th style="width:1%">Imprimir</th>
+                        <th style="width:1%">Ação</th>
                         <th style="width:25%">Consultora</th>
                         <th style="width:30%">Cliente</th>
                         <th style="width:15%">Data</th>

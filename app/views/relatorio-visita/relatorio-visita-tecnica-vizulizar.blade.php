@@ -117,7 +117,13 @@
                 <div class="grid-body" style="background-image: url('packages/assets/img/Logo-Qualin-trasparente.png'); background-repeat: no-repeat; background-position: center; background-size: 1600px">
                     <div class="row">
                         <div class="col-md-12" >
+                            <?php $fotosRelatorio = FotosRelatorio::where("relatorio_id", "=",$relatorio_visita->id)->get();?>
                             {{$relatorio_visita->relatorio}}
+                            <br><br><br>
+                            @foreach($fotosRelatorio as $foto)
+                                <img src="packages/assets/img/relatorios/{{$foto->foto}}" width="100%" height="400px">
+                                <br><br>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -137,12 +143,12 @@
                                     {{--Nome--}}</b></h5>
                         </div>
 
-                        <div class="col-md-7 " >
+                        <div class="col-md-12 " >
                             <h5><b>Consultor: </b>{{$nutricionista->name}}</h5>
                             <h5><label id="labelCliente"><b>Cliente: </b>{{$cliente->razaoSocial}}</label></h5>
                             <input type="hidden" name="cliente_id" id="cliente_id">
 
-                            <div align="right">
+                            <div style="float: right;">
                                 @if ($nutricionista->signature != "")
                                     @if(File::exists("packages/assets/img/signatures/".$nutricionista->signature))
                                         <img src="packages/assets/img/signatures/{{$nutricionista->signature}}"

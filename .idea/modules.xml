@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Nutricionista-laravel.iml" filepath="$PROJECT_DIR$/.idea/Nutricionista-laravel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/qualimsolucoes.iml" filepath="$PROJECT_DIR$/.idea/qualimsolucoes.iml" />
     </modules>
   </component>
 </project>

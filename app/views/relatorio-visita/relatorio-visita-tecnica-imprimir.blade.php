@@ -147,7 +147,14 @@ table {
                  <div class="grid-body">
                    <div class="row">
                     <div class="col-md-12">
-                       {{$relatorio_visita->relatorio}}                               
+                        <?php $fotosRelatorio = FotosRelatorio::where("relatorio_id", "=",$relatorio_visita->id)->get();?>
+                        {{$relatorio_visita->relatorio}}
+                        <br>
+                        @foreach($fotosRelatorio as $foto)
+                            <img src="packages/assets/img/relatorios/{{$foto->foto}}" width="100%" height="400px">
+                            <br>
+                        @endforeach
+
                     </div>                              
                     </div>
                  </div>
