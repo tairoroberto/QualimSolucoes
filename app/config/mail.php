@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'mail.mandprojetos.com.br',//'mail.mandprojetos.com.br',
+	'host' => 'smtp.trmasolucoes.com.br',//'mail.mandprojetos.com.br',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return array(
 	|
 	*/
 
-	'port' => 465,
+	'port' => 587,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return array(
 	|
 	*/
 
-	'encryption' => 'ssl',
+	'encryption' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'envia@mandprojetos.com.br',//null,
+	'username' => 'contato@trmasolucoes.com.br',//null,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'mand123',//null,
+	'password' => 'redhotTairo1507',//null,
 
 	/*
 	|--------------------------------------------------------------------------

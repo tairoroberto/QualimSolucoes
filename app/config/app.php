@@ -125,10 +125,8 @@ return array(
 
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Dollar\Generators\GeneratorsServiceProvider',
-		'Barryvdh\Snappy\ServiceProvider',
 		'Ollieread\Multiauth\MultiauthServiceProvider',
 		'JansenFelipe\CnpjGratis\CnpjGratisServiceProvider',
-		'Cartalyst\Sentry\SentryServiceProvider',
 
 	),
 
@@ -196,9 +194,6 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-		'PDF' => 'Barryvdh\Snappy\Facades\SnappyPdf',
-		'Image' => 'Barryvdh\Snappy\Facades\SnappyImage',	
-		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 		'CnpjGratis'    => 'JansenFelipe\CnpjGratis\Facade',
 
 	),

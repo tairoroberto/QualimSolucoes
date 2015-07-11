@@ -9,9 +9,7 @@
 		"barryvdh/laravel-debugbar": "1.*",
 		"dollar/generators": "dev-master",
 		"caouecs/laravel4-lang": "dev-master",
-        "barryvdh/laravel-snappy": "0.1.x",
-        "ollieread/multiauth": "dev-master",       
-	  	"cartalyst/sentry": "2.1.*",
+        "ollieread/multiauth": "dev-master",
 	  	"jansenfelipe/cnpj-gratis": "2.0.*@dev"
 	},
 	"autoload": {

@@ -21,14 +21,11 @@
                         <div class="tiles white m-b-20">
                             <div class="tiles-body">
                                 <div class="controller"> <a href="javascript:;" class="reload"></a> </div>
-                                <div class="tiles-title"> NOTIFICATIONS </div>
                                 <br>
 
                                 <?php
                                     $lista = explode(",",Auth::cliente()->get()->nutricionista_id);
-                                    $nutricionistas = Nutricionista::whereIn("id",$lista)
-                                                                   ->orWhere("type","=","Administrador")
-                                                                   ->get();
+                                    $nutricionistas = Nutricionista::whereIn("id",$lista)->get();
                                 ?>
 
                                 @foreach($nutricionistas as $nutricionista)
