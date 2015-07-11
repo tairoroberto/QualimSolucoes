@@ -114,11 +114,20 @@ jQuery(function($){
           {{-- Se não for o admin só verá as tarefas dele.--}}
 
 
-          <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
-                                 ->where('cliente_id','!=',0)
-                                 ->where('to','=','cliente')
-                                 ->where('nutricionista_id','=',Auth::user()->get()->id)
-                                 ->get();
+          <?php
+              if(Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora"){
+                  $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
+                          ->where('cliente_id','!=',0)
+                          ->where('to','=','cliente')
+                          ->get();
+              }else{
+                  $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
+                          ->where('cliente_id','!=',0)
+                          ->where('to','=','cliente')
+                          ->where('nutricionista_id','=',Auth::user()->get()->id)
+                          ->get();
+              }
+
                 $cont=0;
           ?>
 
@@ -179,11 +188,20 @@ jQuery(function($){
 
           {{-- Se não for o admin só verá as tarefas dele.--}}
 
-            <?php $tarefas2 = Tarefa::where('cliente_id','!=',0)
-                                      ->where('SituacaoEtapaTarefa','!=','Finalizado')
-                  ->where('to','=','cliente')
-                                      ->where('nutricionista_id','=',Auth::user()->get()->id)
-                                      ->get();
+            <?php
+              if(Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora"){
+                  $tarefas2 = Tarefa::where('cliente_id','!=',0)
+                          ->where('SituacaoEtapaTarefa','!=','Finalizado')
+                          ->where('to','=','cliente')
+                          ->get();
+              }else{
+                  $tarefas2 = Tarefa::where('cliente_id','!=',0)
+                          ->where('SituacaoEtapaTarefa','!=','Finalizado')
+                          ->where('to','=','cliente')
+                          ->where('nutricionista_id','=',Auth::user()->get()->id)
+                          ->get();
+              }
+
                   $cont2=0; 
               ?>
 

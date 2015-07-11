@@ -14,6 +14,7 @@ class CreateTarefas extends Migration {
 	{
 		Schema::create('tarefas', function(Blueprint $table) {
 			$table->increments('id');
+			$table->integer('solicitante');
 			$table->integer('nutricionista_id');
             $table->integer('cliente_id');
             $table->string('to');
