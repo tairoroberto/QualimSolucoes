@@ -24,6 +24,9 @@ function chamaModal(){
 
 
 $(document).on("click", "#btnBuscarDados", function(e){
+    $('#Carregando').css('display','block');
+    $('.div-ajax-carregamento-pagina').fadeOut('fast');
+
     //$(this).load('inlcudes/populate.php');     
     var cnpj = document.getElementById('cnpj').value;
     var captcha = document.getElementById('captcha').value;
@@ -34,6 +37,9 @@ $(document).on("click", "#btnBuscarDados", function(e){
         data: {cnpj : cnpj, captcha : captcha/*,viewstate : viewstate*/,cookie : cookie},
         type: "POST",
         success: function (json) {
+
+        $('#Carregando').css('display','none');
+
           if (json == "Captcha incorreto") {
               alert('Captcha incorreto');
               location.reload();
@@ -146,6 +152,31 @@ $(document).on("click", "#btnBuscarDados", function(e){
   });
 
   </script>
+
+  <style>
+      .jquery-waiting-base-container {
+          position: absolute;
+          left: 0px;
+          top: 20%;
+          margin:0px;
+          width: 100%;
+          height: 200px;
+          display:block;
+          z-index: 9999997;
+          opacity: 0.65;
+          -moz-opacity: 0.65;
+          filter: alpha(opacity = 65);
+          background: black;
+          background-image: url("packages/assets/img/loading_bar.gif");
+          background-repeat: no-repeat;
+          background-position:50% 50%;
+          text-align: center;
+          overflow: hidden;
+          font-weight: bold;
+          color: white;
+          padding-top: 25%;
+      }
+  </style>
 
   <!--MultiSelect-->
 <link rel="stylesheet" type="text/css" href="packages/assets/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css">
@@ -330,6 +361,8 @@ $(document).on("click", "#btnBuscarDados", function(e){
                        {{ Form::close()}}
                      </div>
 
+                      {{-- Div de mensagem de carregamento--}}
+                      <div id="Carregando" style="display: none;" class="jquery-waiting-base-container">Carregando...</div>
                      
                    </div>
                   </div>                      
