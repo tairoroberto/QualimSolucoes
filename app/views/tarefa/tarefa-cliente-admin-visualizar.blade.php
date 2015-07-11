@@ -118,12 +118,12 @@ jQuery(function($){
               if(Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora"){
                   $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                           ->where('cliente_id','!=',0)
-                          ->where('to','=','cliente')
+                          ->where('para','=','cliente')
                           ->get();
               }else{
                   $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                           ->where('cliente_id','!=',0)
-                          ->where('to','=','cliente')
+                          ->where('para','=','cliente')
                           ->where('nutricionista_id','=',Auth::user()->get()->id)
                           ->get();
               }
@@ -192,12 +192,12 @@ jQuery(function($){
               if(Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora"){
                   $tarefas2 = Tarefa::where('cliente_id','!=',0)
                           ->where('SituacaoEtapaTarefa','!=','Finalizado')
-                          ->where('to','=','cliente')
+                          ->where('para','=','cliente')
                           ->get();
               }else{
                   $tarefas2 = Tarefa::where('cliente_id','!=',0)
                           ->where('SituacaoEtapaTarefa','!=','Finalizado')
-                          ->where('to','=','cliente')
+                          ->where('para','=','cliente')
                           ->where('nutricionista_id','=',Auth::user()->get()->id)
                           ->get();
               }
