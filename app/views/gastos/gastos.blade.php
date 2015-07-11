@@ -7,9 +7,9 @@
    $("#hora-entrada").mask("99:99:99");
    $("#hora-saida").mask("99:99:99");
 
-    $("#vale-refeicao").maskMoney({prefix:'', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
-    $("#vale-transporte").maskMoney({prefix:'', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
-    $("#gasto-extra").maskMoney({prefix:'', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+    $("#vale-refeicao").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+    $("#vale-transporte").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
+    $("#gasto-extra").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
 
    });
 

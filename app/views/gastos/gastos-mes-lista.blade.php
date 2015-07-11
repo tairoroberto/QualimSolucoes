@@ -100,6 +100,7 @@
                         <th style="width:7%">Data</th>                        
                         <th style="width:10%">Entrada</th>
                         <th style="width:8%">Saída</th>
+                        <th style="width:4%">Horas</th>
                         <th style="width:10%">Refeição</th>
                          <th style="width:15%">Descrição vt</th>
                         <th style="width:10%">Transporte</th>
@@ -115,10 +116,18 @@
                            <?php $data = explode(" ", $gasto->date) ?>
                            <?php $data = explode("-", $data[0]) ?>
 
+
+                              <?php
+                                  $first_date = new DateTime($gasto->entry_time);
+                                  $second_date = new DateTime($gasto->departure_time);
+                                  $difference = $first_date->diff($second_date);
+                              ?>
+
                               <td class="v-align-middle">{{$gasto->client_locale}}</td>
                               <td class="v-align-middle">{{$data[2]."/".$data[1]."/".$data[0]}}</td>
                               <td class="v-align-middle">{{$gasto->entry_time}}</td>
                               <td class="v-align-middle">{{$gasto->departure_time}}</td>
+                              <td class="v-align-middle">{{$difference->format("%h:%i:%s")}}</td>
                               <td class="v-align-middle">{{$gasto->meal_voucher}}</td>
                               <td class="v-align-middle">{{$gasto->observation_transport}}</td>
                               <td class="v-align-middle">{{$gasto->transport_voucher}}</td>
