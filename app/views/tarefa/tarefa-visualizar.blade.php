@@ -128,14 +128,14 @@ jQuery(function($){
           @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
             <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                                    ->where('cliente_id','=',0)
-                                   ->where('to','=','nutricionista')
+                                   ->where('para','=','nutricionista')
                                    ->get();
                   $cont=0; 
               ?>
           @else
             <?php $tarefas = Tarefa::where('nutricionista_id','=',Auth::user()->get()->id)
                                       ->where('SituacaoEtapaTarefa','!=','Finalizado')
-                                      ->where('to','=','nutricionista')
+                                      ->where('para','=','nutricionista')
                                       ->where('cliente_id','=',0)
                                       ->get();
                   $cont=0; 
@@ -202,14 +202,14 @@ jQuery(function($){
           @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
             <?php $tarefas2 = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                                     ->where('cliente_id','=',0)
-                                    ->where('to','=','nutricionista')
+                                    ->where('para','=','nutricionista')
                                     ->get();
                   $cont2=0; 
               ?>
           @else
             <?php $tarefas2 = Tarefa::where('nutricionista_id','=',Auth::user()->get()->id)
                                       ->where('SituacaoEtapaTarefa','!=','Finalizado')
-                                      ->where('to','=','nutricionista')
+                                      ->where('para','=','nutricionista')
                                       ->where('cliente_id','=',0)
                                       ->get();
                   $cont2=0; 
@@ -274,6 +274,11 @@ jQuery(function($){
                   <h3><span class="semi-bold">{{$tarefa2->title}}</span></h3>                    
                           {{-- Description of task--}}
                   <p class="light">Descrição: {{$tarefa2->description}}</p>
+
+                  <?php $solicitante = Nutricionista::find($tarefa2->solicitante); ?>
+                    @if(isset($solicitante))
+                        <p class="light">Solicitante: {{$solicitante->name}}</p>
+                    @endif
 
                   <?php $nutricionista = Nutricionista::find($tarefa2->nutricionista_id); ?>
                   <p class="light">Responsável: {{$nutricionista->name}}</p>

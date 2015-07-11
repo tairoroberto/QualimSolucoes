@@ -59,6 +59,7 @@ class TarefasController extends BaseController {
 		{	
 			//store Etapa tarefa
             $tarefa = new Tarefa;
+            $tarefa->solicitante = Auth::user()->get()->id;
             $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
             $tarefa->cliente_id = 0;
             $tarefa->para = 'nutricionista';
@@ -93,6 +94,7 @@ class TarefasController extends BaseController {
    			
 					//store Etapa tarefa
                     $tarefa = new Tarefa;
+                    $tarefa->solicitante = Auth::user()->get()->id;
                     $tarefa->nutricionista_id = $SelectUsuarioArray[$i];
                     $tarefa->cliente_id = 0;
                     $tarefa->para = 'nutricionista';
@@ -143,6 +145,7 @@ class TarefasController extends BaseController {
         {
             //store Etapa tarefa
             $tarefa = new Tarefa;
+            $tarefa->solicitante = Auth::user()->get()->id;
             $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
             $tarefa->cliente_id = Input::get("SelectCliente1");
             $tarefa->para = 'cliente';
@@ -179,6 +182,7 @@ class TarefasController extends BaseController {
 
                     //store Etapa tarefa
                     $tarefa = new Tarefa;
+                    $tarefa->solicitante = Auth::user()->get()->id;
                     $tarefa->nutricionista_id = $SelectUsuarioArray[$i];
                     $tarefa->cliente_id = $SelectClienteArray[$j];
                     $tarefa->para = 'cliente';
@@ -280,6 +284,7 @@ class TarefasController extends BaseController {
 	public function atualizar()	{
 		//store Etapa tarefa
         $tarefa = Tarefa::findOrFail(Input::get("tarefa_id"));
+        $tarefa->solicitante = Auth::user()->get()->id;
         $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
         $tarefa->cliente_id = 0;
         $tarefa->title = Input::get("TituloTarefa1");

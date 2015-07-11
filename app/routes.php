@@ -24,12 +24,12 @@ Route::post("/login", function (){
 	$remember = Input::has("remember");
 
 
-	if ((Auth::user()->attempt($credentials, $remember)) || (Auth::cliente()->attempt($credentials, $remember))) { 
+	if ((Auth::user()->attempt($credentials, $remember)) || (Auth::cliente()->attempt($credentials, $remember))) {
 		return Redirect::intended("/index");
 	}
 	return Redirect::to("login")
 			->with('flash_error', 1)
-            ->withInput();   
+            ->withInput();
 
 });
 

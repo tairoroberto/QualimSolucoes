@@ -72,7 +72,7 @@
     </ul>
       <!-- BEGIN LOGO --> 
         <div align="center">
-          <a href="#"><img src="packages/assets/img/Logo-Qualin-interno.png" width="200" height="60"/></a>
+          <a href="{{url('index')}}"><img src="packages/assets/img/Logo-Qualin-interno.png" width="200" height="60"/></a>
         </div>
       <!-- END LOGO --> 
       <ul class="nav pull-right notifcation-center">  
@@ -398,7 +398,7 @@
 
      
       <div class="greeting"><h5><font color="ffffff"><br></font></h5></div>
-      <div class="semi-bold"><h6><font color="ffffff">{{$name[0]}}</font></h6> </div>
+      <div class="semi-bold"><h6><font color="ffffff"> @if(isset($name[0])){{$name[0]}} @endif</font></h6> </div>
       <div class="status">
          <h5>
            <font color="ffffff"> 
