@@ -38,14 +38,24 @@ class RelatorioController extends BaseController {
         return View::make("relatorio-visita.relatorio-visita-tecnica-cadastrar");
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Store a newly created resource in storage.
+     * @return Response
+     * @internal param $relatorio
+     */
+	public function visualizarRelatorioEmail()
 	{
-		//
+        Auth::user()->logout();
+        Auth::cliente()->logout();
+
+        if(Input::get('user') == 'cliente'){
+            Auth::cliente()->loginUsingId(Input::get('cliente_id'));
+        }else{
+            Auth::user()->loginUsingId(Input::get('logged'));
+        }
+
+        $relatorio_visita = RelatorioVisita::find(Input::get('relatorio'));
+        return View::make("relatorio-visita.relatorio-visita-tecnica-vizulizar", compact("relatorio_visita"));
 	}
 
 
@@ -86,7 +96,12 @@ class RelatorioController extends BaseController {
                 if (isset($fotos)) {
                     foreach ($fotos as $foto) {
                         //change the name of photo for save in database
-                            $photo_name = md5(uniqid(time())) . "." . $foto->guessExtension();
+                        $ext = $foto->guessExtension();
+
+                        if($ext == ""){
+                            $ext = pathinfo($foto->getClientOriginalName(), PATHINFO_EXTENSION);
+                        }
+                            $photo_name = md5(uniqid(time())) . "." . $ext;
 
                             //move photo
                             $foto->move('packages/assets/img/relatorios',$photo_name);
@@ -99,19 +114,14 @@ class RelatorioController extends BaseController {
 
                 try{
                     /*send email to nutricionist and client*/
-                    Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
+                    Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($nutricionista)
                     {
                         $message->to($nutricionista->email, $nutricionista->name)->subject('Relatório Qualim Soluções');
                     });
 
-                    /*send email to  client contact*/
-                    Mail::send('emails.relatorio-email-cliente-contact', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
-                    {
-                        $message->to($cliente->email_contact, $cliente->contact)->subject('Relatório Qualim Soluções');
-                    });
 
                     /*send email to  client*/
-                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
+                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente)
                     {
                         $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
                     });
@@ -119,7 +129,7 @@ class RelatorioController extends BaseController {
                 }catch (Exception $e){
                     return Redirect::route('relatorio-lista')
                         ->withInput()
-                        ->withErrors(['Reatorio salvo, mas e-mail não foi enviado ao cliente!']);
+                        ->withErrors(['Reatorio salvo!']);
                 }
 
 
@@ -222,19 +232,14 @@ class RelatorioController extends BaseController {
 
                 try{
                     /*send email to nutricionist and client*/
-                    Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($nutricionista)
+                    Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($nutricionista)
                     {
                         $message->to($nutricionista->email, $nutricionista->name)->subject('Relatório Qualim Soluções');
                     });
 
-                    /*send email to  client contact*/
-                    Mail::send('emails.relatorio-email-cliente-contact', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
-                    {
-                        $message->to($cliente->email_contact, $cliente->contact)->subject('Relatório Qualim Soluções');
-                    });
 
                     /*send email to  client*/
-                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente), function($message) use ($cliente)
+                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente)
                     {
                         $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
                     });
@@ -242,7 +247,7 @@ class RelatorioController extends BaseController {
                 }catch (Exception $e){
                     return Redirect::route('relatorio-lista')
                         ->withInput()
-                        ->withErrors(['Reatorio salvo, mas e-mail não foi enviado ao cliente!']);
+                        ->withErrors(['Reatorio salvo!']);
                 }
 
 

@@ -381,13 +381,17 @@
                                 <!-- END OF HEADING-->
                                 <!-- START OF TEXT-->
                                 <tr>
-                                    <td align='left' valign='top' style='padding-top: 4px; padding-right: 30px; padding-bottom: 0; padding-left: 30px; font-size:14px ; color:#999b9e; font-family: Arial,sans-serif; line-height: 24px; text-align:justify; '> Já fizemos os levantamentos iniciais para solucionar o seu caso!
+                                    <td align='left' valign='top' style='padding-top: 4px; padding-right: 30px; padding-bottom: 0; padding-left: 30px; font-size:14px ; color:#999b9e; font-family: Arial,sans-serif; line-height: 24px; text-align:justify; '> {{--Já fizemos os levantamentos iniciais para solucionar o seu caso!--}}
 
                                         <br />
                                         <br />
                                         Segue abaixo o link para visualizar o seu relatório, quais quer dúvidas estamos a disposição pelo e-mail falecom@qualimsolucoes.com <br />
                                         <br />
-                                        <strong>Link: {{--{{$link}}--}}<br />
+                                        <strong>
+                                            <a href="{{action('RelatorioController@visualizarRelatorioEmail', array('relatorio' => $relatorio->id, 'cliente_id' => $cliente->id, 'user' => 'consultora', 'logged' => Auth::user()->get()->id))}}">
+                                                Visualizar relatório
+                                            </a>
+                                            <br />
                                             <br />
                                         </strong></td>
 

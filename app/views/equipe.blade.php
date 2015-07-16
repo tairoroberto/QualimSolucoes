@@ -25,7 +25,9 @@
 
                                 <?php
                                     $lista = explode(",",Auth::cliente()->get()->nutricionista_id);
-                                    $nutricionistas = Nutricionista::whereIn("id",$lista)->get();
+                                    $nutricionistas = Nutricionista::whereIn("id",$lista)
+                                                                   ->orWhere('name','LIKE', '%Luciana Di Fiori%')
+                                                                   ->orWhere('name','LIKE', '%Sara Felix Costa%')->get();
                                 ?>
 
                                 @foreach($nutricionistas as $nutricionista)

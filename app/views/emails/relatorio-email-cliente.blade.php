@@ -387,7 +387,11 @@
                                         <br />
                                         Segue abaixo o link para visualizar o seu relatório, quais quer dúvidas estamos a disposição pelo e-mail falecom@qualimsolucoes.com <br />
                                         <br />
-                                        <strong>Link: {{--{{$link}}--}}<br />
+                                        <strong>
+                                            <a href="{{action('RelatorioController@visualizarRelatorioEmail', array('relatorio' => $relatorio->id, 'cliente_id' => $cliente->id, 'user' => 'cliente'))}}">
+                                                 Visualizar relatório
+                                            </a>
+                                            <br />
                                             <br />
                                         </strong></td>
 
@@ -443,7 +447,7 @@
                                 <!-- START OF TEXT-->
                                 <tr>
                                     <td align='center' valign='top' style='padding: 0px 30px; font-style: italic; font-size:12px ; color:#999b9e; font-family: Arial,sans-serif; line-height: 22px; '> Qualim Soluções - consultoria de alimentos - www.qualimsolucoes.com <br />
-                                        <span style='color:#1f2122;'></td>
+                                        <span style='color:#1f2122;'></span></td>
                                 </tr>
                                 <!-- END OF TEXT-->
                                 <tr>

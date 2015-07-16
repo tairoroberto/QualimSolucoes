@@ -44,15 +44,27 @@ class NutricionistasController extends BaseController {
 
 			//change the name of photo for save in database			
 			if (!is_null(Input::file('foto'))){
-				$photo_name = md5(uniqid(time())) . "." . Input::file('foto')->guessExtension();
+
+				$ext = Input::file('foto')->guessExtension();
+
+				if($ext == ""){
+					$ext = pathinfo(Input::file('foto')->getClientOriginalName(), PATHINFO_EXTENSION);
+				}
+
+				$photo_name = md5(uniqid(time())) . "." . $ext;
 
 				//move photo
 				Input::file('foto')->move('packages/assets/img/profiles',$photo_name);				
 			}
 			
 
-			if(!is_null(Input::file('assinatura'))){							
-				$photo_signature = md5(uniqid(time())) . "." . Input::file('assinatura')->guessExtension();
+			if(!is_null(Input::file('assinatura'))){
+				$ext = Input::file('assinatura')->guessExtension();
+
+				if($ext == ""){
+					$ext = pathinfo(Input::file('assinatura')->getClientOriginalName(), PATHINFO_EXTENSION);
+				}
+				$photo_signature = md5(uniqid(time())) . "." . $ext;
 
 				//move assinatura
 				Input::file('assinatura')->move('packages/assets/img/signatures',$photo_signature);
@@ -174,14 +186,24 @@ class NutricionistasController extends BaseController {
 
 			if (!is_null(Input::file('foto'))) {
 				//change the name of photo for save in database
-				$photo_name = md5(uniqid(time())) . "." . Input::file('foto')->guessExtension();
+				$ext = Input::file('foto')->guessExtension();
+
+				if($ext == ""){
+					$ext = pathinfo(Input::file('foto')->getClientOriginalName(), PATHINFO_EXTENSION);
+				}
+				$photo_name = md5(uniqid(time())) . "." . $ext;
 				//move photo
 				Input::file('foto')->move('packages/assets/img/profiles/',$photo_name);			
 			}
 
 			if (!is_null(Input::file('assinatura'))) {
 				//change the name of photo for save in database
-				$photo_signature = md5(uniqid(time())) . "." . Input::file('assinatura')->guessExtension();
+				$ext = Input::file('assinatura')->guessExtension();
+
+				if($ext == ""){
+					$ext = pathinfo(Input::file('assinatura')->getClientOriginalName(), PATHINFO_EXTENSION);
+				}
+				$photo_signature = md5(uniqid(time())) . "." . $ext;
 				//move photo
 				Input::file('assinatura')->move('packages/assets/img/signatures/',$photo_signature);
 			}
