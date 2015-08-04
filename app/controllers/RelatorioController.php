@@ -178,7 +178,7 @@ class RelatorioController extends BaseController {
 	public function edit()
 	{
         $relatorio = RelatorioVisita::find(Input::get("relatorio_id"));
-        $nutricionista  = Nutricionista::find($relatorio->nutricionista_id);
+        $nutricionista  = Nutricionista::withTrashed()->find($relatorio->nutricionista_id);
         $cliente  = Cliente::find($relatorio->cliente_id);
         return View::make('relatorio-visita.relatorio-visita-tecnica-editar',compact("relatorio", "nutricionista","cliente"));
 	}
@@ -209,7 +209,7 @@ class RelatorioController extends BaseController {
                 $relatorio_visita->relatorio = Input::get("relVisitaTecnica");
                 $relatorio_visita->save();
 
-                $nutricionista = Nutricionista::find(Input::get("selectNutricionista"));
+                $nutricionista = Nutricionista::withTrashed()->find(Input::get("selectNutricionista"));
                 $cliente = Cliente::find(Input::get("cliente_id"));
 
                 /**

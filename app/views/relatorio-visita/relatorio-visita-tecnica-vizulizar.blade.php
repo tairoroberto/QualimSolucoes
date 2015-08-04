@@ -45,7 +45,7 @@
         {{--busca o relatório--}}
         <?php //$relatorio_visita = RelatorioVisita::find($relatorio_id); ?>
 
-        <?php $nutricionista = Nutricionista::find($relatorio_visita->nutricionista_id) ?>
+        <?php $nutricionista = Nutricionista::withTrashed()->find($relatorio_visita->nutricionista_id) ?>
         <?php $cliente = Cliente::find($relatorio_visita->cliente_id) ?>
 
 

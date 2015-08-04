@@ -224,12 +224,12 @@
                                         <h3><span class="semi-bold">{{$tarefa2->title}}</span></h3>
                                         {{-- Description of task--}}
                                         <p class="light">Descrição: {{$tarefa2->description}}</p>
-                                        <?php $solicitante = Nutricionista::find($tarefa2->solicitante); ?>
+                                        <?php $solicitante = Nutricionista::withTrashed()->find($tarefa2->solicitante); ?>
                                         @if(isset($solicitante))
                                             <p class="light">Solicitante: {{$solicitante->name}}</p>
                                         @endif
 
-                                        <?php $nutricionista = Nutricionista::find($tarefa2->nutricionista_id); ?>
+                                        <?php $nutricionista = Nutricionista::withTrashed()->find($tarefa2->nutricionista_id); ?>
                                         <p class="light">Responsável: {{$nutricionista->name}}</p>
                                         <br>
                                     </div>

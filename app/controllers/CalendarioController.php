@@ -67,7 +67,7 @@ class CalendarioController extends BaseController {
 		if (Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora") {
 			$result = Calendario::all();			
 			foreach ($result as $evento) {				
-				$nutricionista = Nutricionista::find($evento->nutricionista_id);
+				$nutricionista = Nutricionista::withTrashed()->find($evento->nutricionista_id);
 				$name = explode(" ", $nutricionista->name);
 
 				$evento->title = $name[0]." - ".$evento->title ." - ".$evento->description." - ".$evento->location;

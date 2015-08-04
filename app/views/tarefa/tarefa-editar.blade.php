@@ -97,7 +97,7 @@ function validaTarefa(){
                     <div class="row form-row">
                     <div class="col-md-2">
                         <select id="SelectResponsavel1" name="SelectResponsavel1" style="width:100%">
-                        <?php $nutricionistas1 =  Nutricionista::find($tarefa->nutricionista_id); ?>
+                        <?php $nutricionistas1 =  Nutricionista::withTrashed()->find($tarefa->nutricionista_id); ?>
                         <option value="{{$nutricionistas1->id}}">{{$nutricionistas1->name}}</option>
                    
                    <?php $nutricionistas2 =  Nutricionista::where('type','!=','Cliente')->get(); ?>

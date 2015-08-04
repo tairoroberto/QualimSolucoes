@@ -70,7 +70,7 @@
                      
                        @foreach ($relatorio_visitas as $relatorio_visita) 
 
-                          <?php $nutricionista = Nutricionista::find($relatorio_visita->nutricionista_id); ?>
+                          <?php $nutricionista = Nutricionista::withTrashed()->find($relatorio_visita->nutricionista_id); ?>
                           <?php $cliente = Cliente::find($relatorio_visita->cliente_id); ?>
                           {{--Converte a data para ser mostrada--}}
                             <?php $data = explode(" ", $relatorio_visita->created_at) ?>
