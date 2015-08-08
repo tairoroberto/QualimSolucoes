@@ -104,6 +104,11 @@ Route::group(array('before' => 'auth'), function () {
         'uses' => 'ClienteController@editar'
     ));
 
+    Route::get('/clientes-excluidos', array(
+        'as' => 'clientes-excluidos',
+        'uses' => 'ClienteController@restoreClienteList'
+    ));
+
     Route::get("/cadastra-links", array(
         'as' => 'cadastra-links',
         'uses' => 'LinksController@create'
@@ -188,6 +193,7 @@ Route::group(array('before' => 'auth'), function () {
     Route::post("/atualizar-cliente", "ClienteController@atualizar");
     Route::post("/busca-dados-cliente", "ClienteController@buscaDados");
     Route::get("/deletar-cliente/{id}", "ClienteController@delete");
+    Route::get("/restaurar-cliente/{id}", "ClienteController@restoreCliente");
 
 //Route for submission Links
     Route::post("/cadastra-links", "LinksController@store");
@@ -218,6 +224,7 @@ Route::group(array('before' => 'auth'), function () {
     Route::post("/visualizar-gastos-mes-busca", "GastosController@mostrarBusca");
     Route::post("/cadastrar-gastos", "GastosController@store");
     Route::post("/editar-gastos", "GastosController@edit");
+    Route::post("/deletar-gastos", "GastosController@destroy");
 
 
     Route::post("/cadastrar-relatorio", "RelatorioController@storeVisitaTecnica");
@@ -262,4 +269,8 @@ Route::post("/store-signature-android", "QualimAndroidController@storeSignature"
 Route::post("/change-password-android", "QualimAndroidController@changePassword");
 Route::get("/relatorio-visita-tecnica-cad-android", "QualimAndroidController@relatorioVisitaTecnicaCad");
 Route::post("/cadastrar-relatorio-android", "QualimAndroidController@storeVisitaTecnicaAndroid");
+
+Route::get('phpinfo', function(){
+   return phpinfo();
+});
 

@@ -181,12 +181,29 @@ class GastosController extends BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+
+        if(Input::get('calendario_id') != '' && Input::get('gasto_id') != ''){
+            $gasto = Gasto::find(Input::get('gasto_id'));
+            $calendario = Calendario::find(Input::get('calendario_id'));
+
+            $gasto->forceDelete();
+            $calendario->forceDelete();
+
+            return Redirect::route('cadastrar-gastos')
+                ->withErrors(['Despesa deletada com sucesso...!']);
+        }
+
+        $calendario = Calendario::find(Input::get('calendario_id'));
+
+        $calendario->forceDelete();
+
+        return Redirect::route('cadastrar-gastos')
+            ->withErrors(['Despesa deletada com sucesso...!']);
+
 	}
 
 }

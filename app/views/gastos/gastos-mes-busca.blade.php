@@ -103,7 +103,7 @@
 
                     </thead>
                     <tbody>  
-                    <?php $vr = 0; $vrAux; $vt = 0; $vtAux; $gastoExtra = 0; ?> 
+                    <?php $vr = 0; $vrAux; $vt = 0; $vtAux; $gastoExtra = 0; ?>
                        @foreach ($gastos as $gasto)    
                           <tr >
                            <?php $data = explode(" ", $gasto->date) ?>

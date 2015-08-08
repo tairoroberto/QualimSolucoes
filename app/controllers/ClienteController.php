@@ -23,6 +23,16 @@ class ClienteController extends BaseController {
 	}
 
 	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @return Response
+	 */
+	public function restoreClienteList(){
+		$clientes = Cliente::onlyTrashed()->get();
+		return View::make('cliente.cliente-lista-excluidos',compact("clientes"));
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -125,7 +135,7 @@ class ClienteController extends BaseController {
 	 * @return Response
 	 */
 	public function editar(){
-		$cliente;
+		$cliente = null;
 
 		if (Input::get("cliente_id")) {
 			$cliente = Cliente::find(Input::get("cliente_id"));
@@ -266,6 +276,21 @@ class ClienteController extends BaseController {
 		$cliente->delete();
 		return Redirect::route('visualizar-cliente');
 	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function restoreCliente($id)	{
+		$cliente = Cliente::withTrashed()->find($id);
+		$cliente->restore();
+		return Redirect::route('clientes-excluidos')
+			->withErrors(['Cliente restaurado com sucesso...!']);
+	}
+
 
 
 	/**

@@ -1,15 +1,6 @@
 @extends('layout.layout')
 
-  @section('head')
-    @parent
-    <script type="text/javascript">
-    function enviar(id){
-      formClienteLista.cliente_id.value = id;
-      formClienteLista.submit();
-    }
-    </script>
-  @stop
-   
+
     @section('content')
 
     
@@ -20,8 +11,17 @@
          {{Form::open(array('id'=>'formClienteLista','url'=>'editar-cliente'))}}
           <input type="hidden" id="cliente_id" name="cliente_id">
           <div class="page-title"> 
-        <h3><span class="semi-bold">Clientes</span></h3>
+        <h3><span class="semi-bold">Clientes excluídos</span></h3>
       </div>
+
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+                      </ul>
+                  </div>
+              @endif
+
             <div class="span12">
               <div class="grid simple">
               
@@ -29,7 +29,7 @@
                   <table class="table table-hover table-condensed" id="example">
                     <thead>
                       <tr>
-                        <th style="width:1%">Ação</th>
+                        <th style="width:1%">Restaurar</th>
                         <th style="width:20%">Razão social</th>
                         <th style="width:20%">Nome Fantasia</th>
                         <th style="width:20%">usuário de login</th>
@@ -43,9 +43,9 @@
                        @foreach ($clientes as $cliente)
                         <?php $nutricionista = Nutricionista::withTrashed()->find($cliente->nutricionista_id); ?>
                           <tr>
-                              <td onclick="enviar({{$cliente->id}})">
-                                <a href="#" title="Editar dados de Cliente">
-                                  <i class="fa fa-paste">                                     
+                              <td>
+                                <a href="{{action('ClienteController@restoreCliente',$cliente->id)}}" title="Restaurar Cliente">
+                                  <i class="fa fa-paste">
                                   </i>                                      
                                  </a>  
                               </td>

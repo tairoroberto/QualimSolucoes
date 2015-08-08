@@ -30,7 +30,7 @@
                   <table class="table table-hover table-condensed" id="example">
                     <thead>
                       <tr>
-                        <th style="width:1%"></th>
+                        <th style="width:1%">Ação</th>
                         <th style="width:31%">Nome de Exibição</th>
                         <th style="width:30%">E-mail</th>
                         <th style="width:20%">Telefone</th>
@@ -44,7 +44,7 @@
  
                           <tr >
                              <td onclick="enviar({{$nutricionista->id}})">
-                               <a href="#">
+                               <a href="#" title="Visualizar cronograma de consultora">
                                 <i class="fa fa-paste"> 
                                 </i>                                      
                                 </a>  

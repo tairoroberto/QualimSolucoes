@@ -101,9 +101,9 @@
 
                                     <?php
                                     if($alerta->nutricionista_id != 0){
-                                        $userAlert = Nutricionista::find($alerta->nutricionista_id);
+                                        $userAlert = Nutricionista::withTrashed()->find($alerta->nutricionista_id);
                                     }else{
-                                        $userAlert = Cliente::find($alerta->cliente_id);
+                                        $userAlert = Cliente::withTrashed()->find($alerta->cliente_id);
                                     }
                                     ?>
 
@@ -148,7 +148,7 @@
 
                                     foreach($alertas as $alerta){ ?>
 
-                                    <?php $userAlert = Nutricionista::find($alerta->admin)?>
+                                    <?php $userAlert = Nutricionista::withTrashed()->find($alerta->admin)?>
 
                                     <div class="notification-messages info" >
                                         <div class="user-profile">
@@ -377,6 +377,7 @@
                         <ul class="sub-menu">
                             <li > <a href="{{action('ClienteController@create')}}"> Cadastrar cliente</a> </li>
                             <li > <a href="{{action('ClienteController@show')}}"> Visualizar clientes</a> </li>
+                            <li > <a href="{{action('ClienteController@restoreClienteList')}}"> Clientes Excluídos</a> </li>
                         </ul>
                     </li>
                 @endif
@@ -442,10 +443,10 @@
                             <ul class="sub-menu">
                                 <li > <a href="{{action('RelatorioController@create')}}">Cadastrar visitas Técnicas </a> </li>
                                 <li > <a href="{{action('RelatorioController@index')}}">Visualizar visitas Técnicas</a> </li>
-                                <li > <a href="{{action('RelatorioController@create')}}">Cadastrar Auditorias</a> </li>
+                               {{-- <li > <a href="{{action('RelatorioController@create')}}">Cadastrar Auditorias</a> </li>
                                 <li > <a href="{{action('RelatorioController@create')}}">Visualizar Auditorias</a> </li>
                                 <li > <a href="{{action('RelatorioController@create')}}">Cadastrar Check List</a> </li>
-                                <li > <a href="{{action('RelatorioController@create')}}">Visualizar Check List</a> </li>
+                                <li > <a href="{{action('RelatorioController@create')}}">Visualizar Check List</a> </li>--}}
                             </ul>
                         </li>
                     @endif
@@ -458,8 +459,8 @@
                                 <span class="title">Relatórios </span> <span class="arrow "></span> </a>
                             <ul class="sub-menu">
                                 <li > <a href="{{action('RelatorioController@index')}}">Visualizar visitas Técnicas</a></li>
-                                <li > <a href="{{action('RelatorioController@index')}}">Visualizar Auditorias</a> </li>
-                                <li > <a href="{{action('RelatorioController@index')}}">Visualizar Check List</a> </li>
+                                {{--<li > <a href="{{action('RelatorioController@index')}}">Visualizar Auditorias</a> </li>
+                                <li > <a href="{{action('RelatorioController@index')}}">Visualizar Check List</a> </li>--}}
                             </ul>
                         </li>
                     @endif

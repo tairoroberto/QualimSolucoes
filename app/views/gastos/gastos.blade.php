@@ -218,6 +218,29 @@
        return horaFinal;
    }
 
+
+      function mostraAlerta(){
+          $('#myModal').modal('hide');
+
+          $( "#dialog" ).dialog({
+              modal: true,
+              buttons: {
+                  Sair: function() {
+                      $( this ).dialog( "close" );
+                  },
+
+                  Deletar: function() {
+                      if($("#situacao").val() != null){
+                          formGastos.action = "{{action('GastosController@destroy')}}";
+                          formGastos.submit();
+                      }
+
+                      $( this ).dialog( "close" );
+                  }
+              }
+          });
+      }
+
   </script>
 
   <style type="text/css">
@@ -302,11 +325,11 @@
                                       <?php } ?> >
 
                                      @if($calendario->situation == "")
-                                           <a href="#">
+                                           <a href="#" title="Cadastrar nova despesa">
                                                <i class="fa fa-paste"></i>
                                            </a>
                                      @else
-                                           <a href="#">
+                                           <a href="#" title="Editar despesa">
                                                <i class="fa fa-edit"></i>
                                            </a>
                                      @endif
@@ -424,9 +447,11 @@
                     {{--End modal body--}}
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
                       <input type="hidden" id="situacao">
                       <button type="button" id="btnBuscarDados" class="btn btn-primary" onclick="salvarDespesa();">Salva despesa</button>
+                      <button type="button" id="btnBuscarDados" class="btn btn-danger" onclick="mostraAlerta();">Deletar despesa</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -436,11 +461,14 @@
                 <div class="form-actions">
                   <div class="pull-left"></div>
                   <div class="pull-right">
-                    <button class="btn btn-primary btn-cons" type="submit">Salvar </button>
-
-                    <button class="btn btn-danger btn-cons" type="reset">Cancelar</button>
                   </div>
                 </div>
+
+                {{--Diaolog--}}
+                <div id="dialog" title="Cuidado" style="display: none">
+                    <p>Esta ação irá apagar os dados da visita ao cliente e as despesas vinculadas a esta visita!"</p>
+                </div>
+
             {{Form::close()}}
             </div>
           </div>

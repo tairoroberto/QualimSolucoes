@@ -203,7 +203,7 @@ class CalendarioController extends BaseController {
 	 */
 	public function delete(){
 		$evento = Calendario::find(Input::get("id"));
-		$evento->delete();
+		$evento->forceDelete();
 		return;
 	}
 

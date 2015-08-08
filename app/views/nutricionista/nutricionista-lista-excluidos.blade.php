@@ -52,7 +52,7 @@
                        @foreach ($nutricionistas as $nutricionista)   
                           <tr >
                              <td onclick="enviar({{$nutricionista->id}})">
-                               <a href="{{action('NutricionistasController@restoreUser',$nutricionista->id);}}">
+                               <a href="{{action('NutricionistasController@restoreUser',$nutricionista->id);}}" title="Restaurar consultora">
                                 <i class="fa fa-paste"> 
                                 </i>                                      
                                 </a>  

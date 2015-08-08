@@ -172,7 +172,7 @@ jQuery(function($){
 
                      <?php
                         //Pega o nome do usuario da tarefa
-                        $cliente = Cliente::find($tarefa->cliente_id);
+                        $cliente = Cliente::withTrashed()->find($tarefa->cliente_id);
                      ?>
 
                      {{--Printa o nome do usuario responsavél pela arefa--}}
