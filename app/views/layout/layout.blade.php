@@ -485,11 +485,11 @@
           <span class="title">Cronograma </span> <span class="arrow "></span> </a>
             <ul class="sub-menu">
              <li > 
-                <a href="{{action('CalendarioController@create')}}"> Cadastrar Cronograma</a> 
+                <a href="{{action('CalendarioController@create')}}"> Cadastrar Cronogramas</a>
              </li>  
               @if (Auth::user()->get()->type == "Administrador" || (Auth::user()->get()->type == "Supervisora"))
                   <li > 
-                    <a href="{{action('CalendarioController@mostrarCronogramaLista')}}"> Visualizar Cronograma</a> 
+                    <a href="{{action('CalendarioController@mostrarCronogramaLista')}}"> Visualizar Lista de Cronogramas</a>
                  </li> 
               @endif 
 
