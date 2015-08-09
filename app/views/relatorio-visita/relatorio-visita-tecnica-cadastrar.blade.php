@@ -24,8 +24,13 @@
 
       function enviar(){
           if(calculaData() == 1 && verificaCliente() == 1){
+              $('#Carregando').css('display','block');
+              $('.div-ajax-carregamento-pagina').fadeOut('fast');
+              $('#grid-botoes').css('display','none');
+
               $('#relVisitaTecnica').text($('#textEditor').Editor('getText'));
               formRelatorio.submit();
+
           }else{
               $( "#dialogPreencher" ).dialog({
                   modal: true,
@@ -210,6 +215,31 @@
       margin-bottom:10px;
 
     }
+
+
+     .jquery-waiting-base-container {
+         position: absolute;
+         left: 0px;
+         top: 0%;
+         margin:0px;
+         width: 100%;
+         height: 100%;
+         display:block;
+         z-index: 9999997;
+         opacity: 0.65;
+         -moz-opacity: 0.65;
+         filter: alpha(opacity = 65);
+         background: black;
+         background-image: url("packages/assets/img/loading_bar.gif");
+         background-repeat: no-repeat;
+         background-position:50% 50%;
+         text-align: center;
+         overflow: hidden;
+         font-weight: bold;
+         color: white;
+         padding-top: 25%;
+     }
+
 
 </style>
 
@@ -411,10 +441,11 @@
        </div>
 
 
+       {{-- Div de mensagem de carregamento--}}
+       <div id="Carregando" style="display: none;" class="jquery-waiting-base-container"></div>
 
 
-
-       <div class="grid simple">
+       <div class="grid simple" id="grid-botoes">
             <div class="grid-body">
             <div class="row">
               <div align="right">

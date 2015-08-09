@@ -103,7 +103,7 @@
 
                     </thead>
                     <tbody>  
-                    <?php $vr = 0; $vrAux; $vt = 0; $vtAux; $gastoExtra = 0; ?>
+                    <?php $vr = 0; $vrAux; $vt = 0; $vtAux; $gastoExtra = 0; $horas = 0; $minutos = 0; $segundos = 0;?>
                        @foreach ($gastos as $gasto)    
                           <tr >
                            <?php $data = explode(" ", $gasto->date) ?>
@@ -113,6 +113,20 @@
                                   $first_date = new DateTime($gasto->entry_time);
                                   $second_date = new DateTime($gasto->departure_time);
                                   $difference = $first_date->diff($second_date);
+                                  $horas += $difference->h;
+                                  $minutos += $difference->i;
+                                  $segundos += $difference->s;
+
+                                  if($minutos >= 60){
+                                      $horas += 1;
+                                      $minutos -= 60;
+                                  }
+
+                                  if($segundos >= 60){
+                                      $minutos += 1;
+                                      $segundos -= 60;
+                                  }
+
                               ?>
 
                               <td class="v-align-middle">{{$gasto->client_locale}}</td>
@@ -154,16 +168,17 @@
               <div class="span12">
                 <div class="grid simple">              
                   <div class="grid-body" align="center">
-                  <b>Total de vale refeição:</b> {{number_format($vr, 2, ',', '.')}}   
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <b>Total de vale transporte:</b> {{number_format($vt, 2, ',', '.')}}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <b>Total de gastos extras:</b> {{number_format($gastoExtra, 2, ',', '.')}}
+                  <b>Vale refeição:</b> {{number_format($vr, 2, ',', '.')}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>Vale transporte:</b> {{number_format($vt, 2, ',', '.')}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>Gastos extras:</b> {{number_format($gastoExtra, 2, ',', '.')}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>Total de horas:</b> {{ $horas.":".$minutos.":".$segundos }}
                   </div>
+
                 </div>
               </div>
-
-
 
             {{Form::close()}}
           </div>

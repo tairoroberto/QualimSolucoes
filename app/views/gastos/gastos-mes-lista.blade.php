@@ -14,7 +14,7 @@
 
 
    {{--calculo do mes--}}
- <?php $mes = date('m'); 
+ <?php $mes = date('m');
 
    if ($mes == 1) {$mesCorrente = "Janeiro";}else
    if ($mes == 2) {$mesCorrente = "Fevereiro";}else
@@ -62,7 +62,7 @@
                        </div> 
 
                    <div class="col-md-2">
-                      <select name="SelectNutricionista" id="SelectNutricionista" class="form-control" required="required">    
+                      <select name="SelectAno" id="SelectAno" class="form-control" required="required">
                          <option value="{{date('Y')}}">{{date('Y')}}</option>       
                          <option value="2015">2015</option>
                          <option value="2016">2016</option>
@@ -110,7 +110,7 @@
 
                     </thead>
                     <tbody>   
-                    <?php $vr = 0; $vrAux; $vt = 0; $vtAux; $gastoExtra = 0; ?>
+                    <?php $vr = 0; $vrAux; $vt = 0; $vtAux; $gastoExtra = 0; $horas = 0; $minutos = 0; $segundos = 0;?>
                        @foreach ($gastos as $gasto)    
                           <tr >
                            <?php $data = explode(" ", $gasto->date) ?>
@@ -121,6 +121,20 @@
                                   $first_date = new DateTime($gasto->entry_time);
                                   $second_date = new DateTime($gasto->departure_time);
                                   $difference = $first_date->diff($second_date);
+                                  $horas += $difference->h;
+                                  $minutos += $difference->i;
+                                  $segundos += $difference->s;
+
+                                  if($minutos >= 59){
+                                      $horas += 1;
+                                      $minutos -= 59;
+                                  }
+
+                                  if($segundos >= 59){
+                                      $minutos += 1;
+                                      $segundos -= 59;
+                                  }
+
                               ?>
 
                               <td class="v-align-middle">{{$gasto->client_locale}}</td>
@@ -163,11 +177,13 @@
               <div class="span12">
                 <div class="grid simple">              
                   <div class="grid-body" align="center">
-                  <b>Total de vale refeição:</b> {{number_format($vr, 2, ',', '.')}}   
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <b>Total de vale transporte:</b> {{number_format($vt, 2, ',', '.')}}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <b>Total de gastos extras:</b> {{number_format($gastoExtra, 2, ',', '.')}}
+                  <b>Vale refeição:</b> {{number_format($vr, 2, ',', '.')}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>Vale transporte:</b> {{number_format($vt, 2, ',', '.')}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>Gastos extras:</b> {{number_format($gastoExtra, 2, ',', '.')}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>Total de horas:</b> {{ $horas.":".$minutos.":".$segundos }}
                   </div>
                 </div>
               </div>

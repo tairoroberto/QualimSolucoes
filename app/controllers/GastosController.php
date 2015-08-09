@@ -98,7 +98,6 @@ class GastosController extends BaseController {
 					   ->get();
 
         return View::make('gastos.gastos-mes-lista',compact(array('gastos','nutricionista_id')));
-
 	}
 
 	/**
