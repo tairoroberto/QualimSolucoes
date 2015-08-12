@@ -120,10 +120,20 @@ class RelatorioController extends BaseController {
                     });
 
 
+                    /**Busca todos os email do cliente para envio*/
+                    $emailsCliente = EmailCliente::where('cliente_id', '=', $cliente->id)->get();
+                    $emailsClienteEnvio = array();
+
+                    foreach($emailsCliente as $emailCliente){
+                        $emailsClienteEnvio[] = $emailCliente->email;
+                    }
+                    $emailsClienteEnvio[] = $cliente->email;
+
+
                     /*send email to  client*/
-                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente)
+                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente, $emailsClienteEnvio)
                     {
-                        $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
+                        $message->to($emailsClienteEnvio, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
                     });
 
                 }catch (Exception $e){
@@ -238,10 +248,21 @@ class RelatorioController extends BaseController {
                     });
 
 
+                    /**Busca todos os email do cliente para envio*/
+                    $emailsCliente = EmailCliente::where('cliente_id', '=', $cliente->id)->get();
+                    $emailsClienteEnvio = array();
+
+                    foreach($emailsCliente as $emailCliente){
+                        $emailsClienteEnvio[] = $emailCliente->email;
+                    }
+                    $emailsClienteEnvio[] = $cliente->email;
+
+                    var_dump($emailsClienteEnvio);
+
                     /*send email to  client*/
-                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente)
+                    Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente, $emailsClienteEnvio)
                     {
-                        $message->to($cliente->email, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
+                        $message->to($emailsClienteEnvio, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
                     });
 
                 }catch (Exception $e){

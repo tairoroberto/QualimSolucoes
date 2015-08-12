@@ -317,23 +317,30 @@ $(document).on("click", "#btnBuscarDados", function(e){
                          </div>                       
                        </div>
 
-                           <div class="form-actions">
+                        <div class="form-actions">
                             <div class="pull-left"></div>
-                            <div class="pull-right col-md-12">   
+                            <div class="pull-right col-md-12">
                                 <div class="pull-left col-md-3">
-                                  <button class="btn btn-primary btn-cons" type="button" onclick="criarCampoEmail();">Adicionar campo de e-mail </button>
+                                    <button class="btn btn-primary btn-cons" type="button" onclick="criarCampoEmail();">
+                                        Adicionar campo de e-mail
+                                    </button>
                                 </div>
 
                                 <div class="pull-left col-md-5">
-                                  <input name="logo" id="logo" type="file" accept="image/*" class="filestyle btn btn-primary btn-cons" title="Selecione a logomarca do cliente" value="{{Input::old('logo')}}" />
+                                    <input name="logo" id="logo" type="file" accept="image/*"
+                                           class="filestyle btn btn-primary btn-cons"
+                                           title="Selecione a logomarca do cliente" value="{{Input::old('logo')}}"/>
                                 </div>
 
-                              <div class="pull-right col-md-4">
-                                <button class="btn btn-primary btn-cons" type="submit" onclick="verificaResponsavel();">Salvar </button>
-                                <button class="btn btn-danger btn-cons" type="reset">Cancelar</button>
-                              </div>                          
+                                <div class="pull-right col-md-4">
+                                    <button class="btn btn-primary btn-cons" type="submit"
+                                            onclick="verificaResponsavel();">Salvar
+                                    </button>
+                                    <button class="btn btn-danger btn-cons" type="reset">Cancelar</button>
+                                </div>
+
                             </div>
-                          </div>
+                        </div>
 
                           <div class="modal fade" id="myModal">
                               <div class="modal-dialog">

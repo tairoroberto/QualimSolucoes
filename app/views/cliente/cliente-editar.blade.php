@@ -40,7 +40,7 @@
     //Escrevendo algo no filho recem-criado:
     document.getElementById("Email"+qdivCamposEmail).innerHTML =          
     "<div class='col-md-12'>"
-        +"<input name='emailArray[]' id='emailArray[]' type='text'  class='form-control' placeholder='E-mail da empresa'>"
+        +"<input name='emailNovoArray[]' id='emailNovoArray[]' type='text'  class='form-control' placeholder='E-mail da empresa'>"
         +"</div>";
      qdivCamposEmail++;
 }
@@ -301,8 +301,11 @@
                           $j++;
                           }
                         } ?>
-                      
-                     </div>                    
+                     </div>
+
+                            {{-- Div para criação de campos de e-mails--}}
+                            <div class="row form-row" id="DivEmailOrigem"></div>
+                            <div class="row form-row" id="DivEmailDestino"></div>
                   </div>
                        
               </div>
@@ -312,24 +315,40 @@
                           }?>">
 
 
-                      <div class="form-actions">
-                        <div class="pull-left">
-                          <div class="pull-left col-md-5">
-                              <input name="logo" id="logo" type="file" accept="image/*" class="filestyle btn btn-primary btn-cons" title="Selecione a logomarca do cliente" />
-                            </div>
-                        </div>
-                        <div class="pull-right">
-                          <button class="btn btn-primary btn-cons" type="submit">Salvar </button>
-                          
+                        <div class="form-actions">
 
-                          <a href="<?php if (isset($cliente->id)){
-                          echo action('ClienteController@delete',$cliente->id);}elseif (Input::old("cliente_id")){
-                            echo action('ClienteController@delete',Input::old('cliente_id'));
-                          }?>"> 
-                          <button class="btn btn-danger btn-cons" type="button">Excluir</button>
-                        </a>
+                            <div class="pull-right col-md-12">
+                                <div class="pull-left col-md-3">
+                                    <button class="btn btn-primary btn-cons" type="button" onclick="criarCampoEmail();">
+                                        Adicionar campo de e-mail
+                                    </button>
+                                </div>
+
+                                <div class="pull-left col-md-5">
+                                    <input name="logo" id="logo" type="file" accept="image/*"
+                                           class="filestyle btn btn-primary btn-cons"
+                                           title="Selecione a logomarca do cliente"/>
+                                </div>
+
+                                <div class="pull-right">
+                                    <button class="btn btn-primary btn-cons" type="submit">Salvar</button>
+
+
+                                    <a href="<?php if (isset($cliente->id)) {
+                                        echo action('ClienteController@delete', $cliente->id);
+                                    } elseif (Input::old("cliente_id")) {
+                                        echo action('ClienteController@delete', Input::old('cliente_id'));
+                                    }?>">
+                                        <button class="btn btn-danger btn-cons" type="button">Excluir</button>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+
+
                         </div>
-                      </div>
                    {{ Form::close()}}
                   </div>
 

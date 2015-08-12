@@ -229,7 +229,7 @@ class ClienteController extends BaseController {
 
 
 			/**
-			 *verifica se emails foram submetidos 
+			 *verifica se emails já cadastrados foram submetidos
 			 */
 			$emails = Input::get("emailArray");
 			$idEmail = Input::get("idEmail");
@@ -239,14 +239,39 @@ class ClienteController extends BaseController {
 			if (isset($emails,$idEmail)) {
 				/** get array of emails and insert into table EmailCliente*/
 				while (($i < count($emails)) && ($j < $emails)) {
+
 					/**Verify if email is null*/
 						$emailCliente = EmailCliente::find($idEmail[$j]);
-						$emailCliente->email = $emails[$i];
-						$emailCliente->save();	
+
+						if($emails[$i] != ""){
+                            $emailCliente->email = $emails[$i];
+                            $emailCliente->save();
+                        }else{
+                            $emailCliente->delete($idEmail[$j]);
+                        }
+
 					$i++;
 					$j++;	
 				}
 			}
+
+
+            /**
+             *verifica se emails novos foram submetidos
+             */
+            $emails = Input::get("emailNovoArray");
+            if (isset($emails)) {
+                /** get array of emails and insert into table EmailCliente*/
+                foreach ($emails as $email) {
+                    /**Verify if email is null*/
+                    if ($email != "") {
+                        $emailCliente = new EmailCliente;
+                        $emailCliente->email = $email;
+                        $emailCliente->cliente()->associate($cliente);
+                        $emailCliente->save();
+                    }
+                }
+            }
 
 			return Redirect::route('editar-cliente')
 						  ->withInput()			
