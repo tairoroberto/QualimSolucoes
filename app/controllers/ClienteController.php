@@ -50,11 +50,18 @@ class ClienteController extends BaseController {
 
 			//change the name of photo_logo for save in database			
 			if (!is_null(Input::file('logo'))){
-				$photo_logo = md5(uniqid(time())) . "." . Input::file('logo')->guessExtension();
 
-				//move photo
-				Input::file('logo')->move('packages/assets/img/logo-clientes',$photo_logo);				
-			}
+                $ext = Input::file('logo')->guessExtension();
+
+                if($ext == ""){
+                    $ext = pathinfo(Input::file('logo')->getClientOriginalName(), PATHINFO_EXTENSION);
+                }
+
+                $photo_logo = md5(uniqid(time())) . "." . $ext;
+
+                //move photo
+                Input::file('logo')->move('packages/assets/img/logo-clientes/', $photo_logo);
+            }
 		
 
 			$cliente = new Cliente;
@@ -187,14 +194,20 @@ class ClienteController extends BaseController {
 
 
 			if (!is_null(Input::file('logo'))) {
-				//change the name of photo for save in database
-				$photo_logo = md5(uniqid(time())) . "." . Input::file('logo')->guessExtension();
-				//move photo
-				Input::file('logo')->move('packages/assets/img/logo-clientes/',$photo_logo);			
+
+                //change the name of photo for save in database
+                $ext = Input::file('logo')->guessExtension();
+
+                if($ext == ""){
+                    $ext = pathinfo(Input::file('logo')->getClientOriginalName(), PATHINFO_EXTENSION);
+                }
+                $photo_logo = md5(uniqid(time())) . "." . $ext;
+                //move photo
+                Input::file('logo')->move('packages/assets/img/logo-clientes/', $photo_logo);
+
 			}
 
-
-			//store cliente
+            //store cliente
 			$cliente->razaoSocial = Input::get("razaoSocial");
 			$cliente->nomeFantasia = Input::get("nomeFantasia");			
 			$cliente->cnpj = Input::get("cnpj");			

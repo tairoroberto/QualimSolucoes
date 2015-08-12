@@ -54,7 +54,7 @@ class NutricionistasController extends BaseController {
 				$photo_name = md5(uniqid(time())) . "." . $ext;
 
 				//move photo
-				Input::file('foto')->move('packages/assets/img/profiles',$photo_name);				
+				Input::file('foto')->move('packages/assets/img/profiles/',$photo_name);
 			}
 			
 
@@ -67,7 +67,7 @@ class NutricionistasController extends BaseController {
 				$photo_signature = md5(uniqid(time())) . "." . $ext;
 
 				//move assinatura
-				Input::file('assinatura')->move('packages/assets/img/signatures',$photo_signature);
+				Input::file('assinatura')->move('packages/assets/img/signatures/',$photo_signature);
 			}
 
 			$nutricionista = new Nutricionista;

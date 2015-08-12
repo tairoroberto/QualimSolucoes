@@ -369,7 +369,7 @@
   {{--aqui--}}
       @if (Auth::cliente()->get()->photo_logo))
           @if(File::exists("packages/assets/img/logo-clientes/".Auth::cliente()->get()->photo_logo))
-              <img src="packages/assets/img/logo-clientes/{{Auth::cliente()->get()->photo_logo}}"  alt="" data-src="packages/assets/img/profiles/{{Auth::cliente()->get()->photo_logo}}" data-src-retina="packages/assets/img/profiles/{{Auth::cliente()->get()->photo_logo}}"  width="69" height="69"  />
+              <img src="packages/assets/img/logo-clientes/{{Auth::cliente()->get()->photo_logo}}"  alt="" data-src="packages/assets/img/logo-clientes/{{Auth::cliente()->get()->photo_logo}}" data-src-retina="packages/assets/img/logo-clientes/{{Auth::cliente()->get()->photo_logo}}"  width="69" height="69"  />
           @else
               <img src="packages/assets/img/profiles/cliente2.png"  alt="" data-src="packages/assets/img/profiles/cliente2.png" data-src-retina="packages/assets/img/profiles/cliente2.png"  width="69" height="69"  />
           @endif
