@@ -425,7 +425,13 @@
                                 </li>
                                 @if (Auth::user()->get()->type == "Administrador" || (Auth::user()->get()->type == "Supervisora"))
                                     <li >
-                                        <a href="{{action('CalendarioController@mostrarCronogramaLista')}}"> Visualizar Lista de Cronograma</a>
+                                        <a href="{{action('CalendarioController@mostrarCronogramaLista')}}"> Visualizar Lista de Cronogramas</a>
+                                    </li>
+                                @endif
+
+                                @if (Auth::user()->get()->type == "Administrador")
+                                    <li >
+                                        <a href="{{action('CalendarioController@indexIndividual')}}"> Meus Cronogramas</a>
                                     </li>
                                 @endif
 

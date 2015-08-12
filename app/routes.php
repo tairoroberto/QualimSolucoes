@@ -154,6 +154,11 @@ Route::group(array('before' => 'auth'), function () {
         'uses' => 'CalendarioController@create'
     ));
 
+    Route::get("/calendario-individual", array(
+        'as' => 'calendario-individual',
+        'uses' => 'CalendarioController@indexIndividual'
+    ));
+
     Route::get("/cronograma-lista", array(
         'as' => 'cronograma-lista',
         'uses' => 'CalendarioController@mostrarCronogramaLista'
@@ -202,6 +207,7 @@ Route::group(array('before' => 'auth'), function () {
 
 //Route for calender
     Route::get("/visualizar-eventos/{id}", "CalendarioController@mostrar");
+    Route::get("/visualizar-eventos-individual/{id}", "CalendarioController@mostrarIdnvidual");
     Route::post("/adicionar-eventos", "CalendarioController@store");
     Route::post("/atualizar-eventos", "CalendarioController@atualizar");
     Route::post("/atualizar-eventos-drop", "CalendarioController@atualizarDrop");
