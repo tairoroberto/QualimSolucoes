@@ -302,7 +302,48 @@ class TarefasController extends BaseController {
 		return Redirect::route('visualizar-tarefas');
 	}
 
-	/**
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function editarTarefaCliente($id){
+        $tarefa = Tarefa::findOrFail($id);
+        return View::make('tarefa.tarefa-cliente-editar',compact("tarefa"));
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return Response
+     */
+    public function atualizarTarefaCliente()	{
+        //store Etapa tarefa
+        $tarefa = Tarefa::findOrFail(Input::get("tarefa_id"));
+        $tarefa->solicitante = Auth::user()->get()->id;
+        $tarefa->nutricionista_id = Input::get("SelectResponsavel1");
+        $tarefa->cliente_id = Input::get("SelectCliente1");
+        $tarefa->para = 'cliente';
+        $tarefa->title = Input::get("TituloTarefa1");
+        $tarefa->description = Input::get("Descricaotarefa1");
+        $tarefa->date_start = Input::get("DataInicio");
+        $tarefa->date_finish = Input::get("DataEntregaTarefa1");;
+        $tarefa->SituacaoEtapaTarefa = "";
+        $tarefa->MotivoPrazoEtapaTarefa = "";
+        $tarefa->save();
+
+        $historicoTarefa = new TarefaHistorico;
+        $historicoTarefa->tarefa_id = $tarefa->id;
+        $historicoTarefa->historico = "Tarefa atualizada";
+        $historicoTarefa->save();
+
+        return Redirect::route('visualizar-tarefas-admim-cliente');
+    }
+
+
+    /**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id

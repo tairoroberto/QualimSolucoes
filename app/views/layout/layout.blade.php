@@ -456,10 +456,10 @@
                 <ul class="sub-menu">
                   @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))     
                      <li > <a href="{{action('TarefasController@create')}}"> Cadastrar tarefa</a> </li>
-                     <li > <a href="{{action('TarefasController@createCliente')}}"> Cadastrar tarefa cliente</a> </li>
                    @endif 
                   <li > <a href="{{action('TarefasController@show')}}"> Visualizar tarefas</a> </li>  
                   <li > <a href="{{action('TarefasController@showFinish')}}"> Tarefas Finalizadas</a> </li>
+                  <li > <a href="{{action('TarefasController@createCliente')}}"> Cadastrar tarefa para cliente</a> </li>
                   <li > <a href="{{action('TarefasController@showTarefasAdminCliente')}}"> Visualizar tarefas de clientes</a> </li>
                 </ul>
               </li>

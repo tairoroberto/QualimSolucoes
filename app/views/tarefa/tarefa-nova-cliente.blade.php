@@ -23,26 +23,26 @@ function validaTarefa(){
     if((formTarefas.SelectResponsavel1.value == "") && (formTarefas.TituloTarefa1.value != "")){
         alert("Selecione um reponsável...!!!");
         formTarefas.SelectResponsavel1.focus();
-        exit();
+        return 0;
     }
 
     if((formTarefas.SelectResponsavel1.value != "") && (formTarefas.TituloTarefa1.value == "")) {
         alert("Ttitulo da solicitação não informado...!!!");
         formTarefas.TituloTarefa1.focus();
-        exit();
+        return 0;
     }
 
 
     if((formTarefas.SelectCliente1.value == "") && (formTarefas.TituloTarefa1.value != "")){
         alert("Selecione um Cliente...!!!");
         formTarefas.SelectCliente1.focus();
-        exit();
+        return 0;
     }
 
     if((formTarefas.SelectCliente1.value != "") && (formTarefas.TituloTarefa1.value == "")) {
         alert("Ttitulo da solicitação não informado...!!!");
         formTarefas.TituloTarefa1.focus();
-        exit();
+        return 0;
     }
 
 
@@ -50,28 +50,35 @@ function validaTarefa(){
         (formTarefas.Descricaotarefa1.value == "")) {
         alert("Descrição da solicitação não informado...!!!");
         formTarefas.Descricaotarefa1.focus();
-        exit();
+        return 0;
     }
 
     if((formTarefas.SelectResponsavel1.value != "") &&
         (formTarefas.DataEntregaTarefa1.value == "")) {
         alert("Data da entrega não informada...!!!");
         formTarefas.DataEntregaTarefa1.focus();
-        exit();
+        return 0;
     }
 
     if(formTarefas.SelectResponsavel1.value == ""){
         alert("Selecione um reponsável...!!!");
         formTarefas.SelectResponsavel1.focus();
-        exit();
+        return 0;
     }
 
     if(formTarefas.SelectCliente1.value == ""){
         alert("Selecione um Cliente...!!!");
         formTarefas.SelectCliente1.focus();
-        exit();
+        return 0;
     }
 
+    return 1;
+}
+
+function enviar(){
+    if(validaTarefa() == 1 && verificaTarefa() == 1){
+        document.formTarefas.submit();
+    }
 }
 
 
@@ -215,7 +222,7 @@ function validaTarefa(){
                             if (etapa[i].value == "Responsável" && titulo[i].value != "") {
                                 alert("Selecione um Responsável");
                                 etapa[i].focus();
-                                exit();
+                                return 0;
                             }
                         }
 
@@ -223,7 +230,7 @@ function validaTarefa(){
                             if (titulo[j].value == "" && etapa[j].value != "Responsável") {
                                 alert("Informe um Titulo para solicitação...");
                                 titulo[j].focus();
-                                exit();
+                                return 0;
                             }
                         }
 
@@ -231,7 +238,7 @@ function validaTarefa(){
                             if (descricao[k].value == "" && etapa[k].value != "Responsável") {
                                 alert("Informe uma descrição para solicitação...");
                                 descricao[k].focus();
-                                exit();
+                                return 0;
                             }
                         }
 
@@ -239,7 +246,7 @@ function validaTarefa(){
                             if (data[l].value == "" && etapa[l].value != "Responsável") {
                                 alert("Informe a data de entrega...");
                                 data[l].focus();
-                                exit();
+                                return 0;
                             }
                         }
 
@@ -247,9 +254,11 @@ function validaTarefa(){
                             if (cliente[m].value == "Cliente" && titulo[m].value != "") {
                                 alert("Selecione um Cliente");
                                 cliente[m].focus();
-                                exit();
+                                return 0;
                             }
                         }
+
+                        return 1;
                     }
                                 
                   </script>
@@ -277,7 +286,7 @@ function validaTarefa(){
                         <div class="pull-left"></div>
                         <div class="pull-right">
                            <button class="btn btn-primary btn-cons" type="button"
-                                    onclick="validaTarefa();verificaTarefa();document.formTarefas.submit();">Salvar </button>
+                                    onclick="enviar();">Salvar </button>
                           
                           <button class="btn btn-danger btn-cons" type="reset">Cancelar</button>
                         </div>

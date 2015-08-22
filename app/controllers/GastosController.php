@@ -135,7 +135,7 @@ class GastosController extends BaseController {
 
             $calendario = Calendario::find(Input::get("calendario_id"));
             $calendario->situation = "Despesa cadastrada e editada";
-            $calendario->save();
+
 
             $gasto = Gasto::find(Input::get("gasto_id"));
             $gasto->client_locale = Input::get("cliente-local");
@@ -143,6 +143,7 @@ class GastosController extends BaseController {
             $date = explode("-",Input::get("date"));
 
             $gasto->date = $date[2]."-".$date[1]."-".$date[0]." ".Input::get("hora-entrada");
+			$calendario->start = $date[2]."-".$date[1]."-".$date[0]." ".Input::get("hora-entrada");
 
             $gasto->entry_time = Input::get("hora-entrada");
             $gasto->departure_time = Input::get("hora-saida");
@@ -153,6 +154,7 @@ class GastosController extends BaseController {
             $gasto->extra_expense = Input::get("gasto-extra");
             $gasto->calendario_id = Input::get("calendario_id");
 
+			$calendario->save();
             $gasto->save();
 
             return Redirect::route('cadastrar-gastos')

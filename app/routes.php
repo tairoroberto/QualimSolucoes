@@ -218,7 +218,9 @@ Route::group(array('before' => 'auth'), function () {
     Route::post("/cadastra-tarefas", "TarefasController@store");
     Route::post("/cadastra-tarefas-cliente", "TarefasController@storeCliente");
     Route::get("/editar-tarefas?{id}", "TarefasController@editar");
+    Route::get("/editar-tarefas-cliente?{id}", "TarefasController@editarTarefaCliente");
     Route::post("/editar-tarefas", "TarefasController@atualizar");
+    Route::post("/editar-tarefas-cliente", "TarefasController@atualizarTarefaCliente");
     Route::get("/finalizar-tarefas/{id}", "TarefasController@finalizar");
     Route::post("/solicitar-prazo-tarefas", "TarefasController@solicitarPrazo");
     Route::post("/negar-prazo-tarefas", "TarefasController@negarPrazo");

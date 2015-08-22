@@ -243,7 +243,7 @@ jQuery(function($){
                                   </li>
 
                                   <li>
-                                      <a href="{{action('TarefasController@editar',$tarefa2->id)}}">
+                                      <a href="{{action('TarefasController@editarTarefaCliente',$tarefa2->id)}}">
                                           Editar
                                       </a>
                                   </li>

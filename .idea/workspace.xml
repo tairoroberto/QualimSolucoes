@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afbdbb88-d1aa-458e-b679-1b5c3c21f17f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-editar.blade.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Nutricionista-laravel.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/tairo.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/packages/assets/img/profiles/8747ced4bf4d469f993e3778821d41be.jpeg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ClienteController.php" afterPath="$PROJECT_DIR$/app/controllers/ClienteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/NutricionistasController.php" afterPath="$PROJECT_DIR$/app/controllers/NutricionistasController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/GastosController.php" afterPath="$PROJECT_DIR$/app/controllers/GastosController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/TarefasController.php" afterPath="$PROJECT_DIR$/app/controllers/TarefasController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/app.php" afterPath="$PROJECT_DIR$/app/config/app.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layout/layout.blade.php" afterPath="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" afterPath="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-admin-visualizar.blade.php" afterPath="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-admin-visualizar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tarefa/tarefa-editar.blade.php" afterPath="$PROJECT_DIR$/app/views/tarefa/tarefa-editar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tarefa/tarefa-nova-cliente.blade.php" afterPath="$PROJECT_DIR$/app/views/tarefa/tarefa-nova-cliente.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tarefa/tarefa-nova.blade.php" afterPath="$PROJECT_DIR$/app/views/tarefa/tarefa-nova.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="qualimsolucoes.iws" />
@@ -48,41 +55,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
+      <file leaf-file-name="tarefa-nova-cliente.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-nova-cliente.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.555555">
-              <caret line="371" column="240" selection-start-line="371" selection-start-column="240" selection-end-line="371" selection-end-column="240" />
+            <state vertical-scroll-proportion="-8.0">
+              <caret line="144" column="24" selection-start-line="144" selection-start-column="24" selection-end-line="153" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/layout/sidebar.blade.php">
+      <file leaf-file-name="TarefasController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/TarefasController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60638297">
-              <caret line="307" column="254" selection-start-line="307" selection-start-column="254" selection-end-line="307" selection-end-column="254" />
+            <state vertical-scroll-proportion="-12.666667">
+              <caret line="341" column="64" selection-start-line="341" selection-start-column="64" selection-end-line="341" selection-end-column="64" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClienteController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/ClienteController.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.0">
-              <caret line="205" column="33" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="33" />
+            <state vertical-scroll-proportion="-5.3333335">
+              <caret line="136" column="17" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NutricionistasController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/NutricionistasController.php">
+      <file leaf-file-name="tarefa-cliente-editar.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-editar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.555555">
-              <caret line="69" column="80" selection-start-line="69" selection-start-column="80" selection-end-line="69" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.63829786">
+              <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -107,19 +114,16 @@
         <option value="$PROJECT_DIR$/app/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_10_15_164148_create_tarefas.php" />
         <option value="$PROJECT_DIR$/app/filters.php" />
-        <option value="$PROJECT_DIR$/app/controllers/TarefasController.php" />
         <option value="$PROJECT_DIR$/app/views/emails/relatorio-email-cliente.blade.php" />
         <option value="$PROJECT_DIR$/app/views/emails/relatorio-email-nutricionista.blade.php" />
         <option value="$PROJECT_DIR$/app/views/equipe.blade.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-visualizar.blade.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-finalizadas.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-editar.blade.php" />
         <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-imprimir.blade.php" />
         <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-lista.blade.php" />
         <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-vizulizar.blade.php" />
         <option value="$PROJECT_DIR$/vendor/jansenfelipe/cnpj-gratis/src/JansenFelipe/CnpjGratis/CnpjGratis.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-visualizar.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-admin-visualizar.blade.php" />
         <option value="$PROJECT_DIR$/app/views/cliente/cliente-lista-excluidos.blade.php" />
         <option value="$PROJECT_DIR$/app/views/gastos/gastos-lista.blade.php" />
         <option value="$PROJECT_DIR$/app/views/calendario/cronograma-lista.blade.php" />
@@ -130,20 +134,26 @@
         <option value="$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php" />
         <option value="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" />
         <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php" />
-        <option value="$PROJECT_DIR$/app/config/app.php" />
-        <option value="$PROJECT_DIR$/app/controllers/GastosController.php" />
         <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" />
         <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" />
         <option value="$PROJECT_DIR$/app/views/cliente/cliente-cadastro.blade.php" />
         <option value="$PROJECT_DIR$/app/views/cliente/cliente-editar.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/RelatorioController.php" />
         <option value="$PROJECT_DIR$/app/controllers/CalendarioController.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/NutricionistasController.php" />
         <option value="$PROJECT_DIR$/app/controllers/ClienteController.php" />
+        <option value="$PROJECT_DIR$/app/controllers/GastosController.php" />
         <option value="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
         <option value="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-nova-cliente.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-nova.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-admin-visualizar.blade.php" />
+        <option value="$PROJECT_DIR$/app/config/app.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/controllers/TarefasController.php" />
+        <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-editar.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-editar.blade.php" />
       </list>
     </option>
   </component>
@@ -165,9 +175,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1366" />
-    <option name="height" value="744" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -192,8 +202,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -262,6 +272,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tarefa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -280,51 +312,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gastos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qualimsolucoes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qualimsolucoes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calendario" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qualimsolucoes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qualimsolucoes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -347,9 +353,12 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/tarefa" />
       <recent name="$PROJECT_DIR$/app/views/calendario" />
       <recent name="$PROJECT_DIR$/app/views/cliente" />
       <recent name="$PROJECT_DIR$/public/packages/assets/img" />
@@ -397,11 +406,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
+    <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16969697" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23181818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23712121" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22705314" sideWeight="0.5030303" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -442,13 +451,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/database/seeds/UserTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68085104">
-          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_10_15_164148_create_tarefas.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5744681">
@@ -526,27 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-nova-cliente.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2040815">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-nova.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-editar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33170733">
-          <caret line="99" column="39" selection-start-line="99" selection-start-column="31" selection-end-line="99" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-finalizadas.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -572,7 +553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -601,29 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22340426">
           <caret line="28" column="115" selection-start-line="28" selection-start-column="115" selection-end-line="28" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/TarefasController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-visualizar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="170" column="63" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-admin-visualizar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15957446">
-          <caret line="174" column="44" selection-start-line="174" selection-start-column="44" selection-end-line="174" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -659,10 +616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60638297">
           <caret line="46" column="102" selection-start-line="46" selection-start-column="102" selection-end-line="46" selection-end-column="127" />
-          <folding>
-            <element signature="e#1058#1074#0#HTML" expanded="false" />
-            <element signature="e#1118#1135#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -691,14 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5393795">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#12270#12304#0#HTML" expanded="false" />
-            <element signature="e#15052#15073#0#HTML" expanded="false" />
-            <element signature="e#15242#15263#0#HTML" expanded="false" />
-            <element signature="e#15394#15415#0#HTML" expanded="false" />
-            <element signature="e#15555#15576#0#HTML" expanded="false" />
-            <element signature="e#15708#15730#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -706,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.031914894">
           <caret line="235" column="23" selection-start-line="235" selection-start-column="23" selection-end-line="235" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="170" column="22" selection-start-line="170" selection-start-column="22" selection-end-line="170" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -722,23 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06382979">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35224587">
           <caret line="267" column="38" selection-start-line="267" selection-start-column="38" selection-end-line="267" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08747045">
           <caret line="319" column="20" selection-start-line="319" selection-start-column="20" selection-end-line="319" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -762,7 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.035461">
           <caret line="307" column="81" selection-start-line="307" selection-start-column="81" selection-end-line="307" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -770,7 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19148937">
           <caret line="112" column="36" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -778,23 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.23049645">
           <caret line="70" column="72" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4787234">
-          <caret line="157" column="38" selection-start-line="157" selection-start-column="38" selection-end-line="157" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/NutricionistasController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.555555">
-          <caret line="69" column="80" selection-start-line="69" selection-start-column="80" selection-end-line="69" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,30 +707,117 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6968085">
           <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ClienteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="205" column="33" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/controllers/NutricionistasController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.555555">
-          <caret line="371" column="240" selection-start-line="371" selection-start-column="240" selection-end-line="371" selection-end-column="240" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="80" selection-start-line="69" selection-start-column="80" selection-end-line="69" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0740743">
+          <caret line="194" column="39" selection-start-line="194" selection-start-column="39" selection-end-line="194" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layout/sidebar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60638297">
-          <caret line="307" column="254" selection-start-line="307" selection-start-column="254" selection-end-line="307" selection-end-column="254" />
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="399" column="33" selection-start-line="399" selection-start-column="33" selection-end-line="399" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-nova.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.2222223">
+          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-visualizar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="126.666664">
+          <caret line="170" column="63" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-admin-visualizar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.851852">
+          <caret line="245" column="94" selection-start-line="245" selection-start-column="94" selection-end-line="245" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="136" column="17" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.333334">
+          <caret line="475" column="18" selection-start-line="475" selection-start-column="18" selection-end-line="475" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/TarefasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.666667">
+          <caret line="341" column="64" selection-start-line="341" selection-start-column="64" selection-end-line="341" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-nova-cliente.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0">
+          <caret line="144" column="24" selection-start-line="144" selection-start-column="24" selection-end-line="153" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-editar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.888889">
+          <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-editar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63829786">
+          <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
           <folding />
         </state>
       </provider>

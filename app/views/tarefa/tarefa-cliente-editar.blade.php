@@ -70,13 +70,13 @@ function validaTarefa(){
 
 
      
-  <form name="formTarefas" id="formTarefas" method="POST" action="{{action('TarefasController@atualizar')}}">
+  <form name="formTarefas" id="formTarefas" method="POST" action="{{action('TarefasController@atualizarTarefaCliente')}}">
           
             <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
             <div class="clearfix"></div>
             <div class="content">
               <div class="page-title"> 
-                <h3>Editar - <span class="semi-bold">Tarefa</span></h3>
+                <h3>Editar - <span class="semi-bold">Tarefa de Cliente</span></h3>
               </div>
               <!-- START FORM -->
               <div class="row">
@@ -101,23 +101,35 @@ function validaTarefa(){
                     </div>
                     
                     <div class="row form-row">
-                    <div class="col-md-2">
-                        <select id="SelectResponsavel1" name="SelectResponsavel1" style="width:100%">
-                        <?php $nutricionistas1 =  Nutricionista::withTrashed()->find($tarefa->nutricionista_id); ?>
-                        <option value="{{$nutricionistas1->id}}">{{$nutricionistas1->name}}</option>
-                   
-                   <?php $nutricionistas2 =  Nutricionista::where('type','!=','Cliente')->get(); ?>
-                       @foreach ($nutricionistas2 as $nutricionista2) 
-                          <option value="{{$nutricionista2->id}}">{{$nutricionista2->name}}</option>'); 
-                       @endforeach 
-                  
-                  </select>
-                      </div>
-                      
+                        <div class="col-md-2">
+                            <select id="SelectResponsavel1" name="SelectResponsavel1" style="width:100%">
+                                <?php $nutricionistas1 = Nutricionista::withTrashed()->find($tarefa->nutricionista_id); ?>
+                                <option value="{{$nutricionistas1->id}}">{{$nutricionistas1->name}}</option>
+
+                                <?php $nutricionistas2 = Nutricionista::all(); ?>
+                                @foreach ($nutricionistas2 as $nutricionista2)
+                                    <option value="{{$nutricionista2->id}}">{{$nutricionista2->name}}</option>');
+                                @endforeach
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <select id="SelectCliente1" name="SelectCliente1" style="width:100%">
+                                <?php $cliente1 = Cliente::withTrashed()->find($tarefa->cliente_id); ?>
+                                <option value="{{$cliente1->id}}">{{$cliente1->nomeFantasia}}</option>
+
+                                <?php $clientes = Cliente::all(); ?>
+                                @foreach ($clientes as $cliente)
+                                    <option value="{{$cliente->id}}">{{$cliente->nomeFantasia}}</option>');
+                                @endforeach
+
+                            </select>
+                        </div>
                       <div class="col-md-2">
                         <input name="TituloTarefa1" id="TituloTarefa1" type="text"  class="form-control" placeholder="Titulo " value="{{$tarefa->title}}">
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <input name="Descricaotarefa1" id="Descricaotarefa1" type="text"  class="form-control" placeholder="Descrição " value="{{$tarefa->description}}">
                       </div>
                       <div class="col-md-2">
