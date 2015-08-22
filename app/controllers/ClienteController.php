@@ -65,8 +65,8 @@ class ClienteController extends BaseController {
 		
 
 			$cliente = new Cliente;
-			$cliente->razaoSocial = Input::get("razaoSocial");
-			$cliente->nomeFantasia = Input::get("nomeFantasia");			
+			$cliente->razaoSocial = str_replace("'", "´", Input::get("razaoSocial"));
+			$cliente->nomeFantasia = str_replace("'", "´", Input::get("nomeFantasia"));
 			$cliente->cnpj = Input::get("cnpj");			
 			$cliente->address = Input::get("endereco");
 			$cliente->number = Input::get("numero");
@@ -208,8 +208,8 @@ class ClienteController extends BaseController {
 			}
 
             //store cliente
-			$cliente->razaoSocial = Input::get("razaoSocial");
-			$cliente->nomeFantasia = Input::get("nomeFantasia");			
+			$cliente->razaoSocial = str_replace("'", "´", Input::get("razaoSocial"));
+			$cliente->nomeFantasia = str_replace("'", "´", Input::get("nomeFantasia"));
 			$cliente->cnpj = Input::get("cnpj");			
 			$cliente->address = Input::get("endereco");
 			$cliente->number = Input::get("numero");
