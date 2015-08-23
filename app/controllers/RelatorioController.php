@@ -47,14 +47,18 @@ class RelatorioController extends BaseController {
 	{
         Auth::user()->logout();
         Auth::cliente()->logout();
+        $relatorio_visita = RelatorioVisita::find(Input::get('relatorio'));
 
         if(Input::get('user') == 'cliente'){
             Auth::cliente()->loginUsingId(Input::get('cliente_id'));
+            $relatorio_visita->lido = 1;
+            $relatorio_visita->save();
         }else{
             Auth::user()->loginUsingId(Input::get('logged'));
         }
 
-        $relatorio_visita = RelatorioVisita::find(Input::get('relatorio'));
+
+
         return View::make("relatorio-visita.relatorio-visita-tecnica-vizulizar", compact("relatorio_visita"));
 	}
 

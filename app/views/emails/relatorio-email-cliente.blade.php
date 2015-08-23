@@ -376,12 +376,17 @@
                                 <!-- END OF IMAGE-->
                                 <!-- START OF HEADING-->
                                 <tr>
-                                    <td align='left' valign='top' style='padding-top: 23px; padding-right: 30px; padding-bottom: 0; padding-left: 30px; font-size:16px ; line-height: 34px; text-transform: none; color:#1f2122; font-family: Arial,sans-serif; '> Olá {{$cliente->nomeFantasia}}</td>
+                                    <td align='left' valign='top' style='padding-top: 23px; padding-right: 30px; padding-bottom: 0; padding-left: 30px; font-size:16px ; line-height: 34px; text-transform: none; color:#1f2122; font-family: Arial,sans-serif; '> Cliente ( {{$cliente->nomeFantasia}} )</td>
                                 </tr>
                                 <!-- END OF HEADING-->
                                 <!-- START OF TEXT-->
                                 <tr>
-                                    <td align='left' valign='top' style='padding-top: 4px; padding-right: 30px; padding-bottom: 0; padding-left: 30px; font-size:14px ; color:#999b9e; font-family: Arial,sans-serif; line-height: 24px; text-align:justify; '> Já fizemos os levantamentos iniciais para solucionar o seu caso!
+                                    <td align='left' valign='top' style='padding-top: 4px; padding-right: 30px; padding-bottom: 0; padding-left: 30px; font-size:14px ; color:#999b9e; font-family: Arial,sans-serif; line-height: 24px; text-align:justify; '>
+                                        <p>Segue o link do Relatório Técnico referente a última visita da nutricionista.<br />
+                                            Orientamos que leia, imprima e disponibilize aos responsáveis.<br />
+                                            Caso tenha alguma duvida pedimos que entrem com a nutricionista responsável, os dados estão disponíveis no sistema no ícone: Equipe Técnica.
+                                        </p>
+
 
                                         <br />
                                         <br />

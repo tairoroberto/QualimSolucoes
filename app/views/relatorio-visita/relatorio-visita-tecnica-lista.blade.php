@@ -62,6 +62,7 @@
                         <th style="width:15%">Início</th>
                         <th style="width:15%">Término</th>
                         <th style="width:20%">Duração</th>
+                        <th style="width:20%">Situação</th>
                         
                       </tr>
 
@@ -88,6 +89,13 @@
                               <td class="v-align-middle">{{$relatorio_visita->hora_inicio}}</td>
                               <td class="v-align-middle">{{$relatorio_visita->hora_fim}}</td>
                               <td class="v-align-middle">{{$relatorio_visita->hora_total}}</td>
+                              <td class="v-align-middle">
+                                  @if($relatorio_visita->lido == 1)
+                                      {{"Visualizado"}}
+                                      @else
+                                      {{"Não visualizado"}}
+                                  @endif
+                              </td>
                            </tr>
                          @endforeach                    
                       </tbody>

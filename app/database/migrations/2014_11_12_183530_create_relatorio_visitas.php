@@ -21,6 +21,7 @@ class CreateRelatorioVisitas extends Migration {
 			$table->string('hora_fim');
 			$table->string('hora_total');
 			$table->longText('relatorio');
+			$table->integer('lido');
 			$table->timestamps();
             $table->softDeletes();
 		});
