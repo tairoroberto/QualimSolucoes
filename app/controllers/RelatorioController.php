@@ -165,9 +165,19 @@ class RelatorioController extends BaseController {
 	public function imprimir(){
 		
 		$relatorio_visita = RelatorioVisita::find(Input::get("relatorio_id"));
-		return View::make("relatorio-visita.relatorio-visita-tecnica-imprimir",compact("relatorio_visita"));
-		//return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
-	}
+
+        if (Auth::user()->check()) {
+            return View::make("relatorio-visita.relatorio-visita-tecnica-imprimir",compact("relatorio_visita"));
+            //return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
+
+
+        }elseif (Auth::cliente()->check()) {
+            $relatorio_visita->lido = 1;
+            $relatorio_visita->save();
+            return View::make("relatorio-visita.relatorio-visita-tecnica-imprimir",compact("relatorio_visita"));
+            //return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
+        }
+    }
 
 
     /**
@@ -178,8 +188,17 @@ class RelatorioController extends BaseController {
     public function visulaizar(){
 
         $relatorio_visita = RelatorioVisita::find(Input::get("relatorio_id"));
-        return View::make("relatorio-visita.relatorio-visita-tecnica-vizulizar",compact("relatorio_visita"));
-        //return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
+
+        if (Auth::user()->check()) {
+            return View::make("relatorio-visita.relatorio-visita-tecnica-vizulizar",compact("relatorio_visita"));
+            //return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
+
+        }elseif (Auth::cliente()->check()) {
+            $relatorio_visita->lido = 1;
+            $relatorio_visita->save();
+            return View::make("relatorio-visita.relatorio-visita-tecnica-vizulizar",compact("relatorio_visita"));
+            //return PDF_2::createFromView(View::make("relatorio-visita.relatorio-visita-tecnica-visualizar",compact("relatorio_visita")), 'filename.pdf');
+        }
     }
 
 
