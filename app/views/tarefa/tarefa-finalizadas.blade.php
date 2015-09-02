@@ -112,7 +112,7 @@
 
 
     <div class="page-title">
-        <h3>Visualizar - <span class="semi-bold">Tarefas</span></h3>
+        <h3>Tarefas - <span class="semi-bold">Finalizadas do Mês</span></h3>
     </div>
 
     <!-- START FORM -->
@@ -128,7 +128,9 @@
                     @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
                         <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','=','Finalizado')
                                 ->where('cliente_id','=',0)
+                                ->where('nutricionista_id','!=', 0)
                                 ->where('para','=','nutricionista')
+                                ->where('created_at','>=', date('Y-m-01 H:i:s'))
                                 ->get();
                         $cont=0;
                         ?>
@@ -137,6 +139,7 @@
                                 ->where('SituacaoEtapaTarefa','=','Finalizado')
                                 ->where('para','=','nutricionista')
                                 ->where('cliente_id','=',0)
+                                ->where('created_at','>=', date('Y-m-01 H:i:s'))
                                 ->get();
                         $cont=0;
                         ?>
@@ -189,7 +192,7 @@
                                 {{$firstName[0]." - ". $tarefa->title}}
                             </a>
                         </li>
-                        <?php $cont++;0 ?>
+                        <?php $cont++; ?>
                     @endforeach
                 </ul>
 
@@ -202,7 +205,9 @@
                     @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
                         <?php $tarefas2 = Tarefa::where('SituacaoEtapaTarefa','=','Finalizado')
                                 ->where('cliente_id','=',0)
+                                ->where('nutricionista_id','!=', 0)
                                 ->where('para','=','nutricionista')
+                                ->where('created_at','>=', date('Y-m-01 H:i:s'))
                                 ->get();
                         $cont2=0;
                         ?>
@@ -211,6 +216,7 @@
                                 ->where('SituacaoEtapaTarefa','=','Finalizado')
                                 ->where('para','=','nutricionista')
                                 ->where('cliente_id','=',0)
+                                ->where('created_at','>=', date('Y-m-01 H:i:s'))
                                 ->get();
                         $cont2=0;
                         ?>

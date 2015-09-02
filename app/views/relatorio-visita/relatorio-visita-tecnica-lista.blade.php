@@ -17,8 +17,11 @@
             }else if(action == "visualizar"){
                 formRelatorioLista.action = "{{action('RelatorioController@visulaizar')}}";
                 formRelatorioLista.submit();
-            }else{
+            }else if(action == "editar"){
                 formRelatorioLista.action = "{{action('RelatorioController@edit')}}";
+                formRelatorioLista.submit();
+            }else{
+                formRelatorioLista.action = "{{action('RelatorioController@reenviarEmails')}}";
                 formRelatorioLista.submit();
             }
             return;
@@ -126,7 +129,8 @@
                               <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('imprimir');">Imprimir</button>
                               <button type="button" id="btnVizualizar" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('visualizar');">Vizualizar</button>
                               @if(Auth::user()->check())
-                                  <button type="button" id="btnBuscarDados" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('editar');">Editar</button>
+                                  <button type="button" id="btnEditar" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('editar');">Editar</button>
+                                  <button type="button" id="btnRenviarEmails" class="btn btn-primary"  data-dismiss="modal" onclick="enviar('reenviar-emails');">Reenviar emails</button>
                               @endif
                               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                           </div>

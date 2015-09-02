@@ -128,6 +128,7 @@ jQuery(function($){
           @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
             <?php $tarefas = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                                    ->where('cliente_id','=',0)
+                                   ->where('nutricionista_id','!=', 0)
                                    ->where('para','=','nutricionista')
                                    ->get();
                   $cont=0; 
@@ -189,7 +190,7 @@ jQuery(function($){
                         {{$firstName[0]." - ". $tarefa->title}}
                   </a>
               </li>
-              <?php $cont++;0 ?>
+              <?php $cont++; ?>
             @endforeach
           </ul>
          
@@ -202,6 +203,7 @@ jQuery(function($){
           @if ((Auth::user()->get()->type == "Administrador") || (Auth::user()->get()->type == "Supervisora"))
             <?php $tarefas2 = Tarefa::where('SituacaoEtapaTarefa','!=','Finalizado')
                                     ->where('cliente_id','=',0)
+                                    ->where('nutricionista_id','!=', 0)
                                     ->where('para','=','nutricionista')
                                     ->get();
                   $cont2=0; 

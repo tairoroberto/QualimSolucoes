@@ -237,6 +237,7 @@ Route::group(array('before' => 'auth'), function () {
 
     Route::post("/cadastrar-relatorio", "RelatorioController@storeVisitaTecnica");
     Route::post("/editar-relatorio", "RelatorioController@edit");
+    Route::post("/reenviar-emails-relatorio", "RelatorioController@reenviarEmails");
     Route::post("/atualizar-relatorio", "RelatorioController@update");
     Route::post("/relatorio-imprimir", "RelatorioController@imprimir");
     Route::post("/relatorio-visulaizar", "RelatorioController@visulaizar");

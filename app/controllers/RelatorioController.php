@@ -143,7 +143,7 @@ class RelatorioController extends BaseController {
                 }catch (Exception $e){
                     return Redirect::route('relatorio-lista')
                         ->withInput()
-                        ->withErrors(['Reatorio salvo!']);
+                        ->withErrors(['Reatorio salvo, porém emails não foram enviados!']);
                 }
 
 
@@ -280,8 +280,6 @@ class RelatorioController extends BaseController {
                     }
                     $emailsClienteEnvio[] = $cliente->email;
 
-                    var_dump($emailsClienteEnvio);
-
                     /*send email to  client*/
                     Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente, $emailsClienteEnvio)
                     {
@@ -291,7 +289,7 @@ class RelatorioController extends BaseController {
                 }catch (Exception $e){
                     return Redirect::route('relatorio-lista')
                         ->withInput()
-                        ->withErrors(['Reatorio salvo!']);
+                        ->withErrors(['Reatorio salvo porém emails não foram enviados!']);
                 }
 
 
@@ -340,5 +338,44 @@ class RelatorioController extends BaseController {
 
     }
 
+    public function reenviarEmails(){
+
+        $relatorio_visita = RelatorioVisita::find(Input::get("relatorio_id"));
+        $nutricionista  = Nutricionista::withTrashed()->find($relatorio_visita->nutricionista_id);
+        $cliente  = Cliente::withTrashed()->find($relatorio_visita->cliente_id);
+
+        try{
+            /*send email to nutricionist and client*/
+            Mail::send('emails.relatorio-email-nutricionista', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($nutricionista)
+            {
+                $message->to($nutricionista->email, $nutricionista->name)->subject('Relatório Qualim Soluções');
+            });
+
+
+            /**Busca todos os email do cliente para envio*/
+            $emailsCliente = EmailCliente::where('cliente_id', '=', $cliente->id)->get();
+            $emailsClienteEnvio = array();
+
+            foreach($emailsCliente as $emailCliente){
+                $emailsClienteEnvio[] = $emailCliente->email;
+            }
+            $emailsClienteEnvio[] = $cliente->email;
+
+            /*send email to  client*/
+            Mail::send('emails.relatorio-email-cliente', array('nutricionista' => $nutricionista,'cliente' => $cliente, 'relatorio' => $relatorio_visita), function($message) use ($cliente, $emailsClienteEnvio)
+            {
+                $message->to($emailsClienteEnvio, $cliente->nomeFantasia)->subject('Relatório Qualim Soluções');
+            });
+
+            return Redirect::route('relatorio-lista')
+                ->withInput()
+                ->withErrors(['Emails reenviados com sucesso!']);
+
+        }catch (Exception $e){
+            return Redirect::route('relatorio-lista')
+                ->withInput()
+                ->withErrors(['Reatorio salvo porém emails não foram enviados!'. $e]);
+        }
+    }
 
 }

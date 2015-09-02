@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'redhotTairo1507',//null,
+	'password' => 'redhotTairo1507!trma',//null,
 
 	/*
 	|--------------------------------------------------------------------------
