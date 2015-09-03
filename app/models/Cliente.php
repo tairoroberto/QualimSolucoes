@@ -24,7 +24,7 @@ public static	$rules = array(
 		'celular_contato'   =>	'min:3',		
 		'email_contato'	    =>	'email',	
 		'nutricionista_id'  =>	'required',
-		'email'				=>	'required|unique:clientes,email',
+		'email'				=>	'email|required|unique:clientes,email',
 		'senha'  =>  'required|min:3|confirmed',
 		'senha_confirmation'  =>  'required|min:3|',	
 

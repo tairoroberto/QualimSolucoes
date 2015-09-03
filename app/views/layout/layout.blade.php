@@ -489,7 +489,7 @@
              </li>  
                   @if (Auth::user()->get()->type == "Administrador" || (Auth::user()->get()->type == "Supervisora"))
                       <li >
-                        <a href="{{action('CalendarioController@mostrarCronogramaLista')}}"> Visualizar Lista de Cronogramass</a>
+                        <a href="{{action('CalendarioController@mostrarCronogramaLista')}}"> Visualizar Lista de Cronogramas</a>
                      </li>
                   @endif
 
@@ -647,7 +647,7 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- END JAVASCRIPTS -->
 <script type="text/javascript">
- /* 
+ /*
   $(document).ready( function() {
   $('#example').dataTable( {
     "oLanguage": {

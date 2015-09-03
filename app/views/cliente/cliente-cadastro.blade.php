@@ -293,7 +293,7 @@ $(document).on("click", "#btnBuscarDados", function(e){
 
                       {{--Email para login / aqui está como e-mail porém --}}
                       <div class="col-md-6">
-                        <input name="email" id="email" type="text"  class="form-control" placeholder="Usuário para Login do cliente" value="{{Input::old('email')}}">
+                        <input name="email" id="email" type="text"  class="form-control" placeholder="Email para Login do cliente" value="{{Input::old('email')}}">
                       </div>
 
                       <div class="col-md-3">

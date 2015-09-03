@@ -31,6 +31,9 @@
 
           <div class="page-title"> 
         <h3>Lista de <span class="semi-bold">Despesas</span></h3>
+              <br>
+              <?php $nutricionista = Nutricionista::withTrashed()->find($nutricionista_id)?>
+              <h4><span class="semi-bold">{{$nutricionista->name}}</span></h4>
       </div>
 
 

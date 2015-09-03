@@ -259,7 +259,7 @@
 
 
                       <div class="col-md-6">
-                        <input name="email" id="email" type="text"  class="form-control" placeholder="E-mail empresa " value="<?php if (isset($cliente->email)){echo $cliente->email;}elseif (Input::old("email")){
+                        <input name="email" id="email" type="text"  class="form-control" placeholder="Email para Login do cliente " value="<?php if (isset($cliente->email)){echo $cliente->email;}elseif (Input::old("email")){
                             echo Input::old("email");
                           }?>">
                       </div>
