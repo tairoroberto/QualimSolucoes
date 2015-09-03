@@ -374,7 +374,7 @@ class RelatorioController extends BaseController {
         }catch (Exception $e){
             return Redirect::route('relatorio-lista')
                 ->withInput()
-                ->withErrors(['Emails não foram enviados!'.$e->getMessage()]);
+                ->withErrors(['Emails não foram enviados!']);
         }
     }
 
