@@ -297,10 +297,29 @@
                     $mesInicio = date('Y-m')."-01";
                     $mesFim = date('Y-m')."-31";
 
+                    $inicio = $mesInicio;
+                    $fim = $mesFim;
+
+                    if((date('d') == '1') ||
+                            (date('d') == '2') ||
+                            (date('d') == '3') ||
+                            (date('d') == '4') ||
+                            (date('d') == '5') ||
+                            (date('d') == '6') ||
+                            (date('d') == '7') ||
+                            (date('d') == '8') ||
+                            (date('d') == '9') ||
+                            (date('d') == '10') ||
+                            (date('d') == '11')){
+
+                        $inicio = date('Y-m-d', strtotime("-1 month", strtotime($mesInicio)));
+                        $fim = date('Y-m-d', strtotime("-1 month", strtotime($mesFim)));
+                    }
+
                     $calendarios = Calendario::where('nutricionista_id','=',Auth::user()->get()->id)
-                                             ->where('start','>=',$mesInicio)
-                                             ->where('start','<=',$mesFim)
-                                             ->get();?>  
+                                             ->where('start','>=',$inicio)
+                                             ->where('start','<=',$fim)
+                                             ->get(); ?>
 
                        @foreach ($calendarios as $calendario)
                        <?php $horaStart = explode(" ", $calendario->start) ?>
