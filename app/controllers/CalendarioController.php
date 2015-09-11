@@ -23,7 +23,7 @@ class CalendarioController extends BaseController
      */
     public function indexIndividual()
     {
-        if (Auth::user()->get()->type == "Administrador") {
+        if (Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora") {
             return View::make("calendario.calendario-individual");
         }
         return View::make("calendario.calendario");
@@ -115,7 +115,10 @@ class CalendarioController extends BaseController
         $array = array();
         $result = Calendario::where('nutricionista_id', '=', $id)->get();
         foreach ($result as $evento) {
-            $evento->title .= " - " . $evento->description . " - " . $evento->location;
+
+            $name = explode(" ", Auth::user()->get()->name);
+            $evento->title = $name[0] . " - " . $evento->title . " - " . $evento->description . " - " . $evento->location;
+
             $array[] = $evento;
         }
         return json_encode($array);

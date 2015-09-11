@@ -233,6 +233,8 @@ Route::group(array('before' => 'auth'), function () {
     Route::post("/cadastrar-gastos", "GastosController@store");
     Route::post("/editar-gastos", "GastosController@edit");
     Route::post("/deletar-gastos", "GastosController@destroy");
+    Route::post("/imprimir-gastos", "GastosController@imprimir");
+
 
 
     Route::post("/cadastrar-relatorio", "RelatorioController@storeVisitaTecnica");

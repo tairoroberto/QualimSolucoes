@@ -276,13 +276,13 @@
 
                     //renderiza o calendario depois de ter salva a data
                     $('#calendar').fullCalendar('renderEvent',
-                        {
-                            title: title,
-                            start: start,
-                            end: end,
-                            allDay: false
-                        },
-                        true // make the event "stick"
+                            {
+                                title: title,
+                                start: start,
+                                end: end,
+                                allDay: false
+                            },
+                            true // make the event "stick"
                     );
                 }
 
@@ -356,13 +356,13 @@
 
                     //renderiza o calendario depois de ter salva a data
                     $('#calendar').fullCalendar('renderEvent',
-                        {
-                            title: title,
-                            start: start,
-                            end: end,
-                            allDay: false
-                        },
-                        true // make the event "stick"
+                            {
+                                title: title,
+                                start: start,
+                                end: end,
+                                allDay: false
+                            },
+                            true // make the event "stick"
                     );
                 }
             }
@@ -371,9 +371,9 @@
             //esconde o modal
             $("#myModal").modal("hide");
 
-             formCalendario.action = "{{action('CalendarioController@create')}}";
-             formCalendario.method = "GET";
-             formCalendario.submit();
+            formCalendario.action = "{{action('CalendarioController@create')}}";
+            formCalendario.method = "GET";
+            formCalendario.submit();
         }
 
 
@@ -495,7 +495,7 @@
 
 @include('layout.sidebar')
 
-<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 <div id="portlet-config" class="modal hide">
     <div class="modal-header">
         <button data-dismiss="modal" class="close" type="button"></button>
@@ -597,7 +597,7 @@
 
 
 
-<!-- BEGIN CORE JS FRAMEWORK-->
+        <!-- BEGIN CORE JS FRAMEWORK-->
 
 
 <script type="text/javascript" src="packages/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>

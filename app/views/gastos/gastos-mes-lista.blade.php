@@ -1,5 +1,14 @@
 @extends('layout.layout')
 
+    @section('head')
+        <script>
+            function imprimir(){
+                formGastos.action = "{{action('GastosController@imprimir')}}";
+                formGastos.submit();
+            }
+        </script>
+    @stop
+
 
     @section('content')
           {{-- expr --}}
@@ -9,7 +18,7 @@
         <div class="content">
           <div class="row-fluid">
 
-   {{Form::open(array('url' => '/visualizar-gastos-mes-busca','method' => 'post','id' =>'formUsuarioLista'))}}
+   {{Form::open(array('url' => '/visualizar-gastos-mes-busca','method' => 'post','id' =>'formGastos'))}}
 
 
 
@@ -78,6 +87,7 @@
 
                     <div class="col-md-3">
                       <button type="submit" class="btn btn-default">Buscar</button>
+                      <button type="button" class="btn btn-success" onclick="imprimir()">Imprimir</button>
                     </div> 
                   <br>                     
                 </div>

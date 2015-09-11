@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afbdbb88-d1aa-458e-b679-1b5c3c21f17f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/gastos/gastos-imprimir.blade.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Nutricionista-laravel.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/tairo.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/packages/assets/img/profiles/8747ced4bf4d469f993e3778821d41be.jpeg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/cliente/cliente-cadastro.blade.php" afterPath="$PROJECT_DIR$/app/views/cliente/cliente-cadastro.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" afterPath="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/mail.php" afterPath="$PROJECT_DIR$/app/config/mail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/nutricionista/nutricionista-lista.blade.php" afterPath="$PROJECT_DIR$/app/views/nutricionista/nutricionista-lista.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2014_10_10_191807_create_users.php" afterPath="$PROJECT_DIR$/app/database/migrations/2014_10_10_191807_create_users.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/CalendarioController.php" afterPath="$PROJECT_DIR$/app/controllers/CalendarioController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/GastosController.php" afterPath="$PROJECT_DIR$/app/controllers/GastosController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php" afterPath="$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" afterPath="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" afterPath="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layout/layout.blade.php" afterPath="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" afterPath="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="qualimsolucoes.iws" />
@@ -48,44 +54,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="nutricionista-lista.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/nutricionista/nutricionista-lista.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.888889">
-              <caret line="61" column="38" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GastosController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.3333335">
-              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+            <state vertical-scroll-proportion="-11.814815">
+              <caret line="192" column="116" selection-start-line="192" selection-start-column="116" selection-end-line="192" selection-end-column="116" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gastos.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos.blade.php">
+      <file leaf-file-name="gastos-mes-busca.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3114754">
-              <caret line="307" column="49" selection-start-line="307" selection-start-column="49" selection-end-line="307" selection-end-column="49" />
-              <folding>
-                <element signature="e#8780#8797#0#HTML" expanded="true" />
-                <marker date="1441885309638" expanded="true" signature="3777:3799" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="-9.333333">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="218" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <file leaf-file-name="gastos-imprimir.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-imprimir.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-48.592594">
-              <caret line="229" column="26" selection-start-line="229" selection-start-column="26" selection-end-line="229" selection-end-column="26" />
+            <state vertical-scroll-proportion="-10.0">
+              <caret line="112" column="62" selection-start-line="112" selection-start-column="62" selection-end-line="112" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.333333">
+              <caret line="497" column="104" selection-start-line="497" selection-start-column="104" selection-end-line="497" selection-end-column="104" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CalendarioController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/CalendarioController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.222222">
+              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2014_10_10_191807_create_users.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_10_10_191807_create_users.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7401869">
+              <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layout/sidebar.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.296296">
+              <caret line="433" column="120" selection-start-line="433" selection-start-column="120" selection-end-line="433" selection-end-column="120" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendario.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.222222">
+              <caret line="539" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="627" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendario-admin.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-374.0">
+              <caret line="582" column="67" selection-start-line="582" selection-start-column="67" selection-end-line="582" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendario-individual.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-32.88889">
+              <caret line="627" column="7" selection-start-line="627" selection-start-column="7" selection-end-line="627" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -99,8 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="&lt;6b2bca35-535f-43a7-b663-9307e1318a4e&gt;/qualim2/app/config/database.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/8e1e7c0f-8264-4e5b-a77f-b327480549bb/console.sql" />
         <option value="$PROJECT_DIR$/app/database/seeds/UserTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_10_15_164148_create_tarefas.php" />
@@ -117,10 +178,7 @@
         <option value="$PROJECT_DIR$/app/views/calendario/calendario.blade.php" />
         <option value="$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php" />
         <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php" />
-        <option value="$PROJECT_DIR$/app/controllers/CalendarioController.php" />
-        <option value="$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/NutricionistasController.php" />
-        <option value="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-nova-cliente.blade.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-nova.blade.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-cliente-admin-visualizar.blade.php" />
@@ -132,14 +190,9 @@
         <option value="$PROJECT_DIR$/app/views/emails/relatorio-email-nutricionista.blade.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_11_12_183530_create_relatorio_visitas.php" />
         <option value="$PROJECT_DIR$/app/views/tarefa/tarefa-finalizadas.blade.php" />
-        <option value="$PROJECT_DIR$/app/config/app.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-lista.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" />
         <option value="$PROJECT_DIR$/public/packages/assets/plugins/data-tables/jquery.dataTables.js" />
         <option value="$PROJECT_DIR$/public/packages/assets/plugins/jquery-datatable/js/jquery.dataTables.js" />
-        <option value="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
         <option value="$PROJECT_DIR$/app/models/Cliente.php" />
         <option value="$PROJECT_DIR$/app/views/cliente/cliente-editar.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/RelatorioController.php" />
@@ -148,8 +201,18 @@
         <option value="$PROJECT_DIR$/app/config/mail.php" />
         <option value="$PROJECT_DIR$/app/views/cliente/cliente-cadastro.blade.php" />
         <option value="$PROJECT_DIR$/app/views/nutricionista/nutricionista-lista.blade.php" />
-        <option value="$PROJECT_DIR$/app/controllers/GastosController.php" />
         <option value="$PROJECT_DIR$/app/views/gastos/gastos.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php" />
+        <option value="$PROJECT_DIR$/app/config/app.php" />
+        <option value="$PROJECT_DIR$/app/controllers/GastosController.php" />
+        <option value="$PROJECT_DIR$/app/views/gastos/gastos-imprimir.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/layout/layout.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/layout/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/CalendarioController.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2014_10_10_191807_create_users.php" />
       </list>
     </option>
   </component>
@@ -246,7 +309,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -264,11 +327,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gastos" />
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -287,6 +350,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qualimsolucoes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -314,6 +395,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/gastos" />
       <recent name="$PROJECT_DIR$/app/views/tarefa" />
       <recent name="$PROJECT_DIR$/app/views/calendario" />
       <recent name="$PROJECT_DIR$/app/views/cliente" />
@@ -368,12 +450,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22705314" sideWeight="0.5030303" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.024154589" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.024154589" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22705314" sideWeight="0.4969697" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1594203" sideWeight="0.4969697" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20681818" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20757575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19924243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27878788" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -407,66 +489,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/calendario/cronograma-lista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.666667">
-          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/nutricionista/nutricionista-lista-excluidos.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.407408">
-          <caret line="54" column="128" selection-start-line="54" selection-start-column="128" selection-end-line="54" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/cliente/cliente-lista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41489363">
-          <caret line="46" column="66" selection-start-line="46" selection-start-column="66" selection-end-line="46" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/cliente/cliente-lista-excluidos.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60638297">
-          <caret line="46" column="102" selection-start-line="46" selection-start-column="102" selection-end-line="46" selection-end-column="127" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3333335">
-          <caret line="582" column="67" selection-start-line="582" selection-start-column="67" selection-end-line="582" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.925926">
-          <caret line="597" column="0" selection-start-line="597" selection-start-column="0" selection-end-line="597" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-cadastrar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5393795">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/CalendarioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19148937">
-          <caret line="112" column="36" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.23049645">
-          <caret line="70" column="72" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -540,31 +566,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-lista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="89" selection-start-line="23" selection-start-column="89" selection-end-line="23" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.0">
-          <caret line="428" column="41" selection-start-line="428" selection-start-column="41" selection-end-line="428" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-lista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-24.666666">
           <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.666667">
-          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -638,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9787234">
-          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_ide_helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3492908">
@@ -670,20 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="267" column="76" selection-start-line="267" selection-start-column="76" selection-end-line="267" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/RelatorioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="376" column="58" selection-start-line="376" selection-start-column="58" selection-end-line="376" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -715,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="541" column="9" selection-start-line="541" selection-start-column="9" selection-end-line="546" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/cliente/cliente-cadastro.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -736,10 +713,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-48.592594">
-          <caret line="229" column="26" selection-start-line="229" selection-start-column="26" selection-end-line="229" selection-end-column="26" />
+        <state vertical-scroll-proportion="-14.333333">
+          <caret line="312" column="45" selection-start-line="312" selection-start-column="45" selection-end-line="312" selection-end-column="45" />
+          <folding>
+            <element signature="e#8780#8797#0#HTML" expanded="true" />
+            <marker date="1441885309638" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-lista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6666667">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/RelatorioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5531915">
+          <caret line="169" column="12" selection-start-line="169" selection-start-column="12" selection-end-line="169" selection-end-column="112" />
           <folding />
         </state>
       </provider>
@@ -752,22 +748,123 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
+    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-lista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3333335">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state vertical-scroll-proportion="30.666666">
+          <caret line="20" column="99" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="99" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/config/local/app.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3114754">
-          <caret line="307" column="49" selection-start-line="307" selection-start-column="49" selection-end-line="307" selection-end-column="49" />
-          <folding>
-            <element signature="e#8780#8797#0#HTML" expanded="true" />
-            <marker date="1441885309638" expanded="true" signature="3777:3799" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.5425532">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4787234">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-mes-busca.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.333333">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="218" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/GastosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.814815">
+          <caret line="192" column="116" selection-start-line="192" selection-start-column="116" selection-end-line="192" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/relatorio-visita/relatorio-visita-tecnica-imprimir.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47340426">
+          <caret line="93" column="20" selection-start-line="93" selection-start-column="20" selection-end-line="95" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/gastos/gastos-imprimir.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="112" column="62" selection-start-line="112" selection-start-column="62" selection-end-line="112" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32978722">
+          <caret line="209" column="80" selection-start-line="209" selection-start-column="80" selection-end-line="209" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.333333">
+          <caret line="497" column="104" selection-start-line="497" selection-start-column="104" selection-end-line="497" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layout/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.296296">
+          <caret line="433" column="120" selection-start-line="433" selection-start-column="120" selection-end-line="433" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-374.0">
+          <caret line="582" column="67" selection-start-line="582" selection-start-column="67" selection-end-line="582" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.222222">
+          <caret line="539" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="627" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/calendario/calendario-individual.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-32.88889">
+          <caret line="627" column="7" selection-start-line="627" selection-start-column="7" selection-end-line="627" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/CalendarioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.222222">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_10_10_191807_create_users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7401869">
+          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>

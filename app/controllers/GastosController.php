@@ -109,6 +109,8 @@ class GastosController extends BaseController {
 
 		$mes = Input::get("SelectMes");
 		$ano = Input::get("SelectAno");
+		$mesBusca = $mes;
+		$anoBusca = $ano;
 		$mesInicio = $ano."-".$mes."-01";
 		$mesFim = $ano."-".$mes."-31";
 		$nutricionista_id = Input::get("nutricionista_id");
@@ -117,7 +119,7 @@ class GastosController extends BaseController {
 					   ->where('date','<=',$mesFim)
 					   ->get();
 
-        return View::make('gastos.gastos-mes-busca',compact(array('gastos','nutricionista_id')));
+        return View::make('gastos.gastos-mes-busca',compact(array('gastos','nutricionista_id', 'mesBusca', 'anoBusca')));
 
 	}
 
@@ -171,12 +173,24 @@ class GastosController extends BaseController {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function imprimir()
 	{
-		//
+		$mes = Input::get("SelectMes");
+		$ano = Input::get("SelectAno");
+        $mesBusca = $mes;
+        $anoBusca = $ano;
+
+		$mesInicio = $ano."-".$mes."-01";
+		$mesFim = $ano."-".$mes."-31";
+		$nutricionista_id = Input::get("nutricionista_id");
+		$gastos = Gasto::where('nutricionista_id','=',Input::get("nutricionista_id"))
+			->where('date','>=',$mesInicio)
+			->where('date','<=',$mesFim)
+			->get();
+
+		return View::make('gastos.gastos-imprimir',compact(array('gastos','nutricionista_id', 'mesBusca', 'anoBusca')));
 	}
 
 	/**

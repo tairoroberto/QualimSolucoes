@@ -429,9 +429,9 @@
                                     </li>
                                 @endif
 
-                                @if (Auth::user()->get()->type == "Administrador")
+                                @if (Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora")
                                     <li >
-                                        <a href="{{action('CalendarioController@indexIndividual')}}"> Meus Cronogramas</a>
+                                        <a href="{{action('CalendarioController@indexIndividual')}}"> Cronograma Pessoal</a>
                                     </li>
                                 @endif
 

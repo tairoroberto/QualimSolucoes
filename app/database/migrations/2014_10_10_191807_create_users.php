@@ -30,6 +30,7 @@ class CreateUsers extends Migration {
 			$table->integer('num_ticket');
 			$table->string('photo',255);
 			$table->string('signature',255);
+			$table->string('color',10);
 			$table->string('remember_token',60);
 			$table->timestamps();
             $table->softDeletes();

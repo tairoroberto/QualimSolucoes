@@ -1,5 +1,13 @@
 @extends('layout.layout')
 
+@section('head')
+    <script>
+        function imprimir() {
+            formGastos.action = "{{action('GastosController@imprimir')}}";
+            formGastos.submit();
+        }
+    </script>
+@stop
 
 @section('content')
           {{-- expr --}}
@@ -9,7 +17,7 @@
         <div class="content">
           <div class="row-fluid">
 
-   {{Form::open(array('url' => '/visualizar-gastos-mes-busca','method' => 'post','id' =>'formUsuarioLista'))}}
+   {{Form::open(array('url' => '/visualizar-gastos-mes-busca','method' => 'post','id' =>'formGastos'))}}
           
    {{--calculo do mes--}}
  <?php $mes = date('m'); 
@@ -26,6 +34,21 @@
    if ($mes == 10) {$mesCorrente = "Outubro";}else
    if ($mes == 11) {$mesCorrente = "Novembro";}else
    if ($mes == 12) {$mesCorrente = "Dezenbro";}
+
+  if(isset($mesBusca,$anoBusca)){
+      if ($mesBusca == 1) {$mesCorrenteBusca = "Janeiro";}else
+      if ($mesBusca == 2) {$mesCorrenteBusca = "Fevereiro";}else
+      if ($mesBusca == 3) {$mesCorrenteBusca = "Março";}else
+      if ($mesBusca == 4) {$mesCorrenteBusca = "Abril";}else
+      if ($mesBusca == 5) {$mesCorrenteBusca = "Maio";}else
+      if ($mesBusca == 6) {$mesCorrenteBusca = "Junho";}else
+      if ($mesBusca == 7) {$mesCorrenteBusca = "Julho";}else
+      if ($mesBusca == 8) {$mesCorrenteBusca = "Agosto";}else
+      if ($mesBusca == 9) {$mesCorrenteBusca = "Setembro";}else
+      if ($mesBusca == 10) {$mesCorrenteBusca = "Outubro";}else
+      if ($mesBusca == 11) {$mesCorrenteBusca = "Novembro";}else
+      if ($mesBusca == 12) {$mesCorrenteBusca = "Dezenbro";}
+  }
  ?>
  {{--Fim do calculo--}}
 
@@ -43,7 +66,10 @@
                 <div class="grid-body">
 
                      <div class="col-md-3">
-                      <select name="SelectMes" id="SelectMes" class="form-control" required="required">     
+                      <select name="SelectMes" id="SelectMes" class="form-control" required="required">
+                          @if($mesBusca != null)
+                              <option value="{{$mesBusca}}">{{$mesCorrenteBusca}}</option>
+                          @endif
                             <option value="{{$mes}}">{{$mesCorrente}}</option>
                             <option value="1">Janeiro</option>
                             <option value="2">Fevereiro</option>
@@ -75,6 +101,7 @@
 
                     <div class="col-md-3">
                       <button type="submit" class="btn btn-default">Buscar</button>
+                      <button type="button" class="btn btn-success" onclick="imprimir()">Imprimir</button>
                     </div> 
                   <br>                     
                 </div>
