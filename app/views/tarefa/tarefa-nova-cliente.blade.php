@@ -143,12 +143,34 @@ function enviar(){
 
 
                         <div class="col-md-2">
-                            <select id="SelectCliente1" name="SelectCliente1" style="width:100%">
+                            <!--<select id="SelectCliente1" name="SelectCliente1" style="width:100%">
                                 <option value="">Cliente</option>
 
                                 <?php $clientes =  Cliente::all(); ?>
                                 @foreach ($clientes as $cliente)
                                     <option value="{{$cliente->id}}">{{$cliente->razaoSocial}}</option>');
+                                @endforeach
+                            </select>-->
+                            <select id="SelectCliente1" name="SelectCliente1" style="width:100%">
+                                <option value="">Nome do cliente</option>
+
+                                <?php $clientes = Cliente::all(); ?>
+                                @foreach ($clientes as $cli)
+
+                                    @if(Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora")
+                                        <option value="{{$cli->id}}">
+                                            {{$cli->razaoSocial}}
+                                        </option>
+                                    @else
+                                        <?php $usersIds = Nutricionista::whereIn("id",explode(',',$cli->nutricionista_id))->get(); ?>
+                                        @foreach($usersIds as $userId)
+                                            @if($userId->id == Auth::user()->get()->id)
+                                                <option value="{{$cli->id}}">
+                                                    {{$cli->razaoSocial}}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -201,12 +223,26 @@ function enviar(){
                         $('select[name="SelectClienteArray[]"]').append('<option value="Cliente">Cliente</option>');
                         <?php
                              $clientes =  Cliente::all(); ?>
-                        @foreach ($clientes as $cliente)
+                        {{--@foreach ($clientes as $cliente)--}}
 
-                        $('select[name="SelectClienteArray[]"]').append('<option value="{{$cliente->id}}">{{$cliente->razaoSocial}}</option>');
 
+
+                        {{--@endforeach--}}
+
+                        @foreach ($clientes as $cli)
+
+                            @if(Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora")
+                                $('select[name="SelectClienteArray[]"]').append('<option value="{{$cli->id}}">{{$cli->razaoSocial}}</option>');
+                            @else
+                            <?php $usersIds = Nutricionista::whereIn("id",explode(',',$cli->nutricionista_id))->get(); ?>
+                                @foreach($usersIds as $userId)
+                                    @if($userId->id == Auth::user()->get()->id)
+                                        $('select[name="SelectClienteArray[]"]').append('<option value="{{$cli->id}}">{{$cli->razaoSocial}}</option>');
+                                    @endif
+                                @endforeach
+                            @endif
                         @endforeach
-                    }
+}
 
 
 

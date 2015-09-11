@@ -581,7 +581,6 @@
             <br><br><br><br><br><br><br><br><br>
             <div class="modal-footer">
                 <input type="color" name="color" id="color" style="float: left" title="Cor do evento" value="#3A87AD">
-                <button type="button" id="btnFechar" class="btn " style="float: right"  data-dismiss="modal">Fechar</button>
                 <button type="button" id="btnSalvar" style="float: right"  class="btn btn-primary"  onclick="salvaCalendario();">Novo</button>
                 <button type="button" id="btnDeletar" style="display: none;float: right" class="btn btn-danger" >Deletar</button>
                 <button type="button" id="btnEditar" style="display: none;float: right" class="btn btn-primary" >Editar</button>

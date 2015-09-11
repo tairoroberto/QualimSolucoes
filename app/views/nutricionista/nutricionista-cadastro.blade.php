@@ -46,6 +46,10 @@
            }
        });
    }
+
+   function changeColor(){
+       $('#color').css("backgroundColor",  $('#color').val());
+   }
   </script>
 @stop
 
@@ -188,8 +192,12 @@
                       </div>
                       </div>
                       <div class="form-actions">
-                        <div class="pull-left"></div>
+                        <div class="pull-left">
+                            <label class="" for="color">Cor do Cronograma</label>
+                            <input type="color" onchange="changeColor();" class="btn" name="color" id="color" style="float: left; width: 100px" title="Cor Para Cronograma" value="#3A87AD">
+                        </div>
                         <div class="pull-right">
+                            <br>
                           <button class="btn btn-primary btn-cons" type="submit">Salvar </button>
                           
                           <button class="btn btn-danger btn-cons" type="reset">Cancelar</button>

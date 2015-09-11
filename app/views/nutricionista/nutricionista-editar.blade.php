@@ -20,6 +20,10 @@
         document.getElementById("DivFoto").style.display = "block";  
       }        
    }
+
+      function changeColor(){
+          $('#color').css("backgroundColor",  $('#color').val());
+      }
   </script>
 @stop
 
@@ -200,7 +204,15 @@
                       </div>
                       </div>
                       <div class="form-actions">
-                        <div class="pull-left"></div>
+                          <div class="pull-left">
+                              <label class="" for="color">Cor do Cronograma</label>
+                              <input onchange="changeColor();" type="color" class="btn" name="color" id="color" style="float: left; width: 100px; background-color: <?php if (isset($nutricionista->color)){echo $nutricionista->color;}elseif (Input::old("color")){
+                                  echo Input::old("color");
+                              }?>" title="Cor Para Cronograma" value="<?php if (isset($nutricionista->color)){echo $nutricionista->color;}elseif (Input::old("color")){
+                                  echo Input::old("color");
+                              }?>">
+                          </div>
+                          <br><br>
                         <div class="pull-right">
                           <button class="btn btn-primary btn-cons" type="submit">Salvar </button>
                           

@@ -87,6 +87,7 @@ class NutricionistasController extends BaseController {
 			$nutricionista->num_ticket = Input::get("ticket");
 			$nutricionista->photo = $photo_name;
 			$nutricionista->signature = $photo_signature;
+			$nutricionista->color = Input::get("color");
 			$nutricionista->remember_token = "";
 
 			$nutricionista->save();
@@ -225,7 +226,8 @@ class NutricionistasController extends BaseController {
 			$nutricionista->type = Input::get("tipo");
 			$nutricionista->num_ticket = Input::get("ticket");
 			if (!is_null(Input::file('foto'))) {$nutricionista->photo = $photo_name;}
-			if (!is_null(Input::file('assinatura'))) {$nutricionista->signature = $photo_signature;}			
+			if (!is_null(Input::file('assinatura'))) {$nutricionista->signature = $photo_signature;}
+			$nutricionista->color = Input::get("color");
 			$nutricionista->remember_token = "";
 
 			$nutricionista->save();

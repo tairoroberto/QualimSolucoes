@@ -62,7 +62,7 @@ class CalendarioController extends BaseController
 
         $calendario->nutricionista_id = Auth::user()->get()->id;
         $calendario->situation = "";
-        $calendario->color = Input::get("color");
+        //$calendario->color = Input::get("color");
         $calendario->save();
         return;
     }
@@ -86,6 +86,12 @@ class CalendarioController extends BaseController
                 $nutricionista = Nutricionista::withTrashed()->find($evento->nutricionista_id);
                 $name = explode(" ", $nutricionista->name);
 
+                if(isset($nutricionista->color)){
+                    $evento->color = $nutricionista->color;
+                }else{
+                    $evento->color = '#3A87AD';
+                }
+
                 $evento->title = $name[0] . " - " . $evento->title . " - " . $evento->description . " - " . $evento->location;
                 $array[] = $evento;
             }
@@ -94,6 +100,13 @@ class CalendarioController extends BaseController
             $result = Calendario::where('nutricionista_id', '=', $id)->get();
             foreach ($result as $evento) {
                 $evento->title .= " - " . $evento->description . " - " . $evento->location;
+
+                if(isset(Auth::user()->get()->color)){
+                    $evento->color = Auth::user()->get()->color;
+                }else{
+                    $evento->color = '#3A87AD';
+                }
+
                 $array[] = $evento;
             }
             return json_encode($array);
@@ -118,6 +131,12 @@ class CalendarioController extends BaseController
 
             $name = explode(" ", Auth::user()->get()->name);
             $evento->title = $name[0] . " - " . $evento->title . " - " . $evento->description . " - " . $evento->location;
+
+            if(isset(Auth::user()->get()->color)){
+                $evento->color = Auth::user()->get()->color;
+            }else{
+                $evento->color = '#3A87AD';
+            }
 
             $array[] = $evento;
         }
@@ -210,7 +229,7 @@ class CalendarioController extends BaseController
         $calendario->end = $end[2] . "-" . $end[1] . "-" . $end[0] . " " . $endFull[1];
 
         $calendario->situation = "";
-        $calendario->color = Input::get("color");
+        //$calendario->color = Input::get("color");
         $calendario->save();
         return;
     }
