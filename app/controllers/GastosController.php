@@ -73,6 +73,32 @@ class GastosController extends BaseController {
             $gasto->nutricionista_id = Input::get("nutricionista_id");
 
 			$gasto->save();
+
+			/**
+			 *verifica se AS FOTOS foram submetidos
+			 */
+			$fotos = Input::file("FotosArray");
+			if (isset($fotos)) {
+				foreach ($fotos as $foto) {
+
+					//change the name of photo for save in database
+					$ext = $foto->guessExtension();
+
+					if($ext == ""){
+						$ext = pathinfo($foto->getClientOriginalName(), PATHINFO_EXTENSION);
+					}
+
+					$photo_name = md5(uniqid(time())) . "." . $ext;
+
+					//move photo
+					$foto->move('packages/assets/img/gastos',$photo_name);
+					$fotoGasto = new ImagemGasto();
+                    $fotoGasto->path = 'packages/assets/img/gastos/'.$photo_name;
+					$fotoGasto->id_gasto = $gasto->id;
+					$fotoGasto->id_nutricionista = $gasto->nutricionista_id;
+					$fotoGasto->save();
+				}
+			}
 			
 			return Redirect::route('cadastrar-gastos')
 						  ->withErrors(['Despesa Cadastrada com sucesso...!']);
@@ -159,6 +185,32 @@ class GastosController extends BaseController {
 			$calendario->save();
             $gasto->save();
 
+            /**
+             *verifica se AS FOTOS foram submetidos
+             */
+            $fotos = Input::file("FotosArray");
+            if (isset($fotos)) {
+                foreach ($fotos as $foto) {
+
+                    //change the name of photo for save in database
+                    $ext = $foto->guessExtension();
+
+                    if($ext == ""){
+                        $ext = pathinfo($foto->getClientOriginalName(), PATHINFO_EXTENSION);
+                    }
+
+                    $photo_name = md5(uniqid(time())) . "." . $ext;
+
+                    //move photo
+                    $foto->move('packages/assets/img/gastos',$photo_name);
+                    $fotoGasto = new ImagemGasto();
+                    $fotoGasto->path = 'packages/assets/img/gastos/'.$photo_name;
+                    $fotoGasto->id_gasto = $gasto->id;
+                    $fotoGasto->id_nutricionista = $gasto->nutricionista_id;
+                    $fotoGasto->save();
+                }
+            }
+
             return Redirect::route('cadastrar-gastos')
                 ->withErrors(['Despesa editada com sucesso...!']);
         }
@@ -220,5 +272,15 @@ class GastosController extends BaseController {
             ->withErrors(['Despesa deletada com sucesso...!']);
 
 	}
+
+    public function deletarFoto(){
+        $foto = ImagemGasto::find(Input::get('id_foto'));
+        if(File::exists($foto->path)){
+            if(File::delete($foto->path)){
+                $foto->delete();
+            }
+        }
+        return Redirect::to('visualizar-gastos');
+    }
 
 }

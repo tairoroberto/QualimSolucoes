@@ -389,7 +389,7 @@
 
                                         <br />
                                         <br />
-                                        Segue abaixo o link para visualizar o seu relatório, quais quer dúvidas estamos a disposição pelo e-mail falecom@qualimsolucoes.com <br />
+                                        Segue abaixo o link para visualizar o seu relatório, quais quer dúvidas estamos a disposição pelo e-mail sistemaonline@qualimsolucoes.com <br />
                                         <br />
                                         <strong>
                                             <a href="{{action('RelatorioController@visualizarRelatorioEmail', array('relatorio' => $relatorio->id, 'cliente_id' => $cliente->id, 'user' => 'consultora', 'logged' => Auth::user()->get()->id))}}">

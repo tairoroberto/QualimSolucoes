@@ -6,6 +6,33 @@
             formGastos.action = "{{action('GastosController@imprimir')}}";
             formGastos.submit();
         }
+
+        function modalImagens(fotos) {
+            var div = '';
+            fotos = fotos.split(',');
+            for(var i=0;i<fotos.length;i++) {
+                if(fotos[i] != ',' && fotos[i] != null && fotos[i] != ""){
+                    var foto = fotos[i].split("#");
+                    div +=  "<div class='row form-row'>" +
+                            "<div class='col-md-12'>" +
+                            "<img src='" + foto[1]+ "' class='img-responsive' alt='Image' style='width: 400px;height: 400px'>" +
+                            "<button class='btn btn-danger' onclick='deletarFoto("+foto[0]+")'>Deletar</button>"+
+                            "</div>" +
+                            "</div><br><br>";
+                }
+            }
+
+            $('#bodyFotos').html(div);
+
+            $('#myModal').modal('show');
+
+        }
+
+        function deletarFoto(id){
+            $("#id_foto").val(id);
+            formGastos.action = "{{action('GastosController@deletarFoto')}}";
+            formGastos.submit();
+        }
     </script>
 @stop
 
@@ -60,8 +87,7 @@
       </div>
 
 
-          @if (Auth::user()->get()->type == "Administrador")
-            
+
               <div class="grid simple">              
                 <div class="grid-body">
 
@@ -106,7 +132,7 @@
                   <br>                     
                 </div>
               </div>
-          @endif
+
 
 
     <input type="hidden" name="nutricionista_id" id="nutricionista_id" value="{{$nutricionista_id}}">
@@ -119,6 +145,7 @@
                   <table class="table table-hover table-condensed" id="example">
                     <thead>
                       <tr>
+                        <th style="width:1%"></th>
                         <th style="width:20%">Cliente</th>
                         <th style="width:7%">Data</th>                        
                         <th style="width:10%">Entrada</th>
@@ -157,7 +184,21 @@
                                       $segundos -= 60;
                                   }
 
+                              $imagens = ImagemGasto::where('id_gasto', '=', $gasto->id)->get();
+                              $paths = "";
+
+                              foreach ($imagens as $imagem) {
+                                  $paths .= $imagem->id . "#" . $imagem->path . ",";
+                              }
+
                               ?>
+
+                               <td onclick="modalImagens('{{$paths}}')">
+                                   <a href="#" title="Ver imagens">
+                                       <i class="fa fa-instagram">
+                                       </i>
+                                   </a>
+                               </td>
 
                               <td class="v-align-middle">{{$gasto->client_locale}}</td>
                               <td class="v-align-middle">{{$data[2]."/".$data[1]."/".$data[0]}}</td>
@@ -209,6 +250,45 @@
 
                 </div>
               </div>
+
+
+              <div class="modal modal-wide fade" id="myModal">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                          aria-hidden="true">&times;</span></button>
+                          </div>
+
+                          <div class="alert" style="display: none;" id="divErro">
+                              <span class="label label-danger" id="msgErro"></span>
+                          </div>
+
+                          <div class="modal-body" align="center">
+                              {{--Start modal body--}}
+                              <div class="row column-seperation">
+                                  <div class="col-md-12" id="bodyFotos">
+
+
+
+                                  </div>
+                              </div>
+                              {{--End modal body--}}
+                          </div>
+                          <div class="modal-footer">
+
+                              <input type="hidden" id="id_foto" name="id_foto">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                          </div>
+                      </div>
+                      <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+              </div>
+              <!-- /.modal -->
+
+
+
 
             {{Form::close()}}
           </div>

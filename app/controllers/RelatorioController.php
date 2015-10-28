@@ -143,7 +143,7 @@ class RelatorioController extends BaseController {
                 }catch (Exception $e){
                     return Redirect::route('relatorio-lista')
                         ->withInput()
-                        ->withErrors(['Reatorio salvo, porém emails não foram enviados!']);
+                        ->withErrors(['Relatório salvo, porém emails não foram enviados!']);
                 }
 
 
@@ -289,7 +289,7 @@ class RelatorioController extends BaseController {
                 }catch (Exception $e){
                     return Redirect::route('relatorio-lista')
                         ->withInput()
-                        ->withErrors(['Reatorio salvo porém emails não foram enviados!']);
+                        ->withErrors(['Relatório salvo porém emails não foram enviados!']);
                 }
 
 

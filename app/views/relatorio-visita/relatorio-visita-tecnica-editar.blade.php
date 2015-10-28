@@ -255,15 +255,15 @@ function somaHora(horaInicio, horaSomada) {
                     <div class="col-md-7">
                       <h4>
                        <select id="selectCliente" name="selectCliente" required="required" class="form-control" onchange="selecionaCliente();">
-                              <option value="{{$cliente->id.','.$cliente->razaoSocial;}}">{{$cliente->razaoSocial}}</option>
+                              <option value="{{$cliente->id.','.$cliente->nomeFantasia;}}">{{$cliente->nomeFantasia}}</option>
                            <?php $clientes = Cliente::all(); ?>
                            @foreach ($clientes as $cli)
 
                                <?php $usersIds = Nutricionista::whereIn("id",explode(',',$cli->nutricionista_id))->get(); ?>
                                @foreach($usersIds as $userId)
                                    @if($userId->id == Auth::user()->get()->id)
-                                       <option value="{{$cli->id.','.$cli->razaoSocial;}}">
-                                           {{$cli->razaoSocial}}
+                                       <option value="{{$cli->id.','.$cli->nomeFantasia;}}">
+                                           {{$cli->nomeFantasia}}
                                        </option>
                                    @endif
                                @endforeach

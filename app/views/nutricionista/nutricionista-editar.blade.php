@@ -146,12 +146,6 @@
 
                        <div class="col-md-3">
                         <select name="tipo" id="tipo" class="form-control" required="required" onchange="escondeFoto();">
-                            <?php if (isset($nutricionista->type)){
-                                echo " <option value='Administrador'>$nutricionista->type</option>";
-                            }else{
-                                echo Input::old("tipo");
-                            }?>
-
                         <option value="">Tipo de Usuário</option>
                         <option value="Administrador">Administrador</option>
                         <option value="Consultora">Consultora</option>
@@ -163,11 +157,6 @@
 
                        <div class="col-md-2">
                         <select name="ticket" id="ticket" class="form-control" required="required" >
-                            <?php if (isset($nutricionista->num_ticket)){
-                                echo "<option value='".$nutricionista->num_ticket."'>$nutricionista->num_ticket</option>";
-                            }else{
-                                echo Input::old("ticket");
-                            }?>
                              @for ($i = 0; $i <= 31 ; $i++)
                                <option value="{{$i}}">{{$i}}</option>
                              @endfor

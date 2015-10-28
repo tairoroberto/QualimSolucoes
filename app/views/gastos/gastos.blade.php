@@ -241,6 +241,33 @@
           });
       }
 
+
+   var qdivCamposFotos = 0;
+   function criarCampoFotos(){
+       /*********************************************************************************************/
+       /*      						 Cria campos para o Histórico					             */
+       /*                                                                                           */
+       /*********************************************************************************************/
+
+
+       var objPai = document.getElementById("DivFotoOrigem");
+       //Criando o elemento DIV;
+       var objFilho = document.createElement("DivFotoDestino");
+       //Definindo atributos ao objFilho:
+       objFilho.setAttribute("id","Foto"+qdivCamposFotos);
+
+       //Inserindo o elemento no pai:
+       objPai.appendChild(objFilho);
+       //Escrevendo algo no filho recem-criado:
+       document.getElementById("Foto"+qdivCamposFotos).innerHTML =
+
+               "<div class='col-md-6'>"
+               +"<input name='FotosArray[]' id='FotosArray["+qdivCamposFotos+"]' type='file' accept='image/*'  title='Foto "+qdivCamposFotos+"'  class='filestyle btn btn-primary btn-cons'>"
+               +"</div>"
+       qdivCamposFotos++;
+
+   }
+
   </script>
 
   <style type="text/css">
@@ -461,6 +488,9 @@
                             <input type="hidden" name="gasto_id" id="gasto_id" value="{{Input::old('gasto_id')}}" >
 
                         </div>
+                            {{-- Div para criação de campos de e-mails--}}
+                            <div class="row form-row" id="DivFotoOrigem"></div>
+                            <div class="row form-row" id="DivFotoDestino"></div>
                       </div>
                     </div>
                     {{--End modal body--}}
@@ -468,6 +498,8 @@
                     <div class="modal-footer">
 
                       <input type="hidden" id="situacao">
+
+                      <button type="button" class="btn btn-success" onclick="criarCampoFotos();">Adicionar fotos</button>
                       <button type="button" id="btnBuscarDados" class="btn btn-primary" onclick="salvarDespesa();">Salva despesa</button>
                       <button type="button" id="btnBuscarDados" class="btn btn-danger" onclick="mostraAlerta();">Deletar despesa</button>
                       <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

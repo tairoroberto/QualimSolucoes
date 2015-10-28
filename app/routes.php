@@ -234,6 +234,7 @@ Route::group(array('before' => 'auth'), function () {
     Route::post("/editar-gastos", "GastosController@edit");
     Route::post("/deletar-gastos", "GastosController@destroy");
     Route::post("/imprimir-gastos", "GastosController@imprimir");
+    Route::post("/deletar-foto-gasto","GastosController@deletarFoto");
 
 
 

@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.trmasolucoes.com.br',//'mail.mandprojetos.com.br',
+	'host' => 'smtp.nowsolucoes.com.br',//'mail.mandprojetos.com.br',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'falecom@qualimsolucoes.com', 'name' => 'Qualim Soluções'),
+	'from' => array('address' => 'sistemaonline@qualimsolucoes.com', 'name' => 'Qualim Soluções'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'contato@trmasolucoes.com.br',//null,
+	'username' => 'tairo@nowsolucoes.com.br',//null,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'redhotTairo1507!trma',//null,
+	'password' => 'redhotTairo1507',//null,
 
 	/*
 	|--------------------------------------------------------------------------

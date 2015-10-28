@@ -110,7 +110,7 @@ table {
                     </div> 
                     <div class="col-md-2">
                     {{--função para mostrar data--}}
-                    <?php $data = explode(" ", $relatorio_visita->created_at) ?>
+                    <?php $data = explode(" ", $relatorio_visita->data) ?>
                     <?php $data = explode("-", $data[0]) ?>
 
                       <h5><b>Data: </b>{{$data[2]."/".$data[1]."/".$data[0]}}</h5>

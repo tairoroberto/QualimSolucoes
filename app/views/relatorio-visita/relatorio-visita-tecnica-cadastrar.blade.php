@@ -294,15 +294,15 @@
                            @foreach ($clientes as $cli)
 
                                @if(Auth::user()->get()->type == "Administrador" || Auth::user()->get()->type == "Supervisora")
-                                   <option value="{{$cli->id.','.$cli->razaoSocial;}}">
-                                       {{$cli->razaoSocial}}
+                                   <option value="{{$cli->id.','.$cli->nomeFantasia;}}">
+                                       {{$cli->nomeFantasia}}
                                    </option>
                                @else
                                    <?php $usersIds = Nutricionista::whereIn("id",explode(',',$cli->nutricionista_id))->get(); ?>
                                    @foreach($usersIds as $userId)
                                        @if($userId->id == Auth::user()->get()->id)
-                                           <option value="{{$cli->id.','.$cli->razaoSocial;}}">
-                                               {{$cli->razaoSocial}}
+                                           <option value="{{$cli->id.','.$cli->nomeFantasia;}}">
+                                               {{$cli->nomeFantasia}}
                                            </option>
                                        @endif
                                    @endforeach
